@@ -3109,11 +3109,27 @@ MonoBehaviour:
   wallJumpXForce: 16
   wallJumpYForce: 7
   wallJumpBufferTime: 1
+  normalJumpSpawn: {fileID: 858437485}
+  doubleJumpSpawn: {fileID: 147365905}
+  leftWallSlideSpawn: {fileID: 1863962391}
+  rightWallSlideSpawn: {fileID: 460318617}
+  leftWallJumpSpawn: {fileID: 1549593389}
+  rightWallJumpSpawn: {fileID: 339685084}
+  leftWalkingSpawn: {fileID: 61805616}
+  rightWalkingSpawn: {fileID: 1742388301}
+  normalJumpEffect: {fileID: 732037716}
+  doubleJumpEffect: {fileID: 1055893395}
+  leftWallSlideEffect: {fileID: 1864761426}
+  rightWallSlideEffect: {fileID: 432720959}
+  leftWallJumpEffect: {fileID: 1871995658}
+  rightWallJumpEffect: {fileID: 886021261}
+  leftWalkingEffect: {fileID: 515812987}
+  rightWalkingEffect: {fileID: 1598767552}
   dashHorizontalForce: 15
   dashVerticalForce: 5
   dashDuration: 0.15
   dashCooldown: 1
-  debugDash: 0
+  combat: {fileID: 0}
 --- !u!61 &744866009
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -18,9 +18,9 @@ public class PlayerCombat : MonoBehaviour
     public float dashAttackCooldown = 0.3f;
 
     [Header("Attack Locks (prevents other attacks)")]
-    public float normalAttackLock = 0.2f; // Prevents other attacks after normal attack
-    public float heavyAttackLock = 0.5f;  // Longer lock for heavy attack
-    public float dashAttackLock = 0.3f;   // Dash attack lock
+    public float normalAttackLock = 0.2f;
+    public float heavyAttackLock = 0.5f;
+    public float dashAttackLock = 0.3f;
 
     [Header("Dash Attack Collider (On Player)")]
     public GameObject dashHitboxObject;
@@ -56,13 +56,10 @@ public class PlayerCombat : MonoBehaviour
 
     private void Update()
     {
-        HandleNormalAttack();
-        HandleHeavyAttack();
-        HandleDashAttack();
+        // No need to call attacks here if called from PlayerMovement
     }
 
     #region Normal & Heavy Attacks
-
     private void HandleNormalAttack()
     {
         if (Input.GetKeyDown(keybinds.attack) &&
@@ -71,7 +68,7 @@ public class PlayerCombat : MonoBehaviour
         {
             lastNormalAttackTime = Time.time;
             lastAttackTime = Time.time;
-            currentAttackLock = normalAttackLock; // sets lock for other attacks
+            currentAttackLock = normalAttackLock;
 
             StartCoroutine(AttackWindow(normalAttackDamage, "Normal Attack", debugNormalAttack));
         }
@@ -85,7 +82,7 @@ public class PlayerCombat : MonoBehaviour
         {
             lastHeavyAttackTime = Time.time;
             lastAttackTime = Time.time;
-            currentAttackLock = heavyAttackLock; // sets lock for other attacks
+            currentAttackLock = heavyAttackLock;
 
             StartCoroutine(AttackWindow(heavyAttackDamage, "Heavy Attack", debugHeavyAttack));
         }
@@ -105,14 +102,12 @@ public class PlayerCombat : MonoBehaviour
 
         if (health != null) health.isAttacking = false;
     }
-
     #endregion
 
     #region Dash Attack
-
     private void HandleDashAttack()
     {
-        if (!movement.IsDashing()) return;
+        if (movement == null || !movement.IsDashing()) return;
 
         if (Time.time < lastDashAttackTime + dashAttackCooldown ||
             Time.time < lastAttackTime + currentAttackLock) return;
@@ -144,6 +139,11 @@ public class PlayerCombat : MonoBehaviour
         if (dashHitboxObject != null) dashHitboxObject.SetActive(false);
         if (debugDashAttack) Debug.Log("Dash attack ended");
     }
+    #endregion
 
+    #region PUBLIC WRAPPERS
+    public void HandleNormalAttackInput() => HandleNormalAttack();
+    public void HandleHeavyAttackInput() => HandleHeavyAttack();
+    public void HandleDashAttackInput() => HandleDashAttack();
     #endregion
 }
