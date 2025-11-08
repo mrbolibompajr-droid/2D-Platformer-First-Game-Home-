@@ -24,15 +24,11 @@ public class PlayerMovement : MonoBehaviour
     public float wallSlideSpeed = 2f;
     public float wallSlideEffectInterval = 0.1f;
     public float wallSlideStartDelay = 0.2f;
-
-    [Header("Wall Slide Stamina")]
     public float maxWallSlideTime = 1.5f;
 
     [Header("Wall Jump Settings")]
     public float wallJumpXForce = 8f;
     public float wallJumpYForce = 12f;
-
-    [Header("Wall Jump Forgiveness")]
     public float wallJumpBufferTime = 0.2f;
     private float lastWallTouchTime = -1f;
 
@@ -56,6 +52,9 @@ public class PlayerMovement : MonoBehaviour
     public JumpEffectSpawner leftWalkingEffect;
     public JumpEffectSpawner rightWalkingEffect;
 
+    [Header("Audio Pooler")]
+    public AudioPooler audioPooler;
+
     [Header("Dash Settings")]
     public float dashHorizontalForce = 15f;
     public float dashVerticalForce = 5f;
@@ -67,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 dashDirection;
 
     [Header("Combat")]
-    public PlayerCombat combat; // reference to PlayerCombat script
+    public PlayerCombat combat;
 
     private Rigidbody2D rb;
     private float inputX;
@@ -113,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
         HandleWalkingEffect();
         HandleDashInput();
 
-        // --- Attack handling ---
+        // Attack handling
         combat?.HandleNormalAttackInput();
         combat?.HandleHeavyAttackInput();
         combat?.HandleDashAttackInput();
@@ -159,6 +158,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                 normalJumpEffect?.Spawn(normalJumpSpawn.position);
+                audioPooler?.SpawnFromPool("Jump", normalJumpSpawn.position);
+
                 doubleJumpsRemaining = maxDoubleJumps;
             }
             else if (wallJumpAvailable)
@@ -169,6 +170,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, doubleJumpForce);
                 doubleJumpEffect?.Spawn(doubleJumpSpawn.position);
+                audioPooler?.SpawnFromPool("DoubleJump", doubleJumpSpawn.position);
+
                 doubleJumpsRemaining--;
             }
         }
@@ -212,6 +215,12 @@ public class PlayerMovement : MonoBehaviour
         {
             isWallSliding = true;
             wallSlideStartTimer = wallSlideStartDelay;
+
+            if (slidingLeft)
+                audioPooler?.SpawnFromPool("WallSlideLeft", leftWallSlideSpawn.position);
+            else if (slidingRight)
+                audioPooler?.SpawnFromPool("WallSlideRight", rightWallSlideSpawn.position);
+
             return;
         }
 
@@ -226,6 +235,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (slidingLeft) leftWallSlideEffect?.Spawn(leftWallSlideSpawn.position);
             else rightWallSlideEffect?.Spawn(rightWallSlideSpawn.position);
+
             wallSlideEffectTimer = wallSlideEffectInterval;
         }
     }
@@ -240,11 +250,13 @@ public class PlayerMovement : MonoBehaviour
         {
             wallJumpDirection = 1f;
             leftWallJumpEffect?.Spawn(leftWallJumpSpawn.position);
+            audioPooler?.SpawnFromPool("WallJumpLeft", leftWallJumpSpawn.position);
         }
         else if (touchingRight || (Time.time - lastWallTouchTime <= wallJumpBufferTime && lastWallTouchTime > 0))
         {
             wallJumpDirection = -1f;
             rightWallJumpEffect?.Spawn(rightWallJumpSpawn.position);
+            audioPooler?.SpawnFromPool("WallJumpRight", rightWallJumpSpawn.position);
         }
 
         rb.linearVelocity = new Vector2(wallJumpXForce * wallJumpDirection, yForce);
@@ -258,8 +270,16 @@ public class PlayerMovement : MonoBehaviour
     private void HandleWalkingEffect()
     {
         if (!isGrounded || Mathf.Abs(inputX) < 0.1f) return;
-        if (inputX < 0) leftWalkingEffect?.Spawn(leftWalkingSpawn.position);
-        else if (inputX > 0) rightWalkingEffect?.Spawn(rightWalkingSpawn.position);
+        if (inputX < 0)
+        {
+            leftWalkingEffect?.Spawn(leftWalkingSpawn.position);
+            audioPooler?.SpawnFromPool("WalkingLeft", leftWalkingSpawn.position);
+        }
+        else if (inputX > 0)
+        {
+            rightWalkingEffect?.Spawn(rightWalkingSpawn.position);
+            audioPooler?.SpawnFromPool("WalkingRight", rightWalkingSpawn.position);
+        }
     }
 
     private void HandleDashInput()
@@ -272,6 +292,8 @@ public class PlayerMovement : MonoBehaviour
             isDashing = true;
             dashTimer = dashDuration;
             lastDashTime = Time.time;
+
+            audioPooler?.SpawnFromPool("Dash", transform.position);
         }
     }
 
@@ -283,7 +305,6 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = scale;
     }
 
-    // --- PUBLIC WRAPPER METHODS ---
     public bool IsDashing() => isDashing;
 
     private void OnDrawGizmosSelected()

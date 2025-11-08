@@ -17,7 +17,7 @@ public class PlayerCombat : MonoBehaviour
     public float heavyAttackCooldown = 1f;
     public float dashAttackCooldown = 0.3f;
 
-    [Header("Attack Locks (prevents other attacks)")]
+    [Header("Attack Locks")]
     public float normalAttackLock = 0.2f;
     public float heavyAttackLock = 0.5f;
     public float dashAttackLock = 0.3f;
@@ -28,6 +28,9 @@ public class PlayerCombat : MonoBehaviour
     public float dashAttackDuration = 0.15f;
     public bool dashAttackAutomatic = true;
 
+    [Header("Audio Pooler")]
+    public AudioPooler audioPooler;
+
     [Header("Debug Options")]
     public bool debugNormalAttack = true;
     public bool debugHeavyAttack = true;
@@ -36,12 +39,10 @@ public class PlayerCombat : MonoBehaviour
     private Health health;
     private PlayerMovement movement;
 
-    // Cooldown tracking
     private float lastNormalAttackTime = -10f;
     private float lastHeavyAttackTime = -10f;
     private float lastDashAttackTime = -10f;
 
-    // Attack lock tracking
     private float lastAttackTime = -10f;
     private float currentAttackLock = 0f;
 
@@ -52,11 +53,6 @@ public class PlayerCombat : MonoBehaviour
 
         if (dashHitboxObject != null) dashHitboxObject.SetActive(false);
         if (attackHitbox != null) attackHitbox.gameObject.SetActive(false);
-    }
-
-    private void Update()
-    {
-        // No need to call attacks here if called from PlayerMovement
     }
 
     #region Normal & Heavy Attacks
@@ -70,7 +66,7 @@ public class PlayerCombat : MonoBehaviour
             lastAttackTime = Time.time;
             currentAttackLock = normalAttackLock;
 
-            StartCoroutine(AttackWindow(normalAttackDamage, "Normal Attack", debugNormalAttack));
+            StartCoroutine(AttackWindow(normalAttackDamage, "NormalAttack", debugNormalAttack));
         }
     }
 
@@ -84,7 +80,7 @@ public class PlayerCombat : MonoBehaviour
             lastAttackTime = Time.time;
             currentAttackLock = heavyAttackLock;
 
-            StartCoroutine(AttackWindow(heavyAttackDamage, "Heavy Attack", debugHeavyAttack));
+            StartCoroutine(AttackWindow(heavyAttackDamage, "HeavyAttack", debugHeavyAttack));
         }
     }
 
@@ -96,6 +92,8 @@ public class PlayerCombat : MonoBehaviour
         {
             attackHitbox.DoNormalAttack(damage);
             if (debug) Debug.Log($"{attackName} executed with {damage} damage.");
+
+            audioPooler?.SpawnFromPool(attackName, attackHitbox.transform.position);
         }
 
         yield return new WaitForSeconds(attackDuration);
@@ -130,6 +128,9 @@ public class PlayerCombat : MonoBehaviour
         dashHitboxObject.SetActive(true);
 
         if (debugDashAttack) Debug.Log("Dash attack started");
+
+        audioPooler?.SpawnFromPool("DashAttack", transform.position);
+
         StartCoroutine(DisableDashHitboxAfterTime(dashAttackDuration));
     }
 
