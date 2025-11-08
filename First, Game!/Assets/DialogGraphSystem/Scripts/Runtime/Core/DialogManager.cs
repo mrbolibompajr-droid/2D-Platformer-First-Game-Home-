@@ -21,7 +21,7 @@ namespace DialogSystem.Runtime.Core
         #region -------- Inspector: Graphs & UI --------
         [Header("Debug")]
         [Tooltip("If enabled, prints internal flow messages to the Console.")]
-        public bool doDebugLog = false;
+        public bool doDebugLog = true;
 
         [Serializable]
         public class DialogGraphModel
@@ -85,19 +85,10 @@ namespace DialogSystem.Runtime.Core
         #endregion
 
         #region -------- Events --------
-        /// <summary>Raised when the dialog panel opens.</summary>
         public Action onDialogEnter;
-
-        /// <summary>Raised when the dialog panel closes.</summary>
         public Action onDialogExit;
-
-        /// <summary>Raised when a line becomes visible (nodeGuid, speaker, text).</summary>
         public event Action<string, string, string> OnLineShown;
-
-        /// <summary>Raised when the player picks a choice (nodeGuid, choiceText).</summary>
         public event Action<string, string> OnChoicePicked;
-
-        /// <summary>Raised when a conversation starts/ends so history can clear.</summary>
         public event Action OnConversationReset;
         #endregion
 
@@ -108,8 +99,8 @@ namespace DialogSystem.Runtime.Core
         private DialogNode currentDialog;
         private ChoiceNode currentChoice;
 
-        private ChoiceNode pendingChoiceFromDialog;       // when a dialog leads into a choice
-        private string pendingNextGuidAfterDialog;    // when a dialog leads directly into another dialog
+        private ChoiceNode pendingChoiceFromDialog;
+        private string pendingNextGuidAfterDialog;
 
         private Coroutine typingCoroutine;
         private Coroutine autoAdvanceCoroutine;
@@ -120,33 +111,34 @@ namespace DialogSystem.Runtime.Core
         private Action onDialogEndedCallback;
         private bool isPausedByHistory = false;
 
-        /// <summary>True if a conversation is currently active.</summary>
         public bool IsConversationActive => conversationActive;
-
-        /// <summary>True while the current line is still typing.</summary>
         public bool IsTyping => isTyping;
-
-        /// <summary>True if playback is paused by the history view.</summary>
         public bool IsPaused => isPausedByHistory;
-
-        /// <summary>The current dialog node (if any).</summary>
         public DialogNode CurrentNode => currentDialog;
         #endregion
 
         #region -------- Unity Lifecycle --------
         protected override void Awake()
         {
+            Debug.Log("[DialogManager] Awake called");
+
             if (uiPanel != null)
             {
+                Debug.Log("[DialogManager] UI Panel found, initializing...");
                 uiPanel.panelRoot?.SetActive(false);
                 uiPanel.skipButton?.SetActive(false);
                 uiPanel.choicesContainer?.gameObject.SetActive(false);
                 uiPanel.UpdateAutoPlayIcon(autoPlay);
             }
+            else
+            {
+                Debug.LogWarning("[DialogManager] UI Panel NOT assigned!");
+            }
         }
 
         private void OnDisable()
         {
+            Debug.Log("[DialogManager] OnDisable called");
             SafeStopTyping();
             CancelAutoAdvance();
             StopAudioImmediate();
@@ -155,12 +147,14 @@ namespace DialogSystem.Runtime.Core
         private void Update()
         {
             if (!conversationActive || isPausedByHistory) return;
-            if (CheckGenericAdvanceInput()) OnDialogAreaClick();
+
+            if (CheckGenericAdvanceInput())
+            {
+                Debug.Log("[DialogManager] Generic advance input detected");
+                OnDialogAreaClick();
+            }
         }
 
-        /// <summary>
-        /// Returns true for any keyboard key, any mouse button, or touch begin (mobile).
-        /// </summary>
         private static bool CheckGenericAdvanceInput()
         {
             if (Input.anyKeyDown) return true;
@@ -173,36 +167,33 @@ namespace DialogSystem.Runtime.Core
         #endregion
 
         #region -------- Public API --------
-        /// <summary>
-        /// Starts the conversation that was registered with <paramref name="targetDialogID"/>.
-        /// </summary>
         public void PlayDialogByID(string targetDialogID, Action onDialogEnded = null)
         {
             currentDialog = null;
+            Debug.Log($"[DialogManager] PlayDialogByID called: {targetDialogID}");
+
             var target = dialogGraphs.Find(d => d.dialogID == targetDialogID && d.dialogGraph != null);
             if (target != null)
             {
                 StartDialog(target.dialogGraph, onDialogEnded);
                 currentDialogID = targetDialogID;
             }
-            else if (doDebugLog)
+            else
             {
                 Debug.LogWarning($"[DialogManager] No dialog found for id: {targetDialogID}");
             }
         }
 
-        /// <summary>
-        /// Starts the given <see cref="DialogGraph"/> at its configured Start node output.
-        /// </summary>
         public void StartDialog(DialogGraph graph, Action onDialogEnded = null)
         {
             if (uiPanel == null)
             {
-                if (doDebugLog) Debug.LogError("[DialogManager] UI Panel not assigned.");
+                Debug.LogError("[DialogManager] UI Panel not assigned. Cannot start dialog!");
                 return;
             }
 
-            // Reset UI & state
+            Debug.Log($"[DialogManager] Starting dialog graph: {graph.name}");
+
             uiPanel.panelRoot?.SetActive(false);
             uiPanel.skipButton?.SetActive(false);
             uiPanel.choicesContainer?.gameObject.SetActive(false);
@@ -214,11 +205,7 @@ namespace DialogSystem.Runtime.Core
             pendingChoiceFromDialog = null;
             pendingNextGuidAfterDialog = null;
 
-            // Entry = Start node's first outgoing link (authoritative)
             currentGuid = ResolveEntryGuid(graph);
-
-            if (doDebugLog)
-                Debug.Log($"[DialogManager] Starting dialog: {graph.name} entry={currentGuid}");
 
             uiPanel.panelRoot?.SetActive(true);
             uiPanel.skipButton?.SetActive(allowSkipAll);
@@ -229,41 +216,40 @@ namespace DialogSystem.Runtime.Core
             OnConversationReset?.Invoke();
             onDialogEnter?.Invoke();
 
+            Debug.Log($"[DialogManager] Conversation started, entry GUID: {currentGuid}");
+
             GoTo(currentGuid);
         }
 
-        /// <summary>Toggles autoplay and updates the UI icon.</summary>
         public bool ToggleAutoPlay()
         {
             autoPlay = !autoPlay;
+            Debug.Log($"[DialogManager] AutoPlay toggled: {autoPlay}");
             uiPanel?.UpdateAutoPlayIcon(autoPlay);
             return autoPlay;
         }
 
-        /// <summary>Skips and ends the entire conversation immediately (if enabled).</summary>
         public void SkipAll()
         {
             if (!conversationActive || !allowSkipAll) return;
+
+            Debug.Log("[DialogManager] SkipAll triggered");
 
             if (stopAudioOnSkipAll) StopAudio(fadeOutAudioOnStop);
             StopImmediately();
         }
 
-        /// <summary>
-        /// Invokes a global action by id via <see cref="DialogActionRunner"/>.
-        /// </summary>
         public Coroutine InvokeGlobalAction(string actionId, string payloadJson = "", bool waitForCompletion = false, float preDelaySeconds = 0f)
         {
             if (actionRunner == null) { WarnOnceNoRunner(); return null; }
+            Debug.Log($"[DialogManager] InvokeGlobalAction: {actionId}");
             return StartCoroutine(actionRunner.RunActionGlobal(actionId, payloadJson, waitForCompletion, preDelaySeconds));
         }
 
-        /// <summary>
-        /// Invokes a conversation-scoped action by id for <paramref name="dialogId"/>.
-        /// </summary>
         public Coroutine InvokeConversationAction(string dialogId, string actionId, string payloadJson = "", bool waitForCompletion = false, float preDelaySeconds = 0f)
         {
             if (actionRunner == null) { WarnOnceNoRunner(); return null; }
+            Debug.Log($"[DialogManager] InvokeConversationAction: {dialogId} / {actionId}");
             return StartCoroutine(actionRunner.RunActionForConversation(dialogId, actionId, payloadJson, waitForCompletion, preDelaySeconds));
         }
         #endregion
@@ -271,6 +257,7 @@ namespace DialogSystem.Runtime.Core
         #region -------- Core Flow --------
         private void GoTo(string guid)
         {
+            Debug.Log($"[DialogManager] GoTo called: {guid}");
             SafeStopTyping();
             CancelAutoAdvance();
             StopAudioImmediate();
@@ -280,12 +267,13 @@ namespace DialogSystem.Runtime.Core
 
             if (string.IsNullOrEmpty(guid)) { EndDialog(); return; }
 
-            // Action chain: run to resolution, then enter final non-action node
             var act = FindActionByGuid(guid);
             if (act != null)
             {
+                Debug.Log($"[DialogManager] Found Action node: {act.actionId}");
                 StartCoroutine(ResolveNextAfterActions(guid, resolved =>
                 {
+                    Debug.Log($"[DialogManager] Action resolved to: {resolved}");
                     if (string.IsNullOrEmpty(resolved)) { EndDialog(); return; }
 
                     var d = FindDialogByGuid(resolved);
@@ -313,52 +301,53 @@ namespace DialogSystem.Runtime.Core
                 return;
             }
 
-            // Normal: dialog or choice
             currentGuid = guid;
             currentDialog = FindDialogByGuid(guid);
             currentChoice = (currentDialog == null) ? FindChoiceByGuid(guid) : null;
 
             if (currentDialog == null && currentChoice == null) { EndDialog(); return; }
+
             ShowCurrentNode();
         }
 
         private void ShowCurrentNode()
         {
+            Debug.Log("[DialogManager] ShowCurrentNode called");
+
             if (currentDialog == null && currentChoice == null) { EndDialog(); return; }
 
-            // Speaker/portrait (dialog only)
             if (uiPanel != null)
             {
                 if (currentDialog != null)
                 {
-                    if (uiPanel.speakerName != null) uiPanel.speakerName.text = currentDialog.speakerName;
-                    if (uiPanel.portraitImage != null) uiPanel.portraitImage.sprite = currentDialog.speakerPortrait;
+                    Debug.Log($"[DialogManager] Showing Dialog node: {currentDialog.GetGuid()} Speaker: {currentDialog.speakerName}");
+                    uiPanel.speakerName.text = currentDialog.speakerName;
+                    uiPanel.portraitImage.sprite = currentDialog.speakerPortrait;
                 }
                 else
                 {
-                    if (uiPanel.speakerName != null) uiPanel.speakerName.text = "";
-                    if (uiPanel.portraitImage != null) uiPanel.portraitImage.sprite = null;
+                    Debug.Log("[DialogManager] Showing Choice node");
+                    uiPanel.speakerName.text = "";
+                    uiPanel.portraitImage.sprite = null;
                 }
             }
 
-            // History notify
             var shownText = currentDialog != null ? currentDialog.questionText : currentChoice.text;
             var speaker = currentDialog != null ? currentDialog.speakerName : string.Empty;
             OnLineShown?.Invoke(currentGuid, speaker, shownText);
 
-            // Audio (dialog only)
             if (currentDialog != null) PlayLineAudio(currentDialog.dialogAudio);
 
-            // Typewriter
             SafeStopTyping();
             StartTyping(shownText);
         }
 
         private void StartTyping(string line)
         {
+            Debug.Log($"[DialogManager] StartTyping: {line}");
             if (typingSpeed <= 0.0001f)
             {
-                if (uiPanel?.dialogText != null) uiPanel.dialogText.text = line;
+                uiPanel.dialogText.text = line;
                 isTyping = false;
                 HandleAfterTyping();
                 return;
@@ -370,32 +359,38 @@ namespace DialogSystem.Runtime.Core
         private IEnumerator TypeText(string line)
         {
             isTyping = true;
-            if (uiPanel?.dialogText != null) uiPanel.dialogText.text = "";
+            uiPanel.dialogText.text = "";
 
             foreach (char c in line)
             {
-                if (uiPanel?.dialogText != null) uiPanel.dialogText.text += c;
+                uiPanel.dialogText.text += c;
                 yield return new WaitForSeconds(typingSpeed);
             }
 
             isTyping = false;
+            Debug.Log("[DialogManager] Typing complete");
             HandleAfterTyping();
         }
 
         private void HandleAfterTyping()
         {
+            Debug.Log("[DialogManager] HandleAfterTyping called");
+
             if (isPausedByHistory) return;
 
-            // Choice node: show options
-            if (currentChoice != null) { ShowChoices(currentChoice); return; }
+            if (currentChoice != null || pendingChoiceFromDialog != null)
+            {
+                ShowChoices(currentChoice ?? pendingChoiceFromDialog);
+                return;
+            }
 
-            // Dialog node
             if (currentDialog != null)
             {
                 var nextDirect = GetNextFromDialog(currentDialog.GetGuid());
 
                 StartCoroutine(ResolveNextAfterActions(nextDirect, resolvedNext =>
                 {
+                    Debug.Log($"[DialogManager] ResolveNextAfterActions returned: {resolvedNext}");
                     if (string.IsNullOrEmpty(resolvedNext))
                     {
                         if (autoPlay)
@@ -406,7 +401,6 @@ namespace DialogSystem.Runtime.Core
                         return;
                     }
 
-                    // If next is a Choice → overlay on top of current dialog
                     var choice = FindChoiceByGuid(resolvedNext);
                     if (choice != null)
                     {
@@ -415,7 +409,6 @@ namespace DialogSystem.Runtime.Core
                         return;
                     }
 
-                    // Next is a Dialog → wait for click or autoplay
                     pendingNextGuidAfterDialog = resolvedNext;
 
                     if (autoPlay)
@@ -431,6 +424,7 @@ namespace DialogSystem.Runtime.Core
         #region -------- Choices --------
         private void ShowChoices(ChoiceNode cnode)
         {
+            Debug.Log("[DialogManager] ShowChoices called");
             if (uiPanel?.choicesContainer == null || uiPanel.choiceButtonPrefab == null) return;
 
             uiPanel.choicesContainer.gameObject.SetActive(true);
@@ -448,13 +442,15 @@ namespace DialogSystem.Runtime.Core
 
                 var btn = btnGO.GetComponent<UnityEngine.UI.Button>();
                 if (btn) btn.onClick.AddListener(() => OnChoiceSelected(index));
+
+                Debug.Log($"[DialogManager] Choice button created: {cnode.choices[i].answerText}");
             }
         }
 
-        /// <summary>Selects the choice at <paramref name="index"/> and transitions accordingly.</summary>
         public void OnChoiceSelected(int index)
         {
-            var choiceNode = pendingChoiceFromDialog != null ? pendingChoiceFromDialog : currentChoice;
+            Debug.Log($"[DialogManager] OnChoiceSelected: {index}");
+            var choiceNode = pendingChoiceFromDialog ?? currentChoice;
             if (choiceNode == null) return;
             if (index < 0 || index >= choiceNode.choices.Count) return;
 
@@ -477,15 +473,10 @@ namespace DialogSystem.Runtime.Core
         #endregion
 
         #region -------- Click Handling (Generic) --------
-        /// <summary>
-        /// Main generic click/tap/key handler:
-        /// - If typing and skipping is allowed → reveal full line (+ optional audio stop)
-        /// - If a pending dialog next exists → advance
-        /// - Otherwise attempt to follow the dialog's default next
-        /// - End if terminal
-        /// </summary>
         public void OnDialogAreaClick()
         {
+            Debug.Log("[DialogManager] OnDialogAreaClick called");
+
             if (!conversationActive || isPausedByHistory) return;
 
             if (isTyping)
@@ -494,7 +485,7 @@ namespace DialogSystem.Runtime.Core
 
                 SafeStopTyping();
                 var full = currentDialog != null ? currentDialog.questionText : currentChoice?.text ?? string.Empty;
-                if (uiPanel?.dialogText != null) uiPanel.dialogText.text = full;
+                uiPanel.dialogText.text = full;
                 isTyping = false;
 
                 if (stopAudioOnSkipLine && currentDialog != null) StopAudio(fadeOutAudioOnStop);
@@ -504,9 +495,7 @@ namespace DialogSystem.Runtime.Core
                 return;
             }
 
-            // When a choice overlay is present, wait for a button click.
-            if (pendingChoiceFromDialog != null) return;
-            if (currentChoice != null) return;
+            if (pendingChoiceFromDialog != null || currentChoice != null) return;
 
             if (currentDialog != null)
             {
@@ -530,7 +519,7 @@ namespace DialogSystem.Runtime.Core
         private IEnumerator AutoAdvanceAfterDelay(string nextGuid, DialogNode nodeForTiming)
         {
             float wait = (nodeForTiming == null || nodeForTiming.displayTime < 1f) ? delayBeforeAutoNext : nodeForTiming.displayTime;
-
+            Debug.Log($"[DialogManager] AutoAdvanceAfterDelay: {wait}s to {nextGuid}");
             yield return new WaitForSeconds(wait);
             autoAdvanceCoroutine = null;
 
@@ -540,7 +529,7 @@ namespace DialogSystem.Runtime.Core
         private IEnumerator AutoEndAfterDelay(DialogNode nodeForTiming)
         {
             float wait = (nodeForTiming == null || nodeForTiming.displayTime < 1f) ? delayBeforeAutoNext : nodeForTiming.displayTime;
-
+            Debug.Log($"[DialogManager] AutoEndAfterDelay: {wait}s");
             yield return new WaitForSeconds(wait);
             autoAdvanceCoroutine = null;
 
@@ -549,9 +538,9 @@ namespace DialogSystem.Runtime.Core
         #endregion
 
         #region -------- Stop / End --------
-        /// <summary>Immediately stops typing/timers and ends the conversation.</summary>
         public void StopImmediately()
         {
+            Debug.Log("[DialogManager] StopImmediately called");
             SafeStopTyping();
             CancelAutoAdvance();
             EndDialog();
@@ -559,6 +548,7 @@ namespace DialogSystem.Runtime.Core
 
         private void EndDialog()
         {
+            Debug.Log("[DialogManager] EndDialog called");
             conversationActive = false;
 
             CancelAutoAdvance();
@@ -594,26 +584,31 @@ namespace DialogSystem.Runtime.Core
         private DialogNode FindDialogByGuid(string guid)
         {
             if (currentGraph?.nodes == null) return null;
-            return currentGraph.nodes.FirstOrDefault(n => n != null && n.GetGuid() == guid);
+            var node = currentGraph.nodes.FirstOrDefault(n => n != null && n.GetGuid() == guid);
+            if (doDebugLog) Debug.Log($"[DialogManager] FindDialogByGuid({guid}) -> {node?.name}");
+            return node;
         }
 
         private ChoiceNode FindChoiceByGuid(string guid)
         {
             if (currentGraph?.choiceNodes == null) return null;
-            return currentGraph.choiceNodes.FirstOrDefault(n => n != null && n.GetGuid() == guid);
+            var node = currentGraph.choiceNodes.FirstOrDefault(n => n != null && n.GetGuid() == guid);
+            if (doDebugLog) Debug.Log($"[DialogManager] FindChoiceByGuid({guid}) -> {node?.name}");
+            return node;
         }
 
         private ActionNode FindActionByGuid(string guid)
         {
             if (currentGraph?.actionNodes == null) return null;
-            return currentGraph.actionNodes.FirstOrDefault(n => n != null && n.GetGuid() == guid);
+            var node = currentGraph.actionNodes.FirstOrDefault(n => n != null && n.GetGuid() == guid);
+            if (doDebugLog) Debug.Log($"[DialogManager] FindActionByGuid({guid}) -> {node?.name}");
+            return node;
         }
 
         private string ResolveEntryGuid(DialogGraph graph)
         {
             if (graph == null) return null;
 
-            // Authoritative: follow Start node's first outgoing link.
             if (!string.IsNullOrEmpty(graph.startGuid))
             {
                 var next = GetFirstOutgoingTarget(graph, graph.startGuid);
@@ -634,7 +629,6 @@ namespace DialogSystem.Runtime.Core
         {
             if (graph?.links == null || string.IsNullOrEmpty(fromGuid)) return null;
 
-            // If multiple, prefer the smallest port index (0 = main path).
             var link = graph.links
                 .Where(l => l != null && l.fromGuid == fromGuid)
                 .OrderBy(l => l.fromPortIndex)
@@ -684,10 +678,6 @@ namespace DialogSystem.Runtime.Core
         #endregion
 
         #region -------- Actions Traversal --------
-        /// <summary>
-        /// Follows action nodes from <paramref name="nextDirect"/> (running them if a runner is present)
-        /// until a non-action target is reached. Invokes <paramref name="onResolved"/> with that target GUID (or null).
-        /// </summary>
         private IEnumerator ResolveNextAfterActions(string nextDirect, Action<string> onResolved)
         {
             string cursor = nextDirect;
@@ -715,8 +705,7 @@ namespace DialogSystem.Runtime.Core
         {
             if (audioSource == null) return;
 
-            if (doDebugLog)
-                Debug.Log($"[DialogManager] Play audio: {(clip ? clip.name : "null")} for node {(currentDialog?.name ?? "n/a")}");
+            Debug.Log($"[DialogManager] Play audio: {(clip ? clip.name : "null")} for node {(currentDialog?.name ?? "n/a")}");
 
             StopAudioImmediate();
             if (clip == null) return;
@@ -778,15 +767,14 @@ namespace DialogSystem.Runtime.Core
             {
                 audioSource.Stop();
                 audioSource.clip = null;
-                audioSource.volume = startVol; // restore for next clip
+                audioSource.volume = startVol;
             }
 
             audioFadeCoroutine = null;
         }
         #endregion
 
-        #region -------- History Integration (for History UI) --------
-        /// <summary>Pauses typing/auto-advance and reveals the full current line for history view.</summary>
+        #region -------- History Integration --------
         public void PauseForHistory()
         {
             isPausedByHistory = true;
@@ -810,10 +798,8 @@ namespace DialogSystem.Runtime.Core
             CancelAutoAdvance();
         }
 
-        /// <summary>Resumes playback after closing the history view (does not auto-resume autoplay).</summary>
         public void ResumeAfterHistory() => isPausedByHistory = false;
 
-        /// <summary>Returns the text currently displayed (dialog preferred, otherwise choice).</summary>
         public string GetCurrentLineText()
         {
             if (currentDialog != null) return currentDialog.questionText ?? string.Empty;
@@ -821,7 +807,6 @@ namespace DialogSystem.Runtime.Core
             return string.Empty;
         }
 
-        /// <summary>The GUID of the currently active node (dialog/choice).</summary>
         public string GetCurrentGuid() => currentGuid;
         #endregion
 
@@ -831,7 +816,7 @@ namespace DialogSystem.Runtime.Core
         {
             if (_warnedNoRunner) return;
             _warnedNoRunner = true;
-            if (doDebugLog) Debug.LogWarning("[DialogManager] No DialogActionRunner assigned. Action calls will be ignored.");
+            Debug.LogWarning("[DialogManager] No DialogActionRunner assigned. Action calls will be ignored.");
         }
         #endregion
     }
