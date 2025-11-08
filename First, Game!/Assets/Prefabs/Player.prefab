@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 852955563475387430}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1861,13 +1861,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 713c99dfa8bb68246a59a2b558eb9ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 8040061263837783359}
-  offset: {x: 0, y: 2}
   smoothSpeed: 5
   enableShake: 0
   shakeMagnitude: 0.08
   enableMotionBlur: 1
   postProcessingVolume: {fileID: 4053227113354019380}
+  target: {fileID: 8040061263837783359}
 --- !u!114 &4053227113354019380
 MonoBehaviour:
   m_ObjectHideFlags: 0
