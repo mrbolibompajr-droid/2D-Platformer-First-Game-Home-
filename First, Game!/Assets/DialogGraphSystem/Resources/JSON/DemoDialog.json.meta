@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3610184cf2d8a3045863f76c40e60f40
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 332234
+  packageName: Dialog Graph System
+  packageVersion: 1.3.1
+  assetPath: Assets/DialogGraphSystem/Resources/JSON/DemoDialog.json
+  uploadId: 791364

@@ -1,0 +1,678 @@
+﻿{
+    "startNode": {
+        "guid": "Start",
+        "nodePositionX": -932.7999877929688,
+        "nodePositionY": 35.19999694824219,
+        "isInitialized": true
+    },
+    "endNode": {
+        "guid": "End",
+        "nodePositionX": 4967.2001953125,
+        "nodePositionY": 70.4000015258789,
+        "isInitialized": true
+    },
+    "dialogNodes": [
+        {
+            "title": "Meet Lina (PM)",
+            "guid": "f1c0a2a3-9b88-4d8a-9d9d-01f1b5a1a100",
+            "speaker": "Lina",
+            "question": "Hi—I'm Lina, the project manager. Looking for a quick overview or something specific?",
+            "nodePositionX": 400.0,
+            "nodePositionY": -480.0,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Meet Jonas (IT)",
+            "guid": "a8d8e3f2-010b-4c9e-9e77-0c3f2d4e4100",
+            "speaker": "Jonas",
+            "question": "IT ops. Need access, environments, or where docs live?",
+            "nodePositionX": 400.0,
+            "nodePositionY": 480.0000305175781,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Test Focus",
+            "guid": "d-omar-focus-0001",
+            "speaker": "Omar",
+            "question": "Focus: accuracy against golden sets, tone neutrality, and handling of missing/contradictory fields.",
+            "nodePositionX": 1808.0,
+            "nodePositionY": 239.20001220703126,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Bug Flow",
+            "guid": "d-omar-bugs-0001",
+            "speaker": "Omar",
+            "question": "Bugs: we file in ‘brief-bot’ project; template asks for input sample + actual vs expected summary.",
+            "nodePositionX": 1808.0,
+            "nodePositionY": 530.3999633789063,
+            "displayTime": 0.0
+        },
+        {
+            "title": "DoD",
+            "guid": "d-omar-dod-0001",
+            "speaker": "Omar",
+            "question": "Definition of Done: pass golden set ≥95%, zero P1s, and UX sign-off on dashboard card.",
+            "nodePositionX": 1808.0,
+            "nodePositionY": 798.3999633789063,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Docs",
+            "guid": "d-jonas-docs-0001",
+            "speaker": "Jonas",
+            "question": "Docs: Confluence space ‘BriefBot’. Start with the ‘Runbook’ and ‘Data Contracts’.",
+            "nodePositionX": 1808.0,
+            "nodePositionY": 1076.7999267578125,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Access",
+            "guid": "d-jonas-access-0001",
+            "speaker": "Jonas",
+            "question": "Access: request the ‘brief-bot-dev’ role in Okta. If you’re blocked, tag me in #help-it.",
+            "nodePositionX": 1808.0,
+            "nodePositionY": 1359.199951171875,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Environments",
+            "guid": "d-jonas-env-0001",
+            "speaker": "Jonas",
+            "question": "Envs: dev → stage → prod. Stage mirrors prod data shapes with redactions; never test PII locally.",
+            "nodePositionX": 1808.0,
+            "nodePositionY": 1635.199951171875,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Code Location",
+            "guid": "d-mira-code-0001",
+            "speaker": "Mira",
+            "question": "Code: repo ‘brief-bot’. Summarizer project in /services/summary; ETL in /pipelines.",
+            "nodePositionX": 1808.0,
+            "nodePositionY": -44.80000305175781,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Blockers",
+            "guid": "d-mira-blockers-0001",
+            "speaker": "Mira",
+            "question": "Blockers: a few malformed CSVs break the parser. Also, we need a final taxonomy for tags.",
+            "nodePositionX": 1808.0,
+            "nodePositionY": -313.6000061035156,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Architecture",
+            "guid": "d-mira-arch-0001",
+            "speaker": "Mira",
+            "question": "Architecture: ETL pulls shift forms → normalization → summarizer service → Slack webhook + dashboard card.",
+            "nodePositionX": 1808.0,
+            "nodePositionY": -864.0,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Deadline",
+            "guid": "d-lina-deadline-0001",
+            "speaker": "Lina",
+            "question": "Deadline: pilot next Friday, full rollout in two weeks if KPIs look good. Marketing wants a demo slide deck by Wednesday.",
+            "nodePositionX": 1808.0,
+            "nodePositionY": -1146.4000244140625,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Goal",
+            "guid": "d-lina-goal-0001",
+            "speaker": "Lina",
+            "question": "Goal: launch an internal tool that auto-summarizes shift reports into a daily brief for leads. Success = 95% accuracy and under 2 minutes per brief.",
+            "nodePositionX": 1808.0,
+            "nodePositionY": -1428.0,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Risks",
+            "guid": "d-lina-risks-0001",
+            "speaker": "Lina",
+            "question": "Risks: data quality from older forms, and a dependency on Ops for labeling. Also, stakeholders may change scope mid-week.",
+            "nodePositionX": 1808.0,
+            "nodePositionY": -596.0,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Jonas — Wrap",
+            "guid": "d-jonas-close-0001",
+            "speaker": "Jonas",
+            "question": "That should get you unblocked. I’ll keep an eye on access requests.",
+            "nodePositionX": 3750.39990234375,
+            "nodePositionY": 787.199951171875,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Omar — Wrap",
+            "guid": "d-omar-close-0001",
+            "speaker": "Omar",
+            "question": "Ping me before big refactors—I’ll queue regression runs.",
+            "nodePositionX": 3750.39990234375,
+            "nodePositionY": 364.8000183105469,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Omar — Quick Tip",
+            "guid": "d-omar-tip-0001",
+            "speaker": "Omar",
+            "question": "Tip: run ‘qa:golden’ script; it prints a delta table so you can see drift fast.",
+            "nodePositionX": 3089.60009765625,
+            "nodePositionY": 226.39999389648438,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Jonas — Quick Tip",
+            "guid": "d-jonas-tip-0001",
+            "speaker": "Jonas",
+            "question": "Tip: use the ‘sandbox’ namespace for experiments; it autodeletes resources nightly.",
+            "nodePositionX": 3089.60009765625,
+            "nodePositionY": 621.5999755859375,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Mira — Wrap",
+            "guid": "d-mira-close-0001",
+            "speaker": "Mira",
+            "question": "Cool? If you hit parser weirdness, DM me a sample row.",
+            "nodePositionX": 3750.39990234375,
+            "nodePositionY": -77.5999984741211,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Mira — Quick Tip",
+            "guid": "d-mira-tip-0001",
+            "speaker": "Mira",
+            "question": "Tip: run the sample dataset in /samples to sanity-check your changes fast.",
+            "nodePositionX": 3089.60009765625,
+            "nodePositionY": -236.0,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Lina — Quick Tip",
+            "guid": "d-lina-tip-0001",
+            "speaker": "Lina",
+            "question": "Tip: join the 10:00 stand-up. Stakeholders are Marketing + Ops; they’re friendly if you show them quick wins.",
+            "nodePositionX": 3116.800048828125,
+            "nodePositionY": -748.800048828125,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Lina — Wrap",
+            "guid": "d-lina-close-0001",
+            "speaker": "Lina",
+            "question": "That’s what I’ve got. Ping me if the scope wobbles—we’ll lock it down.",
+            "nodePositionX": 3750.39990234375,
+            "nodePositionY": -466.3999938964844,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Synthesis",
+            "guid": "d-synth-0001",
+            "speaker": "Guide",
+            "question": "You jot down notes: goals, deadlines, data flow, QA criteria, and access steps. You’ve got enough to proceed.",
+            "nodePositionX": 4420.7998046875,
+            "nodePositionY": 33.599998474121097,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Meet Omar (QA)",
+            "guid": "7c2e81b2-4d6f-4fda-ab11-5a2e1a3c3100",
+            "speaker": "Omar",
+            "question": "QA here. Want to know how we test the summaries?",
+            "nodePositionX": 400.0,
+            "nodePositionY": 160.0,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Meet Mira (Engineer)",
+            "guid": "0b4e4c42-7cda-4b41-bc7d-6baf1a2b2100",
+            "speaker": "Mira",
+            "question": "Hey! I’m on the ingestion and summarizer. Want code pointers or blockers?",
+            "nodePositionX": 400.0,
+            "nodePositionY": -160.0,
+            "displayTime": 0.0
+        },
+        {
+            "title": "Arrival",
+            "guid": "2a1b0f2e-7d5c-4f31-9c4a-d1f3bfa13001",
+            "speaker": "Guide",
+            "question": "You step into the open office. Everyone looks busy. Who do you talk to first?",
+            "nodePositionX": -669.5999755859375,
+            "nodePositionY": -6.400001525878906,
+            "displayTime": 0.0
+        }
+    ],
+    "choiceNodes": [
+        {
+            "guid": "c-lina-questions-0001",
+            "text": "",
+            "nodePositionX": 1008.0,
+            "nodePositionY": -480.0,
+            "choices": [
+                {
+                    "answerText": "Project goal",
+                    "nextNodeGUID": "d-lina-goal-0001"
+                },
+                {
+                    "answerText": "Deadline",
+                    "nextNodeGUID": "d-lina-deadline-0001"
+                },
+                {
+                    "answerText": "Top risks",
+                    "nextNodeGUID": "d-lina-risks-0001"
+                }
+            ]
+        },
+        {
+            "guid": "c-mira-questions-0001",
+            "text": "",
+            "nodePositionX": 1008.0,
+            "nodePositionY": -160.0,
+            "choices": [
+                {
+                    "answerText": "Architecture",
+                    "nextNodeGUID": "d-mira-arch-0001"
+                },
+                {
+                    "answerText": "Blockers",
+                    "nextNodeGUID": "d-mira-blockers-0001"
+                },
+                {
+                    "answerText": "Code location",
+                    "nextNodeGUID": "d-mira-code-0001"
+                }
+            ]
+        },
+        {
+            "guid": "c-omar-questions-0001",
+            "text": "",
+            "nodePositionX": 1008.0,
+            "nodePositionY": 160.0,
+            "choices": [
+                {
+                    "answerText": "Test focus",
+                    "nextNodeGUID": "d-omar-focus-0001"
+                },
+                {
+                    "answerText": "Bug workflow",
+                    "nextNodeGUID": "d-omar-bugs-0001"
+                },
+                {
+                    "answerText": "Definition of Done",
+                    "nextNodeGUID": "d-omar-dod-0001"
+                }
+            ]
+        },
+        {
+            "guid": "c-jonas-questions-0001",
+            "text": "",
+            "nodePositionX": 1008.0,
+            "nodePositionY": 480.0000305175781,
+            "choices": [
+                {
+                    "answerText": "Where docs live",
+                    "nextNodeGUID": "d-jonas-docs-0001"
+                },
+                {
+                    "answerText": "Getting access",
+                    "nextNodeGUID": "d-jonas-access-0001"
+                },
+                {
+                    "answerText": "Environments",
+                    "nextNodeGUID": "d-jonas-env-0001"
+                }
+            ]
+        },
+        {
+            "guid": "c-jonas-follow-0001",
+            "text": "",
+            "nodePositionX": 2489.60009765625,
+            "nodePositionY": 787.199951171875,
+            "choices": [
+                {
+                    "answerText": "One more tip",
+                    "nextNodeGUID": "d-jonas-tip-0001"
+                },
+                {
+                    "answerText": "That's enough",
+                    "nextNodeGUID": "d-jonas-close-0001"
+                }
+            ]
+        },
+        {
+            "guid": "c-omar-follow-0001",
+            "text": "",
+            "nodePositionX": 2472.0,
+            "nodePositionY": 429.6000061035156,
+            "choices": [
+                {
+                    "answerText": "One more tip",
+                    "nextNodeGUID": "d-omar-tip-0001"
+                },
+                {
+                    "answerText": "That's enough",
+                    "nextNodeGUID": "d-omar-close-0001"
+                }
+            ]
+        },
+        {
+            "guid": "c-mira-follow-0001",
+            "text": "",
+            "nodePositionX": 2472.0,
+            "nodePositionY": -16.800003051757814,
+            "choices": [
+                {
+                    "answerText": "One more tip",
+                    "nextNodeGUID": "d-mira-tip-0001"
+                },
+                {
+                    "answerText": "That's enough",
+                    "nextNodeGUID": "d-mira-close-0001"
+                }
+            ]
+        },
+        {
+            "guid": "c-lina-follow-0001",
+            "text": "",
+            "nodePositionX": 2489.60009765625,
+            "nodePositionY": -632.800048828125,
+            "choices": [
+                {
+                    "answerText": "One more tip",
+                    "nextNodeGUID": "d-lina-tip-0001"
+                },
+                {
+                    "answerText": "That's enough",
+                    "nextNodeGUID": "d-lina-close-0001"
+                }
+            ]
+        },
+        {
+            "guid": "b9a7e1d2-45cd-4bb3-8f8f-0f12c63d0001",
+            "text": "",
+            "nodePositionX": -156.8000030517578,
+            "nodePositionY": -6.400001525878906,
+            "choices": [
+                {
+                    "answerText": "Lina — Project Manager",
+                    "nextNodeGUID": "f1c0a2a3-9b88-4d8a-9d9d-01f1b5a1a100"
+                },
+                {
+                    "answerText": "Mira — Engineer",
+                    "nextNodeGUID": "0b4e4c42-7cda-4b41-bc7d-6baf1a2b2100"
+                },
+                {
+                    "answerText": "Omar — QA Lead",
+                    "nextNodeGUID": "7c2e81b2-4d6f-4fda-ab11-5a2e1a3c3100"
+                },
+                {
+                    "answerText": "Jonas — IT Ops",
+                    "nextNodeGUID": "a8d8e3f2-010b-4c9e-9e77-0c3f2d4e4100"
+                }
+            ]
+        }
+    ],
+    "actionNodes": [],
+    "links": [
+        {
+            "fromGuid": "Start",
+            "toGuid": "2a1b0f2e-7d5c-4f31-9c4a-d1f3bfa13001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "2a1b0f2e-7d5c-4f31-9c4a-d1f3bfa13001",
+            "toGuid": "b9a7e1d2-45cd-4bb3-8f8f-0f12c63d0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "b9a7e1d2-45cd-4bb3-8f8f-0f12c63d0001",
+            "toGuid": "f1c0a2a3-9b88-4d8a-9d9d-01f1b5a1a100",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "b9a7e1d2-45cd-4bb3-8f8f-0f12c63d0001",
+            "toGuid": "0b4e4c42-7cda-4b41-bc7d-6baf1a2b2100",
+            "fromPortIndex": 1
+        },
+        {
+            "fromGuid": "b9a7e1d2-45cd-4bb3-8f8f-0f12c63d0001",
+            "toGuid": "a8d8e3f2-010b-4c9e-9e77-0c3f2d4e4100",
+            "fromPortIndex": 3
+        },
+        {
+            "fromGuid": "f1c0a2a3-9b88-4d8a-9d9d-01f1b5a1a100",
+            "toGuid": "c-lina-questions-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "c-lina-questions-0001",
+            "toGuid": "d-lina-goal-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "c-lina-questions-0001",
+            "toGuid": "d-lina-deadline-0001",
+            "fromPortIndex": 1
+        },
+        {
+            "fromGuid": "c-lina-questions-0001",
+            "toGuid": "d-lina-risks-0001",
+            "fromPortIndex": 2
+        },
+        {
+            "fromGuid": "d-lina-goal-0001",
+            "toGuid": "c-lina-follow-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "d-lina-deadline-0001",
+            "toGuid": "c-lina-follow-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "d-lina-risks-0001",
+            "toGuid": "c-lina-follow-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "c-lina-follow-0001",
+            "toGuid": "d-lina-tip-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "c-lina-follow-0001",
+            "toGuid": "d-lina-close-0001",
+            "fromPortIndex": 1
+        },
+        {
+            "fromGuid": "d-lina-tip-0001",
+            "toGuid": "d-lina-close-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "d-lina-close-0001",
+            "toGuid": "d-synth-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "0b4e4c42-7cda-4b41-bc7d-6baf1a2b2100",
+            "toGuid": "c-mira-questions-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "c-mira-questions-0001",
+            "toGuid": "d-mira-arch-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "c-mira-questions-0001",
+            "toGuid": "d-mira-blockers-0001",
+            "fromPortIndex": 1
+        },
+        {
+            "fromGuid": "c-mira-questions-0001",
+            "toGuid": "d-mira-code-0001",
+            "fromPortIndex": 2
+        },
+        {
+            "fromGuid": "d-mira-arch-0001",
+            "toGuid": "c-mira-follow-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "d-mira-blockers-0001",
+            "toGuid": "c-mira-follow-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "d-mira-code-0001",
+            "toGuid": "c-mira-follow-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "c-mira-follow-0001",
+            "toGuid": "d-mira-tip-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "c-mira-follow-0001",
+            "toGuid": "d-mira-close-0001",
+            "fromPortIndex": 1
+        },
+        {
+            "fromGuid": "d-mira-tip-0001",
+            "toGuid": "d-mira-close-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "d-mira-close-0001",
+            "toGuid": "d-synth-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "7c2e81b2-4d6f-4fda-ab11-5a2e1a3c3100",
+            "toGuid": "c-omar-questions-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "c-omar-questions-0001",
+            "toGuid": "d-omar-focus-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "c-omar-questions-0001",
+            "toGuid": "d-omar-bugs-0001",
+            "fromPortIndex": 1
+        },
+        {
+            "fromGuid": "c-omar-questions-0001",
+            "toGuid": "d-omar-dod-0001",
+            "fromPortIndex": 2
+        },
+        {
+            "fromGuid": "d-omar-focus-0001",
+            "toGuid": "c-omar-follow-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "d-omar-bugs-0001",
+            "toGuid": "c-omar-follow-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "d-omar-dod-0001",
+            "toGuid": "c-omar-follow-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "c-omar-follow-0001",
+            "toGuid": "d-omar-tip-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "c-omar-follow-0001",
+            "toGuid": "d-omar-close-0001",
+            "fromPortIndex": 1
+        },
+        {
+            "fromGuid": "d-omar-tip-0001",
+            "toGuid": "d-omar-close-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "d-omar-close-0001",
+            "toGuid": "d-synth-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "a8d8e3f2-010b-4c9e-9e77-0c3f2d4e4100",
+            "toGuid": "c-jonas-questions-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "c-jonas-questions-0001",
+            "toGuid": "d-jonas-docs-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "c-jonas-questions-0001",
+            "toGuid": "d-jonas-access-0001",
+            "fromPortIndex": 1
+        },
+        {
+            "fromGuid": "c-jonas-questions-0001",
+            "toGuid": "d-jonas-env-0001",
+            "fromPortIndex": 2
+        },
+        {
+            "fromGuid": "d-jonas-docs-0001",
+            "toGuid": "c-jonas-follow-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "d-jonas-access-0001",
+            "toGuid": "c-jonas-follow-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "d-jonas-env-0001",
+            "toGuid": "c-jonas-follow-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "c-jonas-follow-0001",
+            "toGuid": "d-jonas-tip-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "c-jonas-follow-0001",
+            "toGuid": "d-jonas-close-0001",
+            "fromPortIndex": 1
+        },
+        {
+            "fromGuid": "d-jonas-tip-0001",
+            "toGuid": "d-jonas-close-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "d-jonas-close-0001",
+            "toGuid": "d-synth-0001",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "d-synth-0001",
+            "toGuid": "End",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "b9a7e1d2-45cd-4bb3-8f8f-0f12c63d0001",
+            "toGuid": "7c2e81b2-4d6f-4fda-ab11-5a2e1a3c3100",
+            "fromPortIndex": 2
+        }
+    ]
+}

@@ -1,0 +1,178 @@
+/* ----- Window root hook for future theming ----- */
+.dlg-graph {
+    /* keep empty for now or add background if desired */
+}
+
+/* ----- Toolbar ----- */
+.dlg-toolbar {
+    flex-direction: row;
+    align-items: center;
+
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    background-color: #1f2023;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom-width: 1px;
+    border-bottom-color: #2b2d30;
+    border-bottom-style: solid;
+    gap: 6px; /* Unity supports gap on newer versions; if errors, remove and rely on margins below */
+}
+
+/* fallback spacing if your Unity complains about gap: */
+/*
+.dlg-toolbar > * { margin-right: 6px; }
+.dlg-toolbar > *:last-child { margin-right: 0; }
+*/
+
+.dlg-spacer {
+    flex-grow: 1;
+}
+
+/* ----- Inputs ----- */
+.dlg-input, .dlg-popup {
+    min-width: 180px;
+    height: 22px;
+    color: #e4e8ef;
+}
+
+.dlg-input {
+    margin-right: 6px;
+}
+
+.dlg-popup {
+    min-width: 220px;
+    margin-right: 6px;
+}
+
+/* Inner input styling hooks (best-effort across versions) */
+.dlg-input .unity-base-field__input,
+.dlg-popup .unity-base-field__input {
+    background-color: #2b2d30;
+    color: #e4e8ef;
+    border-radius: 6px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #3a3d42;
+}
+
+/* ----- Buttons ----- */
+.dlg-btn {
+    height: 24px;
+    min-width: 84px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 6px;
+    background-color: #31343a;
+    color: #e4e8ef;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #3a3d42;
+}
+
+.dlg-btn:hover { background-color: #3a3d42; }
+.dlg-btn:active { background-color: #2b2d30; }
+
+/* Button variants */
+.dlg-btn.primary  { background-color: #46b1ff; color: #111; border-color: #3da0e6; }
+.dlg-btn.primary:hover  { background-color: #5bb9ff; }
+.dlg-btn.secondary{ background-color: #7a8190; color: #111; border-color: #6b7280; }
+.dlg-btn.secondary:hover{ background-color: #8a92a3; }
+.dlg-btn.success  { background-color: #6bd58b; color: #111; border-color: #5ec07c; }
+.dlg-btn.success:hover  { background-color: #7de19b; }
+.dlg-btn.danger   { background-color: #ff6b6b; color: #111; border-color: #e65f5f; }
+.dlg-btn.danger:hover   { background-color: #ff7f7f; }
+
+/* Buttons with icons */
+.btn-row {
+    flex-direction: row;
+    align-items: center;
+}
+
+.btn-icon {
+    width: 14px;
+    height: 14px;
+    margin-right: 6px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.btn-label {
+    font-size: 12px;
+    color: transparent;
+}
+/* narrow labels for any field you tag */
+.tight-label > .unity-base-field__label {
+  min-width: 42px;
+  width: 42px;
+  margin-right: 4px;
+}
+
+/* prettier popup “input” */
+.dlg-popup .unity-base-field__input {
+  background-color: #2b2d30;
+  color: #e4e8ef;
+  border-radius: 8px;
+  padding-left: 8px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #3a3d42;
+  height: 22px;
+}
+
+/* focus ring */
+.dlg-popup.is-focused .unity-base-field__input {
+  border-color: #46b1ff;
+}
+
+/* arrow area (if you don’t set an icon in C#, this just keeps spacing tidy) */
+.dlg-popup .unity-popup-field__arrow,
+.dlg-popup .unity-base-popup-field__arrow {
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  background-color: transparent;
+}
+/* Split + hosts */
+.dlg-split { flex-grow: 1; }
+.dlg-graph-host { flex-grow: 1; }
+
+/* Sidebar */
+.dlg-sidebar {
+    background-color: #2b2f37;
+    border-left: 1px solid #3a3f48;
+    padding: 8px;
+    gap: 8px;
+    min-width: 400px;
+}
+
+/* Characters panel */
+.dlg-char-sidebar { flex-grow: 1; display: flex; flex-direction: column; }
+.dlg-char-toolbar { justify-content: flex-start; gap: 6px; }
+.dlg-char-title { font-size: 13px; unity-font-style: bold; margin-right: auto; }
+.dlg-char-btn { }
+.dlg-char-auto { margin-left: 8px; }
+.dlg-char-list { flex-grow: 1; }
+
+/* Row styling */
+.char-row {
+    background-color: #303644;
+    border: 1px solid #414654;
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+.char-row-header { margin-bottom: 6px; }
+.char-name { font-size: 12px; unity-font-style: bold; }
+
+.char-row-body { display: flex; flex-direction: row; gap: 8px; }
+.char-preview {
+    width: 64px; height: 64px;
+    border: 1px solid #4a5061; border-radius: 4px;
+    background-color: #1f2230;
+}
+.char-row-right { flex-grow: 1; display: flex; flex-direction: column; gap: 6px; }

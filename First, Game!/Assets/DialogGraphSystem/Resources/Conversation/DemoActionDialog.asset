@@ -1,0 +1,292 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8003242270152174218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
+  m_Name: ActionNode
+  m_EditorClassIdentifier: 
+  GUID: 1d353c0f428243e989f727ef0a61b338
+  nodePosition: {x: 191.2, y: 43.199997}
+  actionId: Toggle_sprite
+  payloadJson: '{"status": true}'
+  waitForCompletion: 0
+  waitSeconds: 0
+--- !u!114 &-7384661449448087317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
+  m_Name: ActionNode
+  m_EditorClassIdentifier: 
+  GUID: 69ee7b1266af4f179d3b5874047cbda8
+  nodePosition: {x: 2344, y: 106.4}
+  actionId: Toggle_sprite
+  payloadJson: '{"status": false}'
+  waitForCompletion: 0
+  waitSeconds: 0
+--- !u!114 &-6141284449109445301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
+  m_Name: ActionNode
+  m_EditorClassIdentifier: 
+  GUID: bbd1e2bbd0644d6394010f1ba8b20b55
+  nodePosition: {x: 997.6, y: 355.2}
+  actionId: Green
+  payloadJson: 
+  waitForCompletion: 0
+  waitSeconds: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c45c6e4622be54698e67e4868db7e5, type: 3}
+  m_Name: DemoActionDialog
+  m_EditorClassIdentifier: 
+  links:
+  - fromGuid: 1d353c0f428243e989f727ef0a61b338
+    toGuid: 53ce2a7d-4f99-40ec-863a-cf35f459e618
+    fromPortIndex: 0
+  - fromGuid: 53ce2a7d-4f99-40ec-863a-cf35f459e618
+    toGuid: 94d018c634134cd6a7840e4e229af8c7
+    fromPortIndex: 0
+  - fromGuid: 53ce2a7d-4f99-40ec-863a-cf35f459e618
+    toGuid: d08c5eeae20e45dea41239f9a5564fde
+    fromPortIndex: 1
+  - fromGuid: 53ce2a7d-4f99-40ec-863a-cf35f459e618
+    toGuid: bbd1e2bbd0644d6394010f1ba8b20b55
+    fromPortIndex: 2
+  - fromGuid: 94d018c634134cd6a7840e4e229af8c7
+    toGuid: f0e7cf0205744454bfaf43ccbead257c
+    fromPortIndex: 0
+  - fromGuid: d08c5eeae20e45dea41239f9a5564fde
+    toGuid: f0e7cf0205744454bfaf43ccbead257c
+    fromPortIndex: 0
+  - fromGuid: bbd1e2bbd0644d6394010f1ba8b20b55
+    toGuid: f0e7cf0205744454bfaf43ccbead257c
+    fromPortIndex: 0
+  - fromGuid: Start
+    toGuid: 5c60a91b-2fa4-4d6d-a14c-ce30aaa015ca
+    fromPortIndex: 0
+  - fromGuid: 5c60a91b-2fa4-4d6d-a14c-ce30aaa015ca
+    toGuid: ed4ddb28d36141349c8e60d287a37996
+    fromPortIndex: 0
+  - fromGuid: ed4ddb28d36141349c8e60d287a37996
+    toGuid: 16eee475-e182-4371-9d51-57a2ad8d563b
+    fromPortIndex: 0
+  - fromGuid: 16eee475-e182-4371-9d51-57a2ad8d563b
+    toGuid: 1d353c0f428243e989f727ef0a61b338
+    fromPortIndex: 0
+  - fromGuid: 69ee7b1266af4f179d3b5874047cbda8
+    toGuid: End
+    fromPortIndex: 0
+  - fromGuid: f0e7cf0205744454bfaf43ccbead257c
+    toGuid: eea0b0e9-43a9-4b3f-9308-63915c12ed43
+    fromPortIndex: 0
+  - fromGuid: eea0b0e9-43a9-4b3f-9308-63915c12ed43
+    toGuid: 69ee7b1266af4f179d3b5874047cbda8
+    fromPortIndex: 0
+  nodes:
+  - {fileID: 4520160794686860923}
+  - {fileID: 1051408479738479433}
+  - {fileID: 8067820018267531042}
+  choiceNodes:
+  - {fileID: 128244500255392548}
+  actionNodes:
+  - {fileID: 3161875531682746480}
+  - {fileID: 2755926081578701763}
+  - {fileID: -6141284449109445301}
+  - {fileID: 9052975380803107416}
+  - {fileID: -8003242270152174218}
+  - {fileID: 4614044717223905930}
+  - {fileID: -7384661449448087317}
+  startGuid: Start
+  startPosition: {x: -1233.6, y: 87.200005}
+  startInitialized: 1
+  endGuid: End
+  endPosition: {x: 2708.8, y: 142.4}
+  endInitialized: 1
+--- !u!114 &128244500255392548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: 53ce2a7d-4f99-40ec-863a-cf35f459e618
+  nodePosition: {x: 492.8, y: 43.199997}
+  text: 
+  choices:
+  - answerText: Red
+    nextNodeGUID: 94d018c634134cd6a7840e4e229af8c7
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: Blue
+    nextNodeGUID: d08c5eeae20e45dea41239f9a5564fde
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: Green
+    nextNodeGUID: bbd1e2bbd0644d6394010f1ba8b20b55
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &1051408479738479433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_New Node
+  m_EditorClassIdentifier: 
+  GUID: 16eee475-e182-4371-9d51-57a2ad8d563b
+  nodePosition: {x: -271.2, y: 43.199997}
+  speakerName: Guid
+  speakerPortrait: {fileID: 21300000, guid: ffde12b7f3c029f418663d7979d15648, type: 3}
+  questionText: "Now, there is going to be an image shown, Chose a color for the
+    image? After you choose, I\u2019ll start a 5-second countdown."
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &2755926081578701763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
+  m_Name: ActionNode
+  m_EditorClassIdentifier: 
+  GUID: d08c5eeae20e45dea41239f9a5564fde
+  nodePosition: {x: 997.6, y: 106.4}
+  actionId: Blue
+  payloadJson: 
+  waitForCompletion: 0
+  waitSeconds: 0
+--- !u!114 &3161875531682746480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
+  m_Name: ActionNode
+  m_EditorClassIdentifier: 
+  GUID: 94d018c634134cd6a7840e4e229af8c7
+  nodePosition: {x: 997.6, y: -111.2}
+  actionId: Red
+  payloadJson: 
+  waitForCompletion: 0
+  waitSeconds: 0
+--- !u!114 &4520160794686860923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_New Node
+  m_EditorClassIdentifier: 
+  GUID: 5c60a91b-2fa4-4d6d-a14c-ce30aaa015ca
+  nodePosition: {x: -1039.2, y: 43.199997}
+  speakerName: Guid
+  speakerPortrait: {fileID: 21300000, guid: ffde12b7f3c029f418663d7979d15648, type: 3}
+  questionText: We are going to start a countup for the dialog
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &4614044717223905930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
+  m_Name: ActionNode
+  m_EditorClassIdentifier: 
+  GUID: ed4ddb28d36141349c8e60d287a37996
+  nodePosition: {x: -576.8, y: 43.199997}
+  actionId: Countup
+  payloadJson: 
+  waitForCompletion: 1
+  waitSeconds: 0
+--- !u!114 &8067820018267531042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_New Node
+  m_EditorClassIdentifier: 
+  GUID: eea0b0e9-43a9-4b3f-9308-63915c12ed43
+  nodePosition: {x: 1840, y: 106.4}
+  speakerName: Guid
+  speakerPortrait: {fileID: 21300000, guid: ffde12b7f3c029f418663d7979d15648, type: 3}
+  questionText: The end!
+  dialogAudio: {fileID: 0}
+  displayTime: 3
+--- !u!114 &9052975380803107416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0cd3f917fb000a419dc8116722bd53e, type: 3}
+  m_Name: ActionNode
+  m_EditorClassIdentifier: 
+  GUID: f0e7cf0205744454bfaf43ccbead257c
+  nodePosition: {x: 1502.4, y: 106.4}
+  actionId: demo.countdown.sync
+  payloadJson: '{"seconds":5}'
+  waitForCompletion: 1
+  waitSeconds: 0

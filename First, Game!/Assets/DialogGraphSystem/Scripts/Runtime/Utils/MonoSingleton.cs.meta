@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 58b98651777454c469665ff117473c7f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 332234
+  packageName: Dialog Graph System
+  packageVersion: 1.3.1
+  assetPath: Assets/DialogGraphSystem/Scripts/Runtime/Utils/MonoSingleton.cs
+  uploadId: 791364

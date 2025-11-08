@@ -1,0 +1,662 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8560236724922130453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Strange Man talking
+  m_EditorClassIdentifier: 
+  GUID: 81edb85dbd944245be09abe0bda7b0d0
+  nodePosition: {x: 1112, y: -279}
+  speakerName: Strange Man
+  speakerPortrait: {fileID: 0}
+  questionText: Whoa whoa now. How come you scream into the ears of such a old gentleman?
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-8501458215518645708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Strange Man Explaining First Mission
+  m_EditorClassIdentifier: 
+  GUID: 8ed234688f144623aa875cef84dd97a1
+  nodePosition: {x: 7274, y: -208}
+  speakerName: Strange Man
+  speakerPortrait: {fileID: 0}
+  questionText: So, I recon we shall meet up, there is just this problem...
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-7242817291216027683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Strange Man Explains First Mission
+  m_EditorClassIdentifier: 
+  GUID: ce58522737684c72893c9f08259382b9
+  nodePosition: {x: 9271, y: -198}
+  speakerName: Strange Man
+  speakerPortrait: {fileID: 0}
+  questionText: Well you will need to come to me.
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-7198566595626242694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Strange Man Explaining First Mission
+  m_EditorClassIdentifier: 
+  GUID: a35377d05c4b4379a9e18e88727de6e7
+  nodePosition: {x: 6806, y: -33}
+  speakerName: Strange Man
+  speakerPortrait: {fileID: 0}
+  questionText: Quit being ironic this is important.
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-5851053088499742895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Strange Man Explains First Mission
+  m_EditorClassIdentifier: 
+  GUID: 2db1e9bda7554d95bf50495d55230958
+  nodePosition: {x: 9783, y: -196}
+  speakerName: Strange Man
+  speakerPortrait: {fileID: 0}
+  questionText: Anyways i need to get going now. have a lovely day!
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-5275489693104254676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: 5610c89ab06e494eb70765881d66b72a
+  nodePosition: {x: 600, y: -57}
+  text: 
+  choices:
+  - answerText: WHO ARE YOU!! WHY ARE YOU CALLING MEEE!!!!
+    nextNodeGUID: 81edb85dbd944245be09abe0bda7b0d0
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &-5161231635342364851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Strange Man Explains First Mission
+  m_EditorClassIdentifier: 
+  GUID: 5ccc8e6f95304213aa64095ee22e48b4
+  nodePosition: {x: 4023, y: 41}
+  speakerName: Strange Man
+  speakerPortrait: {fileID: 0}
+  questionText: Delutional? no no, i would say experiemced in life.
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-2672997870413169923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Strange Man tells us about himself
+  m_EditorClassIdentifier: 
+  GUID: 478a3e1b15a54f65becbc1c5d0beac53
+  nodePosition: {x: 2114, y: -270}
+  speakerName: Strange Man
+  speakerPortrait: {fileID: 0}
+  questionText: Yes, a gentleman.
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-2323664692423491541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Strange Man tells us about himself
+  m_EditorClassIdentifier: 
+  GUID: 735c705773904f60a7546cb7f36fb993
+  nodePosition: {x: 3076, y: -269}
+  speakerName: Strange Man
+  speakerPortrait: {fileID: 0}
+  questionText: but enough about me. and more about why this phone called us both
+    at the same time.
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-2164729156937220410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Strange Man Explains First Mission
+  m_EditorClassIdentifier: 
+  GUID: eabf260d8347499ab4456172c2118059
+  nodePosition: {x: 8291, y: 71}
+  speakerName: Strange Man
+  speakerPortrait: {fileID: 0}
+  questionText: Stop joking around and help a old man. i dont have much energy these
+    days.
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-2097966703954030748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: 81278d52857f42e8b5df8a8ebc54d900
+  nodePosition: {x: 4458, y: -260}
+  text: 
+  choices:
+  - answerText: That is true.
+    nextNodeGUID: 0e76c7f006e041d18b2337ddabff54df
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &-592516135590029905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Strange Man Explains First Mission
+  m_EditorClassIdentifier: 
+  GUID: bb469d51fee04e2cbb419a9be573bdbc
+  nodePosition: {x: 8285, y: -204}
+  speakerName: Strange Man
+  speakerPortrait: {fileID: 0}
+  questionText: Well i am old and dont have much energy.
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-424576981362117240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_"Strange Man" Explains about himself
+  m_EditorClassIdentifier: 
+  GUID: 0b64cd6230454819bba7788fe7f7d468
+  nodePosition: {x: 2113, y: 3}
+  speakerName: Strange Man
+  speakerPortrait: {fileID: 0}
+  questionText: No worries little one. When i was young as you i often disrespected
+    the olders, not meaning it tho.
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-129976107501233865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Strange Man Explains First Mission
+  m_EditorClassIdentifier: 
+  GUID: 7843dc413d3548c99d392e0d7964c8eb
+  nodePosition: {x: 4016, y: -263}
+  speakerName: Strange Man
+  speakerPortrait: {fileID: 0}
+  questionText: No, the phone called me. but i recon from your additude and confusment
+    that it wasnt you?
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c45c6e4622be54698e67e4868db7e5, type: 3}
+  m_Name: First Dialog (Strange Man)
+  m_EditorClassIdentifier: 
+  links:
+  - fromGuid: Start
+    toGuid: 957dfab604a04c30ae58edf2156d15a1
+    fromPortIndex: 0
+  - fromGuid: 957dfab604a04c30ae58edf2156d15a1
+    toGuid: 5610c89ab06e494eb70765881d66b72a
+    fromPortIndex: 0
+  - fromGuid: 5610c89ab06e494eb70765881d66b72a
+    toGuid: 81edb85dbd944245be09abe0bda7b0d0
+    fromPortIndex: 0
+  - fromGuid: 81edb85dbd944245be09abe0bda7b0d0
+    toGuid: 7be14ec18b1742be972ce623d0669406
+    fromPortIndex: 0
+  - fromGuid: 7be14ec18b1742be972ce623d0669406
+    toGuid: 478a3e1b15a54f65becbc1c5d0beac53
+    fromPortIndex: 0
+  - fromGuid: 478a3e1b15a54f65becbc1c5d0beac53
+    toGuid: 72c0260b8a484aafbc3713de4b386418
+    fromPortIndex: 0
+  - fromGuid: 72c0260b8a484aafbc3713de4b386418
+    toGuid: 735c705773904f60a7546cb7f36fb993
+    fromPortIndex: 0
+  - fromGuid: 735c705773904f60a7546cb7f36fb993
+    toGuid: 2185b97065034e16a7896d4dab85602c
+    fromPortIndex: 0
+  - fromGuid: 2185b97065034e16a7896d4dab85602c
+    toGuid: 7843dc413d3548c99d392e0d7964c8eb
+    fromPortIndex: 0
+  - fromGuid: 7843dc413d3548c99d392e0d7964c8eb
+    toGuid: 81278d52857f42e8b5df8a8ebc54d900
+    fromPortIndex: 0
+  - fromGuid: 81278d52857f42e8b5df8a8ebc54d900
+    toGuid: 0e76c7f006e041d18b2337ddabff54df
+    fromPortIndex: 0
+  - fromGuid: 7be14ec18b1742be972ce623d0669406
+    toGuid: 0b64cd6230454819bba7788fe7f7d468
+    fromPortIndex: 1
+  - fromGuid: 0b64cd6230454819bba7788fe7f7d468
+    toGuid: 735c705773904f60a7546cb7f36fb993
+    fromPortIndex: 0
+  - fromGuid: 2185b97065034e16a7896d4dab85602c
+    toGuid: 5ccc8e6f95304213aa64095ee22e48b4
+    fromPortIndex: 1
+  - fromGuid: 5ccc8e6f95304213aa64095ee22e48b4
+    toGuid: e4d9bdd18fbc4d0793564270a710e909
+    fromPortIndex: 0
+  - fromGuid: e4d9bdd18fbc4d0793564270a710e909
+    toGuid: 64af96d3fe9a4c3cab6234189e2a5946
+    fromPortIndex: 1
+  - fromGuid: 64af96d3fe9a4c3cab6234189e2a5946
+    toGuid: ca5cb107de9b4180b86a65786900b8dd
+    fromPortIndex: 0
+  - fromGuid: ca5cb107de9b4180b86a65786900b8dd
+    toGuid: 0e76c7f006e041d18b2337ddabff54df
+    fromPortIndex: 0
+  - fromGuid: 0e76c7f006e041d18b2337ddabff54df
+    toGuid: 849ad24c0f3747fc9ebccb9dab0dcdfc
+    fromPortIndex: 0
+  - fromGuid: 849ad24c0f3747fc9ebccb9dab0dcdfc
+    toGuid: a35377d05c4b4379a9e18e88727de6e7
+    fromPortIndex: 1
+  - fromGuid: a35377d05c4b4379a9e18e88727de6e7
+    toGuid: 8ed234688f144623aa875cef84dd97a1
+    fromPortIndex: 0
+  - fromGuid: 8ed234688f144623aa875cef84dd97a1
+    toGuid: a3c66c14340349a98fbb0731770fbe4c
+    fromPortIndex: 0
+  - fromGuid: a3c66c14340349a98fbb0731770fbe4c
+    toGuid: bb469d51fee04e2cbb419a9be573bdbc
+    fromPortIndex: 0
+  - fromGuid: bb469d51fee04e2cbb419a9be573bdbc
+    toGuid: bb9ac934be2b48bbbd4efb52946631fb
+    fromPortIndex: 0
+  - fromGuid: bb9ac934be2b48bbbd4efb52946631fb
+    toGuid: ce58522737684c72893c9f08259382b9
+    fromPortIndex: 0
+  - fromGuid: ce58522737684c72893c9f08259382b9
+    toGuid: 2db1e9bda7554d95bf50495d55230958
+    fromPortIndex: 0
+  - fromGuid: 2db1e9bda7554d95bf50495d55230958
+    toGuid: End
+    fromPortIndex: 0
+  - fromGuid: a3c66c14340349a98fbb0731770fbe4c
+    toGuid: eabf260d8347499ab4456172c2118059
+    fromPortIndex: 1
+  - fromGuid: eabf260d8347499ab4456172c2118059
+    toGuid: bb9ac934be2b48bbbd4efb52946631fb
+    fromPortIndex: 0
+  - fromGuid: 849ad24c0f3747fc9ebccb9dab0dcdfc
+    toGuid: 8ed234688f144623aa875cef84dd97a1
+    fromPortIndex: 0
+  nodes:
+  - {fileID: 8947427282396978556}
+  - {fileID: -8560236724922130453}
+  - {fileID: -2672997870413169923}
+  - {fileID: -2323664692423491541}
+  - {fileID: -129976107501233865}
+  - {fileID: -424576981362117240}
+  - {fileID: -5161231635342364851}
+  - {fileID: 6186246130273112944}
+  - {fileID: -7198566595626242694}
+  - {fileID: -8501458215518645708}
+  - {fileID: -7242817291216027683}
+  - {fileID: -5851053088499742895}
+  - {fileID: -592516135590029905}
+  - {fileID: -2164729156937220410}
+  - {fileID: 8649531152346281435}
+  - {fileID: 7468217986852944681}
+  choiceNodes:
+  - {fileID: -5275489693104254676}
+  - {fileID: 2484502557816762976}
+  - {fileID: -2097966703954030748}
+  - {fileID: 7606290913090750183}
+  - {fileID: 869252818701131452}
+  - {fileID: 2828847226886196775}
+  - {fileID: 2287972271197917652}
+  - {fileID: 8736708160913532559}
+  - {fileID: 6590596423635850367}
+  actionNodes: []
+  startGuid: Start
+  startPosition: {x: -58, y: 95}
+  startInitialized: 1
+  endGuid: End
+  endPosition: {x: 10265, y: -165}
+  endInitialized: 1
+--- !u!114 &869252818701131452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: e4d9bdd18fbc4d0793564270a710e909
+  nodePosition: {x: 4459, y: 100}
+  text: 
+  choices:
+  - answerText: You need help from a hospital.
+    nextNodeGUID: 
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: Ok old man, what you want?
+    nextNodeGUID: 64af96d3fe9a4c3cab6234189e2a5946
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &2287972271197917652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: 849ad24c0f3747fc9ebccb9dab0dcdfc
+  nodePosition: {x: 6334, y: -214}
+  text: 
+  choices:
+  - answerText: Yes?
+    nextNodeGUID: 8ed234688f144623aa875cef84dd97a1
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: YES THAT NEEDS TO BE IT!!!
+    nextNodeGUID: a35377d05c4b4379a9e18e88727de6e7
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &2484502557816762976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: 7be14ec18b1742be972ce623d0669406
+  nodePosition: {x: 1579, y: -276}
+  text: 
+  choices:
+  - answerText: GENTLEMAN??!?!?!
+    nextNodeGUID: 478a3e1b15a54f65becbc1c5d0beac53
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: Sorry i am just confused about this whole situation.
+    nextNodeGUID: 0b64cd6230454819bba7788fe7f7d468
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &2828847226886196775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: ca5cb107de9b4180b86a65786900b8dd
+  nodePosition: {x: 5406, y: 92}
+  text: 
+  choices:
+  - answerText: The plan? what are you talking about?
+    nextNodeGUID: 0e76c7f006e041d18b2337ddabff54df
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &6186246130273112944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Strange Man Explains First Mission
+  m_EditorClassIdentifier: 
+  GUID: 0e76c7f006e041d18b2337ddabff54df
+  nodePosition: {x: 5855, y: -217}
+  speakerName: Strange Man
+  speakerPortrait: {fileID: 0}
+  questionText: well someone seems to want us to meet for some unknown reason right?.
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &6590596423635850367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: a3c66c14340349a98fbb0731770fbe4c
+  nodePosition: {x: 7738, y: -203}
+  text: 
+  choices:
+  - answerText: What Problem?
+    nextNodeGUID: bb469d51fee04e2cbb419a9be573bdbc
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: I already give up, see you around crasy man!
+    nextNodeGUID: eabf260d8347499ab4456172c2118059
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &7468217986852944681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Strange Man tells us about himself
+  m_EditorClassIdentifier: 
+  GUID: 72c0260b8a484aafbc3713de4b386418
+  nodePosition: {x: 2584, y: -435}
+  speakerName: Strange Man
+  speakerPortrait: {fileID: 0}
+  questionText: You know, when i was young and energetic i often disrespected the
+    wise people of this world to.
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &7606290913090750183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: 2185b97065034e16a7896d4dab85602c
+  nodePosition: {x: 3533, y: -267}
+  text: 
+  choices:
+  - answerText: What are you talking about? you called me?
+    nextNodeGUID: 7843dc413d3548c99d392e0d7964c8eb
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: You are delustional.
+    nextNodeGUID: 5ccc8e6f95304213aa64095ee22e48b4
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &8649531152346281435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Strange Man Explains First Mission
+  m_EditorClassIdentifier: 
+  GUID: 64af96d3fe9a4c3cab6234189e2a5946
+  nodePosition: {x: 4923, y: 93}
+  speakerName: Strange Man
+  speakerPortrait: {fileID: 0}
+  questionText: What i want? I want to know what the plan is now?
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &8736708160913532559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: bb9ac934be2b48bbbd4efb52946631fb
+  nodePosition: {x: 8748, y: -203}
+  text: 
+  choices:
+  - answerText: And?
+    nextNodeGUID: ce58522737684c72893c9f08259382b9
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &8947427282396978556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_First Greeting
+  m_EditorClassIdentifier: 
+  GUID: 957dfab604a04c30ae58edf2156d15a1
+  nodePosition: {x: 134, y: -57}
+  speakerName: Strange Man
+  speakerPortrait: {fileID: 0}
+  questionText: Hello? who is this i am talking to?
+  dialogAudio: {fileID: 0}
+  displayTime: 10

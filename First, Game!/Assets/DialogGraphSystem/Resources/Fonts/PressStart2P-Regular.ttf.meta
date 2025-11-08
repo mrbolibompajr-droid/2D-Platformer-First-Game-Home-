@@ -1,0 +1,28 @@
+fileFormatVersion: 2
+guid: a5a608b52857bd348a0fd057fd866726
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Press Start 2P
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 332234
+  packageName: Dialog Graph System
+  packageVersion: 1.3.1
+  assetPath: Assets/DialogGraphSystem/Resources/Fonts/PressStart2P-Regular.ttf
+  uploadId: 791364

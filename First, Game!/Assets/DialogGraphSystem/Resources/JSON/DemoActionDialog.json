@@ -1,0 +1,202 @@
+﻿{
+    "startNode": {
+        "guid": "Start",
+        "nodePositionX": -1233.5999755859375,
+        "nodePositionY": 87.20000457763672,
+        "isInitialized": true
+    },
+    "endNode": {
+        "guid": "End",
+        "nodePositionX": 2708.800048828125,
+        "nodePositionY": 142.39999389648438,
+        "isInitialized": true
+    },
+    "dialogNodes": [
+        {
+            "title": "New Node",
+            "guid": "5c60a91b-2fa4-4d6d-a14c-ce30aaa015ca",
+            "speaker": "Guid",
+            "question": "We are going to start a countup for the dialog",
+            "nodePositionX": -1039.199951171875,
+            "nodePositionY": 43.19999694824219,
+            "displayTime": 0.0
+        },
+        {
+            "title": "New Node",
+            "guid": "16eee475-e182-4371-9d51-57a2ad8d563b",
+            "speaker": "Guid",
+            "question": "Now, there is going to be an image shown, Chose a color for the image? After you choose, I’ll start a 5-second countdown.",
+            "nodePositionX": -271.20001220703127,
+            "nodePositionY": 43.19999694824219,
+            "displayTime": 0.0
+        },
+        {
+            "title": "New Node",
+            "guid": "eea0b0e9-43a9-4b3f-9308-63915c12ed43",
+            "speaker": "Guid",
+            "question": "The end!",
+            "nodePositionX": 1840.0,
+            "nodePositionY": 106.4000015258789,
+            "displayTime": 3.0
+        }
+    ],
+    "choiceNodes": [
+        {
+            "guid": "53ce2a7d-4f99-40ec-863a-cf35f459e618",
+            "text": "",
+            "nodePositionX": 492.79998779296877,
+            "nodePositionY": 43.19999694824219,
+            "choices": [
+                {
+                    "answerText": "Red",
+                    "nextNodeGUID": "94d018c634134cd6a7840e4e229af8c7"
+                },
+                {
+                    "answerText": "Blue",
+                    "nextNodeGUID": "d08c5eeae20e45dea41239f9a5564fde"
+                },
+                {
+                    "answerText": "Green",
+                    "nextNodeGUID": "bbd1e2bbd0644d6394010f1ba8b20b55"
+                }
+            ]
+        }
+    ],
+    "actionNodes": [
+        {
+            "guid": "94d018c634134cd6a7840e4e229af8c7",
+            "actionId": "Red",
+            "payloadJson": "",
+            "waitForCompletion": false,
+            "waitSeconds": 0.0,
+            "nodePositionX": 997.5999755859375,
+            "nodePositionY": -111.19999694824219
+        },
+        {
+            "guid": "d08c5eeae20e45dea41239f9a5564fde",
+            "actionId": "Blue",
+            "payloadJson": "",
+            "waitForCompletion": false,
+            "waitSeconds": 0.0,
+            "nodePositionX": 997.5999755859375,
+            "nodePositionY": 106.4000015258789
+        },
+        {
+            "guid": "bbd1e2bbd0644d6394010f1ba8b20b55",
+            "actionId": "Green",
+            "payloadJson": "",
+            "waitForCompletion": false,
+            "waitSeconds": 0.0,
+            "nodePositionX": 997.5999755859375,
+            "nodePositionY": 355.20001220703127
+        },
+        {
+            "guid": "f0e7cf0205744454bfaf43ccbead257c",
+            "actionId": "demo.countdown.sync",
+            "payloadJson": "{\"seconds\":5}",
+            "waitForCompletion": true,
+            "waitSeconds": 0.0,
+            "nodePositionX": 1502.4000244140625,
+            "nodePositionY": 106.4000015258789
+        },
+        {
+            "guid": "1d353c0f428243e989f727ef0a61b338",
+            "actionId": "Toggle_sprite",
+            "payloadJson": "{\"status\": true}",
+            "waitForCompletion": false,
+            "waitSeconds": 0.0,
+            "nodePositionX": 191.1999969482422,
+            "nodePositionY": 43.19999694824219
+        },
+        {
+            "guid": "ed4ddb28d36141349c8e60d287a37996",
+            "actionId": "Countup",
+            "payloadJson": "",
+            "waitForCompletion": true,
+            "waitSeconds": 0.0,
+            "nodePositionX": -576.7999877929688,
+            "nodePositionY": 43.19999694824219
+        },
+        {
+            "guid": "69ee7b1266af4f179d3b5874047cbda8",
+            "actionId": "Toggle_sprite",
+            "payloadJson": "{\"status\": false}",
+            "waitForCompletion": false,
+            "waitSeconds": 0.0,
+            "nodePositionX": 2344.0,
+            "nodePositionY": 106.4000015258789
+        }
+    ],
+    "links": [
+        {
+            "fromGuid": "1d353c0f428243e989f727ef0a61b338",
+            "toGuid": "53ce2a7d-4f99-40ec-863a-cf35f459e618",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "53ce2a7d-4f99-40ec-863a-cf35f459e618",
+            "toGuid": "94d018c634134cd6a7840e4e229af8c7",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "53ce2a7d-4f99-40ec-863a-cf35f459e618",
+            "toGuid": "d08c5eeae20e45dea41239f9a5564fde",
+            "fromPortIndex": 1
+        },
+        {
+            "fromGuid": "53ce2a7d-4f99-40ec-863a-cf35f459e618",
+            "toGuid": "bbd1e2bbd0644d6394010f1ba8b20b55",
+            "fromPortIndex": 2
+        },
+        {
+            "fromGuid": "94d018c634134cd6a7840e4e229af8c7",
+            "toGuid": "f0e7cf0205744454bfaf43ccbead257c",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "d08c5eeae20e45dea41239f9a5564fde",
+            "toGuid": "f0e7cf0205744454bfaf43ccbead257c",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "bbd1e2bbd0644d6394010f1ba8b20b55",
+            "toGuid": "f0e7cf0205744454bfaf43ccbead257c",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "Start",
+            "toGuid": "5c60a91b-2fa4-4d6d-a14c-ce30aaa015ca",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "5c60a91b-2fa4-4d6d-a14c-ce30aaa015ca",
+            "toGuid": "ed4ddb28d36141349c8e60d287a37996",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "ed4ddb28d36141349c8e60d287a37996",
+            "toGuid": "16eee475-e182-4371-9d51-57a2ad8d563b",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "16eee475-e182-4371-9d51-57a2ad8d563b",
+            "toGuid": "1d353c0f428243e989f727ef0a61b338",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "69ee7b1266af4f179d3b5874047cbda8",
+            "toGuid": "End",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "f0e7cf0205744454bfaf43ccbead257c",
+            "toGuid": "eea0b0e9-43a9-4b3f-9308-63915c12ed43",
+            "fromPortIndex": 0
+        },
+        {
+            "fromGuid": "eea0b0e9-43a9-4b3f-9308-63915c12ed43",
+            "toGuid": "69ee7b1266af4f179d3b5874047cbda8",
+            "fromPortIndex": 0
+        }
+    ]
+}

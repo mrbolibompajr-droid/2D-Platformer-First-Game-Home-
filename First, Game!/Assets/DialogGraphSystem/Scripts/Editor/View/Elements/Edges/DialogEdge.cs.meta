@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4be98874d8f524042a8e95d037bcf10b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 332234
+  packageName: Dialog Graph System
+  packageVersion: 1.3.1
+  assetPath: Assets/DialogGraphSystem/Scripts/Editor/View/Elements/Edges/DialogEdge.cs
+  uploadId: 791364

@@ -1,0 +1,267 @@
+/* ---------------- Base node ---------------- */
+.dlg-node {
+  background-color: #2b2d30; /* panel */
+  color: #e4e8ef; /* text */
+  border-radius: 12px;
+
+  border-left-width: 4px;
+  border-left-style: solid;
+  border-left-color: #f4a03b; /* accent */
+}
+
+.type-start   { border-left-color: #6bd58b; }
+.type-dialogue{ border-left-color: #f4a03b; }
+.type-choice  { border-left-color: #46b1ff; }
+.type-end     { border-left-color: #ff6b6b; }
+
+/* ---------------- Header ---------------- */
+#header {
+  flex-direction: row;
+  align-items: left;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.entry-header {
+    background-color: rgba(92, 200, 107, 0.35); /* Soft mint green */
+    color: #e4e8ef;
+}
+
+.autonext-header {
+    background-color: rgba(224, 177, 74, 0.35); /* Warm amber */
+    color: #e4e8ef;
+}
+
+.choices-header {
+    background-color: rgba(58, 155, 220, 0.35); /* Soft sky blue */
+    color: #e4e8ef;
+}
+
+#avatar {
+  width: 18px; height: 18px; border-radius: 9px;
+  background-color: #6c6f75; margin-right: 8px;
+}
+
+#title { unity-font-style: bold; font-size: 12px;  }
+#entryToggle { margin-left: auto; }
+
+/* badges under header (optional) */
+#badges {
+  flex-direction: row;
+  padding-left: 10px; padding-right: 10px; padding-bottom: 4px;
+}
+
+.badge {
+  font-size: 9px; padding-top: 2px; padding-bottom: 2px;
+  padding-left: 6px; padding-right: 6px; border-radius: 999px;
+  background-color: #31343a; color: #b4bac4; margin-right: 6px;
+}
+.badge.auto  { background-color: #6bd58b; color:#000; }
+.badge.error { background-color: #ff6b6b; color:#000; }
+
+/* ---------------- Body ---------------- */
+UnityEditor.Experimental.GraphView.Node .main-container {
+  padding-left: 10px; padding-right: 10px; padding-bottom: 8px;
+}
+
+UnityEditor.UIElements.TextField,
+UnityEditor.UIElements.ObjectField,
+UnityEditor.UIElements.FloatField {
+  margin-bottom: 6px;
+}
+
+/* portrait + dialogue row */
+#dialogue-row { flex-direction: row; align-items: flex-start; }
+
+/* portrait preview box */
+#portraitPreview {
+  width: 64px; height: 64px; background-color: #1a1a1a;
+  margin-right: 8px; border-radius: 6px;
+}
+
+/* multiline dialogue text */
+#Dialogue { white-space: normal; -unity-text-align: upper-left; min-height: 60px; }
+
+/* ---------------- Answers ---------------- */
+#answers { flex-direction: column; padding-top: 4px; }
+
+/* Make sure the port can draw fully (no clipping) */
+#answer-row {
+  flex-direction: row; align-items: center;
+  background-color: #31343a; border-radius: 6px;
+  padding-left: 4px; padding-right: 0px; padding-top: 2px; padding-bottom: 2px;
+  overflow: visible;
+}
+
+/* Flexible text field: grows but respects min width */
+#answer-row #answer-text {
+  flex-grow: 1; flex-shrink: 1; min-width: 80px;
+  margin-left: 2px; margin-right: 4px;
+}
+
+/* Buttons */
+.tiny {
+  height: 18px; min-width: 20px; border-radius: 4px;
+  color: #ffffff; margin-left: 2px; margin-right: 2px;
+}
+.btn-dup { background-color: #46b1ff; }
+.btn-del { background-color: #ff6b6b; }
+.tiny:hover { opacity: .9; }
+
+/* Reserve space for the IMGUI port at the far right */
+#port-holder {
+  width: 28px; justify-content: center; align-items: center;
+  overflow: visible;
+}
+.choice-port { margin: 0px; }
+
+/* add-answer button */
+.add-answer {
+  margin-top: 6px; background-color: #46b1ff; color: #ffffff;
+  border-radius: 6px; padding-top: 4px; padding-bottom: 4px;
+  padding-left: 10px; padding-right: 10px;
+}
+#avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 11px;
+  overflow: hidden;      /* ensures image respects the rounded corners */
+}
+
+/* ---------- Action Node (soft blue) ---------- */
+.dlg-node.type-action {
+  background-color: rgba(52, 152, 219, 0.10);      /* soft blue fill */
+  border-left:   2px solid #3498DB;
+  border-right:  2px solid #3498DB;
+  border-top:    2px solid #3498DB;
+  border-bottom: 2px solid #3498DB;
+  padding-bottom: 4px;
+}
+
+.dlg-node.type-action > .title-container {
+  background-color: rgba(52, 152, 219, 0.25);      /* header tint */
+}
+
+/* Title/labels readable */
+.dlg-node.type-action .unity-label {
+  color: #000000;
+}
+
+/* Ports labels also bold & black (backup to code styling) */
+.dlg-node.type-action .port .unity-label {
+  color: #000000;
+  font-weight: 700; /* newer UITK */
+}
+
+/* Body sections */
+.dlg-node.type-action .action-body {
+  padding: 4px 6px 8px 6px;
+}
+
+.dlg-node.type-action .section-title {
+  margin-top: 2px;
+  margin-bottom: 4px;
+  color: #000000;
+  font-weight: 600;
+}
+
+.dlg-node.type-action .separator {
+  height: 1px;
+  background-color: rgba(0,0,0,0.08);
+  margin: 6px 0;
+}
+
+/* Rows & labels spacing */
+.dlg-node.type-action .row {
+  margin-top: 4px;
+}
+
+/* Slightly narrower field labels so content area is wider */
+.dlg-node.type-action .unity-base-field__label {
+  min-width: 100px;
+  width: 120px;
+}
+
+/* JSON box: roomy height, comfortable padding */
+.dlg-node.type-action .json-box {
+  min-height: 100px;
+  margin-top: 2px;
+}
+
+/* Make multiline text inputs breathe a bit */
+.dlg-node.type-action .json-box .unity-text-input,
+.dlg-node.type-action .unity-text-field__input {
+  padding: 4px;
+  white-space: pre-wrap;
+  line-height: 1.2;
+}
+
+/* --- NodeViewUSS.uss (Updated) --- */
+
+/* ... (Existing styles for .dlg-node, .type-start, etc.) ... */
+
+/* ---------- Action Node (Purple Accent) ---------- */
+.dlg-node.type-action {
+  border-left-color: #9b59b6; /* Soft purple accent */
+}
+
+/* Header tint matching other nodes */
+.dlg-node.type-action > .title-container {
+  background-color: rgba(155, 89, 182, 0.35); /* Soft purple tint */
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* Body container spacing */
+.dlg-node.type-action .main-container {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 8px;
+}
+
+/* Section titles in the body */
+.dlg-node.type-action .section-title {
+  color: #e4e8ef;
+  font-weight: bold;
+  padding-top: 4px;
+}
+
+/* Separators */
+.dlg-node.type-action .separator {
+  height: 1px;
+  background-color: #6c6f75;
+  margin: 6px 0;
+}
+
+/* JSON box: roomy height, comfortable padding */
+.dlg-node.type-action .json-box {
+  min-height: 80px;
+}
+
+/* Let multiline payload breathe and stretch if node grows */
+.dlg-node.type-action .json-box .unity-text-input {
+  white-space: pre-wrap;
+  line-height: 1.2;
+}
+
+/* Fix field label alignment for better readability */
+.dlg-node.type-action .unity-base-field__label {
+  min-width: 100px;
+  width: 120px;
+}
+
+/* Ports */
+.dlg-node.type-action .port {
+  border-radius: 999px;
+  background-color: #9b59b6;
+  width: 12px;
+  height: 12px;
+}
+
+.dlg-node.type-action .port .unity-label {
+  color: #e4e8ef;
+}

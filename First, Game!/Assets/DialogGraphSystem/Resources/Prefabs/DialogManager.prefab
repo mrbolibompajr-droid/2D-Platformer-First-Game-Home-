@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2713440315678539161
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2011031905221605792}
+  - component: {fileID: 280483536223358298}
+  - component: {fileID: 3290527888451106925}
+  m_Layer: 0
+  m_Name: DialogManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2011031905221605792
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2713440315678539161}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &280483536223358298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2713440315678539161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5e165103cf726a4e83e90a3ba7d9c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doDebugLog: 0
+  dialogGraphs:
+  - dialogGraph: {fileID: 11400000, guid: 49f5e5912ed46cc4da5366cac33415f5, type: 2}
+    dialogType: CoffeeAIRevolt_Dialog
+  - dialogGraph: {fileID: 11400000, guid: c3d68c5ed57b662489dd158c9f0a4e2c, type: 2}
+    dialogType: GlitchyNPC_Loop_Dialog
+  - dialogGraph: {fileID: 11400000, guid: d9f3d176a0f59d141922b34d9bd3221f, type: 2}
+    dialogType: WizardTechSupport_Dialog
+  uiPanel: {fileID: 0}
+  typingSpeed: 0.05
+  delayBeforeAutoNext: 2
+  allowSkipLine: 1
+  allowSkipAll: 1
+  autoPlay: 1
+  audioSource: {fileID: 0}
+  stopAudioOnSkipLine: 1
+  stopAudioOnSkipAll: 1
+  fadeOutAudioOnStop: 1
+  audioFadeOutTime: 0.08
+--- !u!114 &3290527888451106925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2713440315678539161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f6822f2428f80643a63c7c80ee53387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 280483536223358298}
+  view: {fileID: 0}
+  maxEntries: 500
+  resumeAutoplayOnClose: 1

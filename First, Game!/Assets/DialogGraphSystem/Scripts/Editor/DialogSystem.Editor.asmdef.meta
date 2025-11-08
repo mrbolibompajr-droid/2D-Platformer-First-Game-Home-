@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2d22e94761ec7e244b1bdd9b4d292141
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 332234
+  packageName: Dialog Graph System
+  packageVersion: 1.3.1
+  assetPath: Assets/DialogGraphSystem/Scripts/Editor/DialogSystem.Editor.asmdef
+  uploadId: 791364

@@ -1,0 +1,992 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8725302817501168277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Test Focus
+  m_EditorClassIdentifier: 
+  GUID: d-omar-focus-0001
+  nodePosition: {x: 1808, y: 239.20001}
+  speakerName: Omar
+  speakerPortrait: {fileID: 21300000, guid: 2992fbfbe668cd94997f0cf0bb584681, type: 3}
+  questionText: 'Focus: accuracy against golden sets, tone neutrality, and handling
+    of missing/contradictory fields.'
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-7536886236073269182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Architecture
+  m_EditorClassIdentifier: 
+  GUID: d-mira-arch-0001
+  nodePosition: {x: 1808, y: -864}
+  speakerName: Mira
+  speakerPortrait: {fileID: 21300000, guid: d110dd06caa8c6b4caccceb0529a1f75, type: 3}
+  questionText: "Architecture: ETL pulls shift forms \u2192 normalization \u2192
+    summarizer service \u2192 Slack webhook + dashboard card."
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-6677260115840261961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Meet Omar (QA)
+  m_EditorClassIdentifier: 
+  GUID: 7c2e81b2-4d6f-4fda-ab11-5a2e1a3c3100
+  nodePosition: {x: 400, y: 160}
+  speakerName: Omar
+  speakerPortrait: {fileID: 21300000, guid: 2992fbfbe668cd94997f0cf0bb584681, type: 3}
+  questionText: QA here. Want to know how we test the summaries?
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-5567576701886059063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Meet Mira (Engineer)
+  m_EditorClassIdentifier: 
+  GUID: 0b4e4c42-7cda-4b41-bc7d-6baf1a2b2100
+  nodePosition: {x: 400, y: -160}
+  speakerName: Mira
+  speakerPortrait: {fileID: 21300000, guid: d110dd06caa8c6b4caccceb0529a1f75, type: 3}
+  questionText: "Hey! I\u2019m on the ingestion and summarizer. Want code pointers
+    or blockers?"
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-5427877738719646496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: "Node_Omar \u2014 Wrap"
+  m_EditorClassIdentifier: 
+  GUID: d-omar-close-0001
+  nodePosition: {x: 3750.4, y: 364.80002}
+  speakerName: Omar
+  speakerPortrait: {fileID: 21300000, guid: 2992fbfbe668cd94997f0cf0bb584681, type: 3}
+  questionText: "Ping me before big refactors\u2014I\u2019ll queue regression runs."
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-4269376139196015863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Risks
+  m_EditorClassIdentifier: 
+  GUID: d-lina-risks-0001
+  nodePosition: {x: 1808, y: -596}
+  speakerName: Lina
+  speakerPortrait: {fileID: 21300000, guid: f1559ebc9ca919e4ea96a439ea8bb817, type: 3}
+  questionText: 'Risks: data quality from older forms, and a dependency on Ops for
+    labeling. Also, stakeholders may change scope mid-week.'
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-4194633182891567407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: "Node_Jonas \u2014 Wrap"
+  m_EditorClassIdentifier: 
+  GUID: d-jonas-close-0001
+  nodePosition: {x: 3750.4, y: 787.19995}
+  speakerName: Jonas
+  speakerPortrait: {fileID: 21300000, guid: 120fc66cca9311d40a80ca044a8dc68c, type: 3}
+  questionText: "That should get you unblocked. I\u2019ll keep an eye on access requests."
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-4078786205218617179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Blockers
+  m_EditorClassIdentifier: 
+  GUID: d-mira-blockers-0001
+  nodePosition: {x: 1808, y: -313.6}
+  speakerName: Mira
+  speakerPortrait: {fileID: 21300000, guid: d110dd06caa8c6b4caccceb0529a1f75, type: 3}
+  questionText: 'Blockers: a few malformed CSVs break the parser. Also, we need a
+    final taxonomy for tags.'
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-3903736172537337075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Code Location
+  m_EditorClassIdentifier: 
+  GUID: d-mira-code-0001
+  nodePosition: {x: 1808, y: -44.800003}
+  speakerName: Mira
+  speakerPortrait: {fileID: 21300000, guid: d110dd06caa8c6b4caccceb0529a1f75, type: 3}
+  questionText: "Code: repo \u2018brief-bot\u2019. Summarizer project in /services/summary;
+    ETL in /pipelines."
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-3361782300082781632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: c-omar-follow-0001
+  nodePosition: {x: 2472, y: 429.6}
+  text: 
+  choices:
+  - answerText: One more tip
+    nextNodeGUID: d-omar-tip-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: That's enough
+    nextNodeGUID: d-omar-close-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &-3086545895992871265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Meet Lina (PM)
+  m_EditorClassIdentifier: 
+  GUID: f1c0a2a3-9b88-4d8a-9d9d-01f1b5a1a100
+  nodePosition: {x: 400, y: -480}
+  speakerName: Lina
+  speakerPortrait: {fileID: 21300000, guid: f1559ebc9ca919e4ea96a439ea8bb817, type: 3}
+  questionText: "Hi\u2014I'm Lina, the project manager. Looking for a quick overview
+    or something specific?"
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-2708278575162731279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Synthesis
+  m_EditorClassIdentifier: 
+  GUID: d-synth-0001
+  nodePosition: {x: 4420.8, y: 33.6}
+  speakerName: Guide
+  speakerPortrait: {fileID: 21300000, guid: ffde12b7f3c029f418663d7979d15648, type: 3}
+  questionText: "You jot down notes: goals, deadlines, data flow, QA criteria, and
+    access steps. You\u2019ve got enough to proceed."
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-2411593705546969152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Environments
+  m_EditorClassIdentifier: 
+  GUID: d-jonas-env-0001
+  nodePosition: {x: 1808, y: 1635.2}
+  speakerName: Jonas
+  speakerPortrait: {fileID: 21300000, guid: 120fc66cca9311d40a80ca044a8dc68c, type: 3}
+  questionText: "Envs: dev \u2192 stage \u2192 prod. Stage mirrors prod data shapes
+    with redactions; never test PII locally."
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-1430974768748478630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: c-omar-questions-0001
+  nodePosition: {x: 1008, y: 160}
+  text: 
+  choices:
+  - answerText: Test focus
+    nextNodeGUID: d-omar-focus-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: Bug workflow
+    nextNodeGUID: d-omar-bugs-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: Definition of Done
+    nextNodeGUID: d-omar-dod-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &-1416366958091289312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: "Node_Mira \u2014 Quick Tip"
+  m_EditorClassIdentifier: 
+  GUID: d-mira-tip-0001
+  nodePosition: {x: 3089.6, y: -236}
+  speakerName: Mira
+  speakerPortrait: {fileID: 21300000, guid: d110dd06caa8c6b4caccceb0529a1f75, type: 3}
+  questionText: 'Tip: run the sample dataset in /samples to sanity-check your changes
+    fast.'
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &-1127756483941408641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: c-jonas-questions-0001
+  nodePosition: {x: 1008, y: 480.00003}
+  text: 
+  choices:
+  - answerText: Where docs live
+    nextNodeGUID: d-jonas-docs-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: Getting access
+    nextNodeGUID: d-jonas-access-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: Environments
+    nextNodeGUID: d-jonas-env-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &-241646823798930644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Docs
+  m_EditorClassIdentifier: 
+  GUID: d-jonas-docs-0001
+  nodePosition: {x: 1808, y: 1076.7999}
+  speakerName: Jonas
+  speakerPortrait: {fileID: 21300000, guid: 120fc66cca9311d40a80ca044a8dc68c, type: 3}
+  questionText: "Docs: Confluence space \u2018BriefBot\u2019. Start with the \u2018Runbook\u2019
+    and \u2018Data Contracts\u2019."
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c45c6e4622be54698e67e4868db7e5, type: 3}
+  m_Name: DialogDemo
+  m_EditorClassIdentifier: 
+  links:
+  - fromGuid: Start
+    toGuid: 2a1b0f2e-7d5c-4f31-9c4a-d1f3bfa13001
+    fromPortIndex: 0
+  - fromGuid: 2a1b0f2e-7d5c-4f31-9c4a-d1f3bfa13001
+    toGuid: b9a7e1d2-45cd-4bb3-8f8f-0f12c63d0001
+    fromPortIndex: 0
+  - fromGuid: b9a7e1d2-45cd-4bb3-8f8f-0f12c63d0001
+    toGuid: f1c0a2a3-9b88-4d8a-9d9d-01f1b5a1a100
+    fromPortIndex: 0
+  - fromGuid: b9a7e1d2-45cd-4bb3-8f8f-0f12c63d0001
+    toGuid: 0b4e4c42-7cda-4b41-bc7d-6baf1a2b2100
+    fromPortIndex: 1
+  - fromGuid: b9a7e1d2-45cd-4bb3-8f8f-0f12c63d0001
+    toGuid: a8d8e3f2-010b-4c9e-9e77-0c3f2d4e4100
+    fromPortIndex: 3
+  - fromGuid: f1c0a2a3-9b88-4d8a-9d9d-01f1b5a1a100
+    toGuid: c-lina-questions-0001
+    fromPortIndex: 0
+  - fromGuid: c-lina-questions-0001
+    toGuid: d-lina-goal-0001
+    fromPortIndex: 0
+  - fromGuid: c-lina-questions-0001
+    toGuid: d-lina-deadline-0001
+    fromPortIndex: 1
+  - fromGuid: c-lina-questions-0001
+    toGuid: d-lina-risks-0001
+    fromPortIndex: 2
+  - fromGuid: d-lina-goal-0001
+    toGuid: c-lina-follow-0001
+    fromPortIndex: 0
+  - fromGuid: d-lina-deadline-0001
+    toGuid: c-lina-follow-0001
+    fromPortIndex: 0
+  - fromGuid: d-lina-risks-0001
+    toGuid: c-lina-follow-0001
+    fromPortIndex: 0
+  - fromGuid: c-lina-follow-0001
+    toGuid: d-lina-tip-0001
+    fromPortIndex: 0
+  - fromGuid: c-lina-follow-0001
+    toGuid: d-lina-close-0001
+    fromPortIndex: 1
+  - fromGuid: d-lina-tip-0001
+    toGuid: d-lina-close-0001
+    fromPortIndex: 0
+  - fromGuid: d-lina-close-0001
+    toGuid: d-synth-0001
+    fromPortIndex: 0
+  - fromGuid: 0b4e4c42-7cda-4b41-bc7d-6baf1a2b2100
+    toGuid: c-mira-questions-0001
+    fromPortIndex: 0
+  - fromGuid: c-mira-questions-0001
+    toGuid: d-mira-arch-0001
+    fromPortIndex: 0
+  - fromGuid: c-mira-questions-0001
+    toGuid: d-mira-blockers-0001
+    fromPortIndex: 1
+  - fromGuid: c-mira-questions-0001
+    toGuid: d-mira-code-0001
+    fromPortIndex: 2
+  - fromGuid: d-mira-arch-0001
+    toGuid: c-mira-follow-0001
+    fromPortIndex: 0
+  - fromGuid: d-mira-blockers-0001
+    toGuid: c-mira-follow-0001
+    fromPortIndex: 0
+  - fromGuid: d-mira-code-0001
+    toGuid: c-mira-follow-0001
+    fromPortIndex: 0
+  - fromGuid: c-mira-follow-0001
+    toGuid: d-mira-tip-0001
+    fromPortIndex: 0
+  - fromGuid: c-mira-follow-0001
+    toGuid: d-mira-close-0001
+    fromPortIndex: 1
+  - fromGuid: d-mira-tip-0001
+    toGuid: d-mira-close-0001
+    fromPortIndex: 0
+  - fromGuid: d-mira-close-0001
+    toGuid: d-synth-0001
+    fromPortIndex: 0
+  - fromGuid: 7c2e81b2-4d6f-4fda-ab11-5a2e1a3c3100
+    toGuid: c-omar-questions-0001
+    fromPortIndex: 0
+  - fromGuid: c-omar-questions-0001
+    toGuid: d-omar-focus-0001
+    fromPortIndex: 0
+  - fromGuid: c-omar-questions-0001
+    toGuid: d-omar-bugs-0001
+    fromPortIndex: 1
+  - fromGuid: c-omar-questions-0001
+    toGuid: d-omar-dod-0001
+    fromPortIndex: 2
+  - fromGuid: d-omar-focus-0001
+    toGuid: c-omar-follow-0001
+    fromPortIndex: 0
+  - fromGuid: d-omar-bugs-0001
+    toGuid: c-omar-follow-0001
+    fromPortIndex: 0
+  - fromGuid: d-omar-dod-0001
+    toGuid: c-omar-follow-0001
+    fromPortIndex: 0
+  - fromGuid: c-omar-follow-0001
+    toGuid: d-omar-tip-0001
+    fromPortIndex: 0
+  - fromGuid: c-omar-follow-0001
+    toGuid: d-omar-close-0001
+    fromPortIndex: 1
+  - fromGuid: d-omar-tip-0001
+    toGuid: d-omar-close-0001
+    fromPortIndex: 0
+  - fromGuid: d-omar-close-0001
+    toGuid: d-synth-0001
+    fromPortIndex: 0
+  - fromGuid: a8d8e3f2-010b-4c9e-9e77-0c3f2d4e4100
+    toGuid: c-jonas-questions-0001
+    fromPortIndex: 0
+  - fromGuid: c-jonas-questions-0001
+    toGuid: d-jonas-docs-0001
+    fromPortIndex: 0
+  - fromGuid: c-jonas-questions-0001
+    toGuid: d-jonas-access-0001
+    fromPortIndex: 1
+  - fromGuid: c-jonas-questions-0001
+    toGuid: d-jonas-env-0001
+    fromPortIndex: 2
+  - fromGuid: d-jonas-docs-0001
+    toGuid: c-jonas-follow-0001
+    fromPortIndex: 0
+  - fromGuid: d-jonas-access-0001
+    toGuid: c-jonas-follow-0001
+    fromPortIndex: 0
+  - fromGuid: d-jonas-env-0001
+    toGuid: c-jonas-follow-0001
+    fromPortIndex: 0
+  - fromGuid: c-jonas-follow-0001
+    toGuid: d-jonas-tip-0001
+    fromPortIndex: 0
+  - fromGuid: c-jonas-follow-0001
+    toGuid: d-jonas-close-0001
+    fromPortIndex: 1
+  - fromGuid: d-jonas-tip-0001
+    toGuid: d-jonas-close-0001
+    fromPortIndex: 0
+  - fromGuid: d-jonas-close-0001
+    toGuid: d-synth-0001
+    fromPortIndex: 0
+  - fromGuid: d-synth-0001
+    toGuid: End
+    fromPortIndex: 0
+  - fromGuid: b9a7e1d2-45cd-4bb3-8f8f-0f12c63d0001
+    toGuid: 7c2e81b2-4d6f-4fda-ab11-5a2e1a3c3100
+    fromPortIndex: 2
+  nodes:
+  - {fileID: -3086545895992871265}
+  - {fileID: 2542898257043826661}
+  - {fileID: -8725302817501168277}
+  - {fileID: 4251068213554194688}
+  - {fileID: 2776229053317242945}
+  - {fileID: -241646823798930644}
+  - {fileID: 4536253943188028252}
+  - {fileID: -2411593705546969152}
+  - {fileID: -3903736172537337075}
+  - {fileID: -4078786205218617179}
+  - {fileID: -7536886236073269182}
+  - {fileID: 5352611894762734925}
+  - {fileID: 5108383530419795267}
+  - {fileID: -4269376139196015863}
+  - {fileID: -4194633182891567407}
+  - {fileID: -5427877738719646496}
+  - {fileID: 950417613407739942}
+  - {fileID: 8612331240174107892}
+  - {fileID: 2146508597624787838}
+  - {fileID: -1416366958091289312}
+  - {fileID: 5652480024289754077}
+  - {fileID: 5504378594080001988}
+  - {fileID: -2708278575162731279}
+  - {fileID: -6677260115840261961}
+  - {fileID: -5567576701886059063}
+  - {fileID: 55518237326340766}
+  choiceNodes:
+  - {fileID: 7441652520336842286}
+  - {fileID: 8312832120714717805}
+  - {fileID: -1430974768748478630}
+  - {fileID: -1127756483941408641}
+  - {fileID: 6546917278238154246}
+  - {fileID: -3361782300082781632}
+  - {fileID: 1056207454770742471}
+  - {fileID: 4903014279570537381}
+  - {fileID: 672943869735901811}
+  actionNodes: []
+  startGuid: Start
+  startPosition: {x: -932.8, y: 35.199997}
+  startInitialized: 1
+  endGuid: End
+  endPosition: {x: 4967.2, y: 70.4}
+  endInitialized: 1
+--- !u!114 &55518237326340766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Arrival
+  m_EditorClassIdentifier: 
+  GUID: 2a1b0f2e-7d5c-4f31-9c4a-d1f3bfa13001
+  nodePosition: {x: -669.6, y: -6.4000015}
+  speakerName: Guide
+  speakerPortrait: {fileID: 21300000, guid: ffde12b7f3c029f418663d7979d15648, type: 3}
+  questionText: You step into the open office. Everyone looks busy. Who do you talk
+    to first?
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &672943869735901811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: b9a7e1d2-45cd-4bb3-8f8f-0f12c63d0001
+  nodePosition: {x: -156.8, y: -6.4000015}
+  text: 
+  choices:
+  - answerText: "Lina \u2014 Project Manager"
+    nextNodeGUID: f1c0a2a3-9b88-4d8a-9d9d-01f1b5a1a100
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: "Mira \u2014 Engineer"
+    nextNodeGUID: 0b4e4c42-7cda-4b41-bc7d-6baf1a2b2100
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: "Omar \u2014 QA Lead"
+    nextNodeGUID: 7c2e81b2-4d6f-4fda-ab11-5a2e1a3c3100
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: "Jonas \u2014 IT Ops"
+    nextNodeGUID: a8d8e3f2-010b-4c9e-9e77-0c3f2d4e4100
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &950417613407739942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: "Node_Omar \u2014 Quick Tip"
+  m_EditorClassIdentifier: 
+  GUID: d-omar-tip-0001
+  nodePosition: {x: 3089.6, y: 226.4}
+  speakerName: Omar
+  speakerPortrait: {fileID: 21300000, guid: 2992fbfbe668cd94997f0cf0bb584681, type: 3}
+  questionText: "Tip: run \u2018qa:golden\u2019 script; it prints a delta table so
+    you can see drift fast."
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &1056207454770742471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: c-mira-follow-0001
+  nodePosition: {x: 2472, y: -16.800003}
+  text: 
+  choices:
+  - answerText: One more tip
+    nextNodeGUID: d-mira-tip-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: That's enough
+    nextNodeGUID: d-mira-close-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &2146508597624787838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: "Node_Mira \u2014 Wrap"
+  m_EditorClassIdentifier: 
+  GUID: d-mira-close-0001
+  nodePosition: {x: 3750.4, y: -77.6}
+  speakerName: Mira
+  speakerPortrait: {fileID: 21300000, guid: d110dd06caa8c6b4caccceb0529a1f75, type: 3}
+  questionText: Cool? If you hit parser weirdness, DM me a sample row.
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &2542898257043826661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Meet Jonas (IT)
+  m_EditorClassIdentifier: 
+  GUID: a8d8e3f2-010b-4c9e-9e77-0c3f2d4e4100
+  nodePosition: {x: 400, y: 480.00003}
+  speakerName: Jonas
+  speakerPortrait: {fileID: 21300000, guid: 120fc66cca9311d40a80ca044a8dc68c, type: 3}
+  questionText: IT ops. Need access, environments, or where docs live?
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &2776229053317242945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_DoD
+  m_EditorClassIdentifier: 
+  GUID: d-omar-dod-0001
+  nodePosition: {x: 1808, y: 798.39996}
+  speakerName: Omar
+  speakerPortrait: {fileID: 21300000, guid: 2992fbfbe668cd94997f0cf0bb584681, type: 3}
+  questionText: "Definition of Done: pass golden set \u226595%, zero P1s, and UX
+    sign-off on dashboard card."
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &4251068213554194688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Bug Flow
+  m_EditorClassIdentifier: 
+  GUID: d-omar-bugs-0001
+  nodePosition: {x: 1808, y: 530.39996}
+  speakerName: Omar
+  speakerPortrait: {fileID: 21300000, guid: 2992fbfbe668cd94997f0cf0bb584681, type: 3}
+  questionText: "Bugs: we file in \u2018brief-bot\u2019 project; template asks for
+    input sample + actual vs expected summary."
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &4536253943188028252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Access
+  m_EditorClassIdentifier: 
+  GUID: d-jonas-access-0001
+  nodePosition: {x: 1808, y: 1359.2}
+  speakerName: Jonas
+  speakerPortrait: {fileID: 21300000, guid: 120fc66cca9311d40a80ca044a8dc68c, type: 3}
+  questionText: "Access: request the \u2018brief-bot-dev\u2019 role in Okta. If you\u2019re
+    blocked, tag me in #help-it."
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &4903014279570537381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: c-lina-follow-0001
+  nodePosition: {x: 2489.6, y: -632.80005}
+  text: 
+  choices:
+  - answerText: One more tip
+    nextNodeGUID: d-lina-tip-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: That's enough
+    nextNodeGUID: d-lina-close-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &5108383530419795267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Goal
+  m_EditorClassIdentifier: 
+  GUID: d-lina-goal-0001
+  nodePosition: {x: 1808, y: -1428}
+  speakerName: Lina
+  speakerPortrait: {fileID: 21300000, guid: f1559ebc9ca919e4ea96a439ea8bb817, type: 3}
+  questionText: 'Goal: launch an internal tool that auto-summarizes shift reports
+    into a daily brief for leads. Success = 95% accuracy and under 2 minutes per
+    brief.'
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &5352611894762734925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_Deadline
+  m_EditorClassIdentifier: 
+  GUID: d-lina-deadline-0001
+  nodePosition: {x: 1808, y: -1146.4}
+  speakerName: Lina
+  speakerPortrait: {fileID: 21300000, guid: f1559ebc9ca919e4ea96a439ea8bb817, type: 3}
+  questionText: 'Deadline: pilot next Friday, full rollout in two weeks if KPIs look
+    good. Marketing wants a demo slide deck by Wednesday.'
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &5504378594080001988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: "Node_Lina \u2014 Wrap"
+  m_EditorClassIdentifier: 
+  GUID: d-lina-close-0001
+  nodePosition: {x: 3750.4, y: -466.4}
+  speakerName: Lina
+  speakerPortrait: {fileID: 21300000, guid: f1559ebc9ca919e4ea96a439ea8bb817, type: 3}
+  questionText: "That\u2019s what I\u2019ve got. Ping me if the scope wobbles\u2014we\u2019ll
+    lock it down."
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &5652480024289754077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: "Node_Lina \u2014 Quick Tip"
+  m_EditorClassIdentifier: 
+  GUID: d-lina-tip-0001
+  nodePosition: {x: 3116.8, y: -748.80005}
+  speakerName: Lina
+  speakerPortrait: {fileID: 21300000, guid: f1559ebc9ca919e4ea96a439ea8bb817, type: 3}
+  questionText: "Tip: join the 10:00 stand-up. Stakeholders are Marketing + Ops;
+    they\u2019re friendly if you show them quick wins."
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &6546917278238154246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: c-jonas-follow-0001
+  nodePosition: {x: 2489.6, y: 787.19995}
+  text: 
+  choices:
+  - answerText: One more tip
+    nextNodeGUID: d-jonas-tip-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: That's enough
+    nextNodeGUID: d-jonas-close-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &7441652520336842286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: c-lina-questions-0001
+  nodePosition: {x: 1008, y: -480}
+  text: 
+  choices:
+  - answerText: Project goal
+    nextNodeGUID: d-lina-goal-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: Deadline
+    nextNodeGUID: d-lina-deadline-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: Top risks
+    nextNodeGUID: d-lina-risks-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &8312832120714717805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: c-mira-questions-0001
+  nodePosition: {x: 1008, y: -160}
+  text: 
+  choices:
+  - answerText: Architecture
+    nextNodeGUID: d-mira-arch-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: Blockers
+    nextNodeGUID: d-mira-blockers-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: Code location
+    nextNodeGUID: d-mira-code-0001
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &8612331240174107892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: "Node_Jonas \u2014 Quick Tip"
+  m_EditorClassIdentifier: 
+  GUID: d-jonas-tip-0001
+  nodePosition: {x: 3089.6, y: 621.6}
+  speakerName: Jonas
+  speakerPortrait: {fileID: 21300000, guid: 120fc66cca9311d40a80ca044a8dc68c, type: 3}
+  questionText: "Tip: use the \u2018sandbox\u2019 namespace for experiments; it autodeletes
+    resources nightly."
+  dialogAudio: {fileID: 0}
+  displayTime: 0

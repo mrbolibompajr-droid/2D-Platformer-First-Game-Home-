@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 97ee4c3dfb00f6a4cbe6f8997daa583a
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 332234
+  packageName: Dialog Graph System
+  packageVersion: 1.3.1
+  assetPath: Assets/DialogGraphSystem/Scripts/Runtime/DialogSystem.Runtime.rsp
+  uploadId: 791364

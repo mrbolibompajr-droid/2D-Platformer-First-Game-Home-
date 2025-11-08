@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2e12caac0921f8e4f8503555111b1698
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 332234
+  packageName: Dialog Graph System
+  packageVersion: 1.3.1
+  assetPath: Assets/DialogGraphSystem/Resources/Fonts/PressStart2P-Regular SDF.asset
+  uploadId: 791364
