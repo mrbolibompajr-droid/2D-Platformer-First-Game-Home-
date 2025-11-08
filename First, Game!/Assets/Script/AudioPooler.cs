@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,6 +28,7 @@ public class AudioPooler : MonoBehaviour
             for (int i = 0; i < item.size; i++)
             {
                 GameObject obj = Instantiate(item.prefab);
+                obj.name = item.prefab.name; // Ensure consistent name for pooling
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
@@ -47,16 +49,39 @@ public class AudioPooler : MonoBehaviour
         objectToSpawn.SetActive(true);
         objectToSpawn.transform.position = position;
 
-        // Set volume from prefab data
         AudioSource source = objectToSpawn.GetComponent<AudioSource>();
         if (source != null)
         {
+            // Set prefab volume
             AudioPoolItem item = audioItems.Find(x => x.name == name);
-            if (item != null)
-                source.volume = item.volume;
+            if (item != null) source.volume = item.volume;
+
+            // Play sound
+            source.Play();
+
+            // Return to pool after sound finishes
+            StartCoroutine(ReturnToPoolAfterTime(objectToSpawn, source.clip.length, name));
+        }
+        else
+        {
+            // If no AudioSource, immediately return to pool
+            poolDictionary[name].Enqueue(objectToSpawn);
         }
 
-        poolDictionary[name].Enqueue(objectToSpawn);
         return objectToSpawn;
+    }
+
+    private IEnumerator ReturnToPoolAfterTime(GameObject obj, float time, string poolName)
+    {
+        yield return new WaitForSeconds(time);
+
+        if (obj == null) yield break; // In case object was destroyed
+
+        obj.SetActive(false);
+
+        if (poolDictionary.ContainsKey(poolName))
+        {
+            poolDictionary[poolName].Enqueue(obj);
+        }
     }
 }
