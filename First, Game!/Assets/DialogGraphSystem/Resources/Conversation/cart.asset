@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5533500894201134162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_cat
+  m_EditorClassIdentifier: 
+  GUID: 2364e3e91cfb42a091b0e7398aaae085
+  nodePosition: {x: -359, y: -17}
+  speakerName: cat
+  speakerPortrait: {fileID: 0}
+  questionText: mjaw mjauw masjw *looks at you stangly*
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c45c6e4622be54698e67e4868db7e5, type: 3}
+  m_Name: cart
+  m_EditorClassIdentifier: 
+  links:
+  - fromGuid: Start
+    toGuid: 2364e3e91cfb42a091b0e7398aaae085
+    fromPortIndex: 0
+  - fromGuid: 2364e3e91cfb42a091b0e7398aaae085
+    toGuid: 30e12475248946d0b0d81ef4062c18a7
+    fromPortIndex: 0
+  - fromGuid: 30e12475248946d0b0d81ef4062c18a7
+    toGuid: End
+    fromPortIndex: 1
+  - fromGuid: 30e12475248946d0b0d81ef4062c18a7
+    toGuid: 14aa17c5e35943a3bda1a6fff2c142a3
+    fromPortIndex: 0
+  - fromGuid: 14aa17c5e35943a3bda1a6fff2c142a3
+    toGuid: End
+    fromPortIndex: 0
+  nodes:
+  - {fileID: -5533500894201134162}
+  - {fileID: 7425259226558797958}
+  choiceNodes:
+  - {fileID: 7640300187775551135}
+  actionNodes: []
+  startGuid: Start
+  startPosition: {x: -662, y: 119}
+  startInitialized: 1
+  endGuid: End
+  endPosition: {x: 959, y: 211}
+  endInitialized: 1
+--- !u!114 &7425259226558797958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55265cca116f3b342880f5f5267e3a6c, type: 3}
+  m_Name: Node_haappy cat
+  m_EditorClassIdentifier: 
+  GUID: 14aa17c5e35943a3bda1a6fff2c142a3
+  nodePosition: {x: 567, y: -248}
+  speakerName: happy cat
+  speakerPortrait: {fileID: 0}
+  questionText: Happy mjaw
+  dialogAudio: {fileID: 0}
+  displayTime: 0
+--- !u!114 &7640300187775551135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52acda426e52d1744a92ee97a9757272, type: 3}
+  m_Name: ChoiceNode
+  m_EditorClassIdentifier: 
+  GUID: 30e12475248946d0b0d81ef4062c18a7
+  nodePosition: {x: 102, y: -15}
+  text: 
+  choices:
+  - answerText: '"Pets cat"'
+    nextNodeGUID: 14aa17c5e35943a3bda1a6fff2c142a3
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
+  - answerText: '"walk away'
+    nextNodeGUID: End
+    onSelected:
+      m_PersistentCalls:
+        m_Calls: []
