@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     public float checkRadius = 0.25f;
 
-    [Header("Wall Checks (World Space)")]
+    [Header("Wall Checks")]
     public Transform leftWallCheck;
     public Transform rightWallCheck;
     public float wallCheckOffset = 0.6f;
@@ -123,8 +123,7 @@ public class PlayerMovement : MonoBehaviour
         if (isWallJumping)
         {
             wallJumpTimer -= Time.fixedDeltaTime;
-            if (wallJumpTimer <= 0f)
-                isWallJumping = false;
+            if (wallJumpTimer <= 0f) isWallJumping = false;
         }
 
         if (isDashing)

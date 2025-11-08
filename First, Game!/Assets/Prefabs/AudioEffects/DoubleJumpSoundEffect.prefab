@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5533747796996895277}
   - component: {fileID: 859413589478521927}
   m_Layer: 0
-  m_Name: WallJumpSoundEffect
+  m_Name: DoubleJumpSoundEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,9 +44,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 316f05f1bbe3e5c428771c4d2fb909e9, type: 3}
+  m_Resource: {fileID: 8300000, guid: 2a8cdf7b11fa39d45bde1f8fe26d1fa5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.254
+  m_Volume: 0.426
   m_Pitch: 1
   Loop: 0
   Mute: 0

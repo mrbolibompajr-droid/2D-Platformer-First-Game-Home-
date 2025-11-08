@@ -1,16 +1,18 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
+
+[System.Serializable]
+public class AudioPoolItem
+{
+    public string name;              // Name used to spawn
+    public GameObject prefab;        // Prefab to spawn
+    public int size = 5;             // Number of pooled objects
+    [Range(0f, 1f)]
+    public float volume = 1f;        // Default volume for this sound
+}
 
 public class AudioPooler : MonoBehaviour
 {
-    [System.Serializable]
-    public class AudioPoolItem
-    {
-        public string name;
-        public GameObject prefab;
-        public int size = 5; // number of pre-instantiated objects
-    }
-
     public List<AudioPoolItem> audioItems;
     private Dictionary<string, Queue<GameObject>> poolDictionary;
 
@@ -18,16 +20,17 @@ public class AudioPooler : MonoBehaviour
     {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
-        foreach (var item in audioItems)
+        foreach (AudioPoolItem item in audioItems)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
+
             for (int i = 0; i < item.size; i++)
             {
                 GameObject obj = Instantiate(item.prefab);
                 obj.SetActive(false);
-                obj.transform.parent = transform; // optional: keep hierarchy clean
                 objectPool.Enqueue(obj);
             }
+
             poolDictionary.Add(item.name, objectPool);
         }
     }
@@ -36,38 +39,24 @@ public class AudioPooler : MonoBehaviour
     {
         if (!poolDictionary.ContainsKey(name))
         {
-            Debug.LogWarning($"AudioPooler: No pool exists for {name}");
+            Debug.LogWarning("No pool exists for " + name);
             return null;
         }
 
         GameObject objectToSpawn = poolDictionary[name].Dequeue();
-
-        // Safety check in case prefab was accidentally destroyed
-        if (objectToSpawn == null)
-        {
-            Debug.LogWarning($"AudioPooler: Pooled object for {name} is missing.");
-            return null;
-        }
-
         objectToSpawn.SetActive(true);
         objectToSpawn.transform.position = position;
 
-        // Play audio
-        AudioEffect effect = objectToSpawn.GetComponent<AudioEffect>();
-        if (effect != null) effect.Play();
-
-        // Return to pool at the end of clip
-        AudioSource src = objectToSpawn.GetComponent<AudioSource>();
-        if (src != null)
-            StartCoroutine(DisableAfterTime(objectToSpawn, src.clip.length));
+        // Set volume from prefab data
+        AudioSource source = objectToSpawn.GetComponent<AudioSource>();
+        if (source != null)
+        {
+            AudioPoolItem item = audioItems.Find(x => x.name == name);
+            if (item != null)
+                source.volume = item.volume;
+        }
 
         poolDictionary[name].Enqueue(objectToSpawn);
         return objectToSpawn;
-    }
-
-    private System.Collections.IEnumerator DisableAfterTime(GameObject obj, float time)
-    {
-        yield return new WaitForSeconds(time);
-        if (obj != null) obj.SetActive(false);
     }
 }
