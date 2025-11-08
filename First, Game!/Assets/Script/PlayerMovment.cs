@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections; // Needed for IEnumerator
+using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
@@ -15,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     public float checkRadius = 0.25f;
 
-    [Header("Wall Checks")]
+    [Header("Wall Checks (World Space)")]
     public Transform leftWallCheck;
     public Transform rightWallCheck;
     public float wallCheckOffset = 0.6f;
@@ -24,11 +25,15 @@ public class PlayerMovement : MonoBehaviour
     public float wallSlideSpeed = 2f;
     public float wallSlideEffectInterval = 0.1f;
     public float wallSlideStartDelay = 0.2f;
+
+    [Header("Wall Slide Stamina")]
     public float maxWallSlideTime = 1.5f;
 
     [Header("Wall Jump Settings")]
     public float wallJumpXForce = 8f;
     public float wallJumpYForce = 12f;
+
+    [Header("Wall Jump Forgiveness")]
     public float wallJumpBufferTime = 0.2f;
     private float lastWallTouchTime = -1f;
 
@@ -52,9 +57,6 @@ public class PlayerMovement : MonoBehaviour
     public JumpEffectSpawner leftWalkingEffect;
     public JumpEffectSpawner rightWalkingEffect;
 
-    [Header("Audio Pooler")]
-    public AudioPooler audioPooler;
-
     [Header("Dash Settings")]
     public float dashHorizontalForce = 15f;
     public float dashVerticalForce = 5f;
@@ -67,6 +69,34 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Combat")]
     public PlayerCombat combat;
+
+    [Header("Audio Pooler")]
+    public AudioPooler audioPooler; // Assign in Inspector
+
+    // ---- SOUND SYSTEM ----
+    [Header("Walking Sound Settings")]
+    public string leftWalkingSoundName = "WalkingLeft";
+    public string rightWalkingSoundName = "WalkingRight";
+    public float walkingFadeSpeed = 2f;
+    private AudioSource walkingAudioSource;
+    private GameObject walkingAudioObject;
+    private string currentWalkingSound = "";
+    private float walkingEffectTimer = 0f;
+    public float walkingEffectInterval = 0.1f;
+
+    [Header("Dash Sound Settings")]
+    public string dashSoundName = "Dash";
+    public float dashFadeSpeed = 4f;
+    private AudioSource dashAudioSource;
+    private GameObject dashAudioObject;
+
+    [Header("Wall Slide Sound Settings")]
+    public string leftWallSlideSoundName = "WallSlideLeft";
+    public string rightWallSlideSoundName = "WallSlideRight";
+    public float wallSlideFadeSpeed = 2f;
+    private AudioSource wallSlideAudioSource;
+    private GameObject wallSlideAudioObject;
+    private string currentWallSlideSound = "";
 
     private Rigidbody2D rb;
     private float inputX;
@@ -91,6 +121,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (combat == null)
             combat = GetComponent<PlayerCombat>();
+
+        if (audioPooler == null)
+            Debug.LogError("AudioPooler is not assigned in the Inspector!");
     }
 
     private void Update()
@@ -112,10 +145,13 @@ public class PlayerMovement : MonoBehaviour
         HandleWalkingEffect();
         HandleDashInput();
 
-        // Attack handling
         combat?.HandleNormalAttackInput();
         combat?.HandleHeavyAttackInput();
         combat?.HandleDashAttackInput();
+
+        HandleWalkingSound();
+        HandleDashSound();
+        HandleWallSlideSound();
     }
 
     private void FixedUpdate()
@@ -123,7 +159,8 @@ public class PlayerMovement : MonoBehaviour
         if (isWallJumping)
         {
             wallJumpTimer -= Time.fixedDeltaTime;
-            if (wallJumpTimer <= 0f) isWallJumping = false;
+            if (wallJumpTimer <= 0f)
+                isWallJumping = false;
         }
 
         if (isDashing)
@@ -157,8 +194,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                 normalJumpEffect?.Spawn(normalJumpSpawn.position);
-                audioPooler?.SpawnFromPool("Jump", normalJumpSpawn.position);
-
+                audioPooler.SpawnFromPool("Jump", transform.position);
                 doubleJumpsRemaining = maxDoubleJumps;
             }
             else if (wallJumpAvailable)
@@ -169,8 +205,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, doubleJumpForce);
                 doubleJumpEffect?.Spawn(doubleJumpSpawn.position);
-                audioPooler?.SpawnFromPool("DoubleJump", doubleJumpSpawn.position);
-
+                audioPooler.SpawnFromPool("DoubleJump", transform.position);
                 doubleJumpsRemaining--;
             }
         }
@@ -214,12 +249,6 @@ public class PlayerMovement : MonoBehaviour
         {
             isWallSliding = true;
             wallSlideStartTimer = wallSlideStartDelay;
-
-            if (slidingLeft)
-                audioPooler?.SpawnFromPool("WallSlideLeft", leftWallSlideSpawn.position);
-            else if (slidingRight)
-                audioPooler?.SpawnFromPool("WallSlideRight", rightWallSlideSpawn.position);
-
             return;
         }
 
@@ -234,7 +263,6 @@ public class PlayerMovement : MonoBehaviour
         {
             if (slidingLeft) leftWallSlideEffect?.Spawn(leftWallSlideSpawn.position);
             else rightWallSlideEffect?.Spawn(rightWallSlideSpawn.position);
-
             wallSlideEffectTimer = wallSlideEffectInterval;
         }
     }
@@ -245,17 +273,17 @@ public class PlayerMovement : MonoBehaviour
         bool touchingLeft = Physics2D.OverlapCircle(leftWallCheck.position, checkRadius, groundLayer);
         bool touchingRight = Physics2D.OverlapCircle(rightWallCheck.position, checkRadius, groundLayer);
 
-        if (touchingLeft || (Time.time - lastWallTouchTime <= wallJumpBufferTime && lastWallTouchTime > 0 && !touchingRight))
+        if (touchingLeft)
         {
             wallJumpDirection = 1f;
             leftWallJumpEffect?.Spawn(leftWallJumpSpawn.position);
-            audioPooler?.SpawnFromPool("WallJumpLeft", leftWallJumpSpawn.position);
+            audioPooler.SpawnFromPool("WallJumpLeft", transform.position);
         }
-        else if (touchingRight || (Time.time - lastWallTouchTime <= wallJumpBufferTime && lastWallTouchTime > 0))
+        else if (touchingRight)
         {
             wallJumpDirection = -1f;
             rightWallJumpEffect?.Spawn(rightWallJumpSpawn.position);
-            audioPooler?.SpawnFromPool("WallJumpRight", rightWallJumpSpawn.position);
+            audioPooler.SpawnFromPool("WallJumpRight", transform.position);
         }
 
         rb.linearVelocity = new Vector2(wallJumpXForce * wallJumpDirection, yForce);
@@ -268,32 +296,175 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleWalkingEffect()
     {
-        if (!isGrounded || Mathf.Abs(inputX) < 0.1f) return;
-        if (inputX < 0)
+        float horizontalVelocity = Mathf.Abs(rb.linearVelocity.x);
+
+        if (!isGrounded || horizontalVelocity < 0.1f)
         {
+            walkingEffectTimer = 0f;
+            return;
+        }
+
+        walkingEffectTimer -= Time.deltaTime;
+        if (walkingEffectTimer > 0f) return;
+
+        if (rb.linearVelocity.x < 0)
             leftWalkingEffect?.Spawn(leftWalkingSpawn.position);
-            audioPooler?.SpawnFromPool("WalkingLeft", leftWalkingSpawn.position);
-        }
-        else if (inputX > 0)
-        {
+        else
             rightWalkingEffect?.Spawn(rightWalkingSpawn.position);
-            audioPooler?.SpawnFromPool("WalkingRight", rightWalkingSpawn.position);
-        }
+
+        walkingEffectTimer = walkingEffectInterval;
     }
 
     private void HandleDashInput()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && Time.time >= lastDashTime + dashCooldown && !isWallSliding && !isWallJumping)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing &&
+            Time.time >= lastDashTime + dashCooldown &&
+            !isWallSliding && !isWallJumping)
         {
             dashDirection = new Vector2(inputX, 0).normalized;
-            if (dashDirection == Vector2.zero) dashDirection = facingRight ? Vector2.right : Vector2.left;
+            if (dashDirection == Vector2.zero)
+                dashDirection = facingRight ? Vector2.right : Vector2.left;
 
             isDashing = true;
             dashTimer = dashDuration;
             lastDashTime = Time.time;
-
-            audioPooler?.SpawnFromPool("Dash", transform.position);
         }
+    }
+
+    // WALKING SOUND (LOOPING)
+    private void HandleWalkingSound()
+    {
+        float horizontalVelocity = Mathf.Abs(rb.linearVelocity.x);
+
+        if (!isGrounded || horizontalVelocity < 0.1f)
+        {
+            StartCoroutine(FadeOutAudio(walkingAudioSource, walkingAudioObject));
+            currentWalkingSound = "";
+            return;
+        }
+
+        string targetSound = rb.linearVelocity.x < 0 ? leftWalkingSoundName : rightWalkingSoundName;
+
+        if (currentWalkingSound != targetSound)
+        {
+            StartCoroutine(FadeOutAudio(walkingAudioSource, walkingAudioObject));
+            PlayWalkingSound(targetSound);
+        }
+
+        if (walkingAudioSource != null && !walkingAudioSource.isPlaying)
+            walkingAudioSource.Play();
+
+        StartCoroutine(FadeInAudio(walkingAudioSource, walkingFadeSpeed));
+    }
+
+    private void PlayWalkingSound(string name)
+    {
+        walkingAudioObject = audioPooler.SpawnFromPool(name, transform.position);
+        if (walkingAudioObject != null)
+        {
+            walkingAudioSource = walkingAudioObject.GetComponent<AudioSource>();
+            walkingAudioSource.volume = 0f;
+            walkingAudioSource.loop = true;
+            walkingAudioSource.Play();
+            currentWalkingSound = name;
+        }
+    }
+
+    // DASH SOUND
+    private void HandleDashSound()
+    {
+        if (isDashing)
+        {
+            if (dashAudioSource == null)
+            {
+                dashAudioObject = audioPooler.SpawnFromPool(dashSoundName, transform.position);
+                if (dashAudioObject != null)
+                {
+                    dashAudioSource = dashAudioObject.GetComponent<AudioSource>();
+                    dashAudioSource.volume = 0f;
+                    dashAudioSource.loop = true;
+                    dashAudioSource.Play();
+                }
+            }
+
+            StartCoroutine(FadeInAudio(dashAudioSource, dashFadeSpeed));
+        }
+        else
+        {
+            StartCoroutine(FadeOutAudio(dashAudioSource, dashAudioObject));
+        }
+    }
+
+    // WALL SLIDE SOUND
+    private void HandleWallSlideSound()
+    {
+        bool slidingLeft = Physics2D.OverlapCircle(leftWallCheck.position, checkRadius, groundLayer)
+                            && !isGrounded && rb.linearVelocity.y < 0f;
+
+        bool slidingRight = Physics2D.OverlapCircle(rightWallCheck.position, checkRadius, groundLayer)
+                             && !isGrounded && rb.linearVelocity.y < 0f;
+
+        if (!slidingLeft && !slidingRight)
+        {
+            StartCoroutine(FadeOutAudio(wallSlideAudioSource, wallSlideAudioObject));
+            currentWallSlideSound = "";
+            return;
+        }
+
+        string targetSound = slidingLeft ? leftWallSlideSoundName : rightWallSlideSoundName;
+
+        if (currentWallSlideSound != targetSound)
+        {
+            StartCoroutine(FadeOutAudio(wallSlideAudioSource, wallSlideAudioObject));
+
+            wallSlideAudioObject = audioPooler.SpawnFromPool(targetSound, transform.position);
+            if (wallSlideAudioObject != null)
+            {
+                wallSlideAudioSource = wallSlideAudioObject.GetComponent<AudioSource>();
+                wallSlideAudioSource.volume = 0f;
+                wallSlideAudioSource.loop = true;
+                wallSlideAudioSource.Play();
+                currentWallSlideSound = targetSound;
+            }
+        }
+
+        StartCoroutine(FadeInAudio(wallSlideAudioSource, wallSlideFadeSpeed));
+    }
+
+    // GENERIC FADE COROUTINES
+    private IEnumerator FadeInAudio(AudioSource source, float speed)
+    {
+        if (source == null) yield break;
+
+        while (source.volume < 1f)
+        {
+            source.volume += Time.deltaTime * speed;
+            yield return null;
+        }
+        source.volume = 1f;
+    }
+
+    private IEnumerator FadeOutAudio(AudioSource source, GameObject obj)
+    {
+        if (source == null) yield break;
+
+        while (source.volume > 0f)
+        {
+            source.volume -= Time.deltaTime * 2f;
+            yield return null;
+        }
+
+        source.volume = 0f;
+
+        if (obj != null) obj.SetActive(false);
+
+        if (source == walkingAudioSource) walkingAudioSource = null;
+        if (source == dashAudioSource) dashAudioSource = null;
+        if (source == wallSlideAudioSource) wallSlideAudioSource = null;
+
+        if (obj == walkingAudioObject) walkingAudioObject = null;
+        if (obj == dashAudioObject) dashAudioObject = null;
+        if (obj == wallSlideAudioObject) wallSlideAudioObject = null;
     }
 
     private void Flip()

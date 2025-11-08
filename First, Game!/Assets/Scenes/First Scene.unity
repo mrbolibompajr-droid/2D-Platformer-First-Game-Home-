@@ -2603,6 +2603,7 @@ GameObject:
   - component: {fileID: 744866012}
   - component: {fileID: 744866011}
   - component: {fileID: 744866014}
+  - component: {fileID: 744866015}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2734,12 +2735,20 @@ MonoBehaviour:
   rightWallJumpEffect: {fileID: 886021261}
   leftWalkingEffect: {fileID: 515812987}
   rightWalkingEffect: {fileID: 1598767552}
-  audioPooler: {fileID: 1767268309}
   dashHorizontalForce: 15
   dashVerticalForce: 5
   dashDuration: 0.15
   dashCooldown: 1
   combat: {fileID: 0}
+  audioPooler: {fileID: 1767268309}
+  leftWalkingSoundName: WalkingLeft
+  rightWalkingSoundName: WalkingRight
+  walkingFadeSpeed: 2
+  dashSoundName: Dash
+  dashFadeSpeed: 4
+  leftWallSlideSoundName: WallSlideLeft
+  rightWallSlideSoundName: WallSlideRight
+  wallSlideFadeSpeed: 2
 --- !u!61 &744866009
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2774,7 +2783,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.019462049}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2784,7 +2793,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.9610759}
   m_EdgeRadius: 0
 --- !u!50 &744866010
 Rigidbody2D:
@@ -2978,6 +2987,42 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!58 &744866015
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744866005}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.0054523945, y: -0.34895238}
+  m_Radius: 0.16922228
 --- !u!1 &749616939
 GameObject:
   m_ObjectHideFlags: 0
@@ -11093,6 +11138,14 @@ MonoBehaviour:
   - name: WallJumpRight
     prefab: {fileID: 536705177842172906, guid: b81931877c7052b44b925be2b85baa78, type: 3}
     size: 5
+    volume: 1
+  - name: WalkingLeft
+    prefab: {fileID: 536705177842172906, guid: 3f5ef8217cc1c3d4f983006c85437979, type: 3}
+    size: 1
+    volume: 1
+  - name: WalkingRight
+    prefab: {fileID: 536705177842172906, guid: 3f5ef8217cc1c3d4f983006c85437979, type: 3}
+    size: 1
     volume: 1
 --- !u!4 &1767268310
 Transform:
