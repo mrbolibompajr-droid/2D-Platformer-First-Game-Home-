@@ -937,25 +937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1edefc838a21dd344a095076c9b78fd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolPoints:
-  - point: {fileID: 634639622}
-    waitHere: 1
-    waitDuration: 1
-    flipHere: 0
-    Action: 0
-    done: 0
-  - point: {fileID: 1471268887}
-    waitHere: 0
-    waitDuration: 1
-    flipHere: 0
-    Action: 1
-    done: 0
-  - point: {fileID: 1203472832}
-    waitHere: 0
-    waitDuration: 1
-    flipHere: 0
-    Action: 0
-    done: 0
+  patrolPoints: []
   speed: 3
   movementType: 2
   loopPatrol: 0
@@ -1115,14 +1097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 131520495}
-  actions:
-  - patrolIndex: 1
-    requireKeyPress: 0
-    key: 101
-    requireTrigger: 0
-    triggerCollider: {fileID: 0}
-    requireItem: 0
-    itemID: 
+  actions: []
 --- !u!1 &137876266
 GameObject:
   m_ObjectHideFlags: 0
@@ -4862,7 +4837,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &632183110
 Transform:
   m_ObjectHideFlags: 0
@@ -4893,7 +4868,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &634639622
 Transform:
   m_ObjectHideFlags: 0
@@ -18982,7 +18957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1017102658
 Transform:
   m_ObjectHideFlags: 0
@@ -20492,7 +20467,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1203472832
 Transform:
   m_ObjectHideFlags: 0
@@ -21042,7 +21017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1250195752
 Transform:
   m_ObjectHideFlags: 0
@@ -23073,7 +23048,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1471268887
 Transform:
   m_ObjectHideFlags: 0
@@ -27153,7 +27128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1958925566
 Transform:
   m_ObjectHideFlags: 0

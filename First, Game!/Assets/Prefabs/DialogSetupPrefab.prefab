@@ -620,7 +620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogID: 1
-  keyToActivate: 101
+  keyToActivate: 59
   onlyOnce: 0
 --- !u!1 &3958915989016500249
 GameObject:
