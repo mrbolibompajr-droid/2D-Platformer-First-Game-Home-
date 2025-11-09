@@ -148,7 +148,15 @@ public class EnemyPath : MonoBehaviour
         if (p.Action)
         {
             rb.linearVelocity = Vector2.zero;
-            return;
+
+            // Notify ActionManager
+            ActionManager manager = GetComponent<ActionManager>();
+            if (manager != null)
+            {
+                manager.StartAction();
+            }
+
+            return; // wait here until released
         }
 
         // Otherwise, immediately advance
