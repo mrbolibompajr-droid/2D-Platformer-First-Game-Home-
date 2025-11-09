@@ -6,17 +6,17 @@ public class ActionManager : MonoBehaviour
     [System.Serializable]
     public class ActionData
     {
-        public int patrolIndex;               // Which patrol point this action is for
-        public bool requireKeyPress = false; // Require player to press a key
-        public KeyCode key = KeyCode.E;      // Default key
-        public bool requireTrigger = false;  // Require enemy to enter a trigger collider
-        public Collider2D triggerCollider;   // Collider for trigger zone
-        public bool requireItem = false;     // Require player to have an item
-        public string itemID;                // Identifier for the item
+        public int patrolIndex;
+        public bool requireKeyPress = false;
+        public KeyCode key = KeyCode.E;
+        public bool requireTrigger = false;
+        public Collider2D triggerCollider;
+        public bool requireItem = false;
+        public string itemID;
     }
 
-    public EnemyPath enemy;                  // Reference to your EnemyPath component
-    public List<ActionData> actions;         // List of action definitions
+    public EnemyPath enemy;
+    public List<ActionData> actions;
 
     private bool waiting = false;
 
@@ -27,14 +27,12 @@ public class ActionManager : MonoBehaviour
         ActionData currentAction = actions.Find(a => a.patrolIndex == enemy.CurrentIndex);
         if (currentAction == null) return;
 
-        // Key press
         if (currentAction.requireKeyPress && Input.GetKeyDown(currentAction.key))
         {
             CompleteAction();
             return;
         }
 
-        // Trigger collider
         if (currentAction.requireTrigger && currentAction.triggerCollider != null)
         {
             if (currentAction.triggerCollider.bounds.Contains(enemy.transform.position))
@@ -44,7 +42,6 @@ public class ActionManager : MonoBehaviour
             }
         }
 
-        // Item check placeholder
         if (currentAction.requireItem)
         {
             // Example: if (Inventory.HasItem(currentAction.itemID)) CompleteAction();
@@ -57,7 +54,6 @@ public class ActionManager : MonoBehaviour
         {
             waiting = true;
 
-            // If no action defined for this patrol index, release immediately
             ActionData currentAction = actions.Find(a => a.patrolIndex == enemy.CurrentIndex);
             if (currentAction == null)
             {
