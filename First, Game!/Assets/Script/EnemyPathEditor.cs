@@ -8,17 +8,14 @@ public class EnemyPathEditor : Editor
     {
         EnemyPath enemy = (EnemyPath)target;
 
-        // Ensure patrolPoints is initialized
         if (enemy.patrolPoints == null)
             enemy.patrolPoints = new PatrolPoint[0];
 
-        // Draw default inspector first
         DrawDefaultInspector();
 
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Patrol Points", EditorStyles.boldLabel);
 
-        // Draw patrol points
         for (int i = 0; i < enemy.patrolPoints.Length; i++)
         {
             EditorGUILayout.BeginVertical("box");
@@ -46,25 +43,20 @@ public class EnemyPathEditor : Editor
 
         EditorGUILayout.Space();
 
-        // Add / clear buttons (editor only)
-        if (!Application.isPlaying)
+        EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button("Add Point"))
+            AddPoint(enemy);
+
+        if (GUILayout.Button("Clear All Points"))
         {
-            EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Add Point"))
-                AddPoint(enemy);
-
-            if (GUILayout.Button("Clear All Points"))
+            if (EditorUtility.DisplayDialog("Clear All Points?",
+                "Are you sure you want to remove all patrol points?", "Yes", "No"))
             {
-                if (EditorUtility.DisplayDialog("Clear All Points?",
-                    "Are you sure you want to remove all patrol points?", "Yes", "No"))
-                {
-                    enemy.patrolPoints = new PatrolPoint[0];
-                }
+                enemy.patrolPoints = new PatrolPoint[0];
             }
-            EditorGUILayout.EndHorizontal();
         }
+        EditorGUILayout.EndHorizontal();
 
-        // Mark object dirty if modified
         if (GUI.changed)
             EditorUtility.SetDirty(enemy);
     }
@@ -78,20 +70,14 @@ public class EnemyPathEditor : Editor
 
         newPoints[oldLength] = new PatrolPoint();
 
-        // Automatically create container in hierarchy if needed
-        if (newPoints[oldLength].point == null)
-        {
-            GameObject container = GameObject.Find("__PatrolPoints__");
-            if (container == null)
-            {
-                container = new GameObject("__PatrolPoints__");
-            }
+        GameObject container = GameObject.Find("__PatrolPoints__");
+        if (container == null)
+            container = new GameObject("__PatrolPoints__");
 
-            GameObject newPoint = new GameObject($"Point {oldLength}");
-            newPoint.transform.position = enemy.transform.position; // start at enemy
-            newPoint.transform.parent = container.transform;
-            newPoints[oldLength].point = newPoint.transform;
-        }
+        GameObject newPoint = new GameObject($"Point {oldLength}");
+        newPoint.transform.position = enemy.transform.position;
+        newPoint.transform.parent = container.transform;
+        newPoints[oldLength].point = newPoint.transform;
 
         enemy.patrolPoints = newPoints;
     }
