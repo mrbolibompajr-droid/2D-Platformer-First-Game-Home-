@@ -944,7 +944,7 @@ MonoBehaviour:
     Action: 0
     done: 0
   - point: {fileID: 2019995965}
-    waitHere: 0
+    waitHere: 1
     waitDuration: 1
     flipHere: 0
     Action: 0
@@ -959,13 +959,13 @@ MonoBehaviour:
     waitHere: 0
     waitDuration: 1
     flipHere: 0
-    Action: 1
+    Action: 0
     done: 0
   - point: {fileID: 1284407877}
     waitHere: 0
     waitDuration: 1
     flipHere: 0
-    Action: 0
+    Action: 1
     done: 0
   speed: 3
   movementType: 2
@@ -1107,7 +1107,7 @@ Transform:
   m_GameObject: {fileID: 131520494}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.743675, y: 20.804907, z: 0}
+  m_LocalPosition: {x: -26.54, y: 19.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

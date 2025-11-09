@@ -7,7 +7,7 @@ public class PatrolPoint
     public bool waitHere = false;
     public float waitDuration = 1f;
     public bool flipHere = false;
-    public bool Action = false; // Pauses enemy at this point until released
+    public bool Action = false; // Stops enemy at this point until manually released
     [HideInInspector] public bool done = false; // Tracks completed points for gizmos
 }
 
@@ -36,21 +36,6 @@ public class EnemyPath : MonoBehaviour
     {
         if (patrolPoints == null)
             patrolPoints = new PatrolPoint[0];
-
-        if (patrolPoints.Length == 0)
-        {
-            GameObject container = GameObject.Find("__PatrolPoints__");
-            if (container == null)
-                container = new GameObject("__PatrolPoints__");
-
-            PatrolPoint defaultPoint = new PatrolPoint();
-            GameObject pointGO = new GameObject("Point 0");
-            pointGO.transform.position = transform.position;
-            pointGO.transform.parent = container.transform;
-            defaultPoint.point = pointGO.transform;
-
-            patrolPoints = new PatrolPoint[] { defaultPoint };
-        }
     }
 
     void Start()
@@ -69,15 +54,21 @@ public class EnemyPath : MonoBehaviour
         if (patrolPoints.Length == 0 || rb == null)
             return;
 
-        PatrolPoint currentPoint = patrolPoints[currentIndex];
-
-        // Only wait if waitHere and timer is active, NOT for Action yet
+        // Handle waiting points
         if (isWaiting)
         {
             rb.linearVelocity = Vector2.zero;
             waitTimer -= Time.deltaTime;
+
             if (waitTimer <= 0f)
+            {
                 isWaiting = false;
+
+                // Mark the wait point as done
+                patrolPoints[currentIndex].done = true;
+
+                AdvanceToNextPoint();
+            }
         }
     }
 
@@ -89,73 +80,83 @@ public class EnemyPath : MonoBehaviour
         PatrolPoint currentPoint = patrolPoints[currentIndex];
         if (currentPoint.point == null) return;
 
-        // Stop only if we are actually at an action point
-        if (isWaiting || (currentPoint.Action && ReachedPoint(currentPoint.point.position)))
+        // Move toward point if not waiting or action-stopped
+        if (!isWaiting)
         {
-            rb.linearVelocity = Vector2.zero;
-            return;
+            Vector2 targetPos = currentPoint.point.position;
+            Vector2 direction = (targetPos - rb.position).normalized;
+
+            // Apply movement constraints
+            switch (movementType)
+            {
+                case MovementType.Horizontal:
+                    direction.y = 0;
+                    direction = direction.normalized;
+                    break;
+                case MovementType.Vertical:
+                    direction.x = 0;
+                    direction = direction.normalized;
+                    break;
+            }
+
+            rb.linearVelocity = direction * speed;
+
+            // Flip / rotate
+            if (movementType == MovementType.Horizontal)
+            {
+                if (rb.linearVelocity.x > 0 && transform.localScale.x < 0)
+                    Flip();
+                else if (rb.linearVelocity.x < 0 && transform.localScale.x > 0)
+                    Flip();
+            }
+            else if (movementType == MovementType.Both)
+            {
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(0, 0, angle);
+            }
+
+            // Check if reached point
+            if (Vector3.SqrMagnitude(rb.position - (Vector2)targetPos) < 0.01f)
+                HandlePointArrival();
         }
-
-        Vector2 targetPos = currentPoint.point.position;
-        Vector2 direction = (targetPos - rb.position).normalized;
-
-        switch (movementType)
+        else
         {
-            case MovementType.Horizontal:
-                direction.y = 0;
-                direction = direction.normalized;
-                break;
-            case MovementType.Vertical:
-                direction.x = 0;
-                direction = direction.normalized;
-                break;
+            rb.linearVelocity = Vector2.zero; // stop if waiting
         }
-
-        rb.linearVelocity = direction * speed;
-
-        if (movementType == MovementType.Horizontal)
-        {
-            if (rb.linearVelocity.x > 0 && transform.localScale.x < 0)
-                Flip();
-            else if (rb.linearVelocity.x < 0 && transform.localScale.x > 0)
-                Flip();
-        }
-        else if (movementType == MovementType.Both)
-        {
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
-        }
-
-        if (ReachedPoint(targetPos))
-            HandlePointArrival();
-    }
-
-    private bool ReachedPoint(Vector3 pos)
-    {
-        return Vector3.SqrMagnitude(rb.position - (Vector2)pos) < 0.01f;
     }
 
     void HandlePointArrival()
     {
         PatrolPoint p = patrolPoints[currentIndex];
 
+        // Mark as done
+        p.done = true;
+
+        // Flip if needed
         if (p.flipHere && movementType != MovementType.Both)
             Flip();
 
+        // Wait points
         if (p.waitHere)
         {
             isWaiting = true;
             waitTimer = p.waitDuration;
-        }
-
-        if (p.Action)
-        {
-            rb.linearVelocity = Vector2.zero; // stop at action point
             return;
         }
 
-        p.done = true;
+        // Action points stop AFTER arriving at point
+        if (p.Action)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
 
+        // Otherwise, immediately advance
+        AdvanceToNextPoint();
+    }
+
+    private void AdvanceToNextPoint()
+    {
         if (loopPatrol)
         {
             currentIndex++;
@@ -194,9 +195,11 @@ public class EnemyPath : MonoBehaviour
             PatrolPoint p = patrolPoints[i];
             if (p.point == null) continue;
 
-            // Circle color
+            // Point color
             if (p.Action)
                 Gizmos.color = Color.yellow;
+            else if (p.waitHere && !p.done)
+                Gizmos.color = new Color(1f, 0f, 1f); // purple/pink
             else if (p.done)
                 Gizmos.color = Color.blue;
             else
@@ -207,14 +210,36 @@ public class EnemyPath : MonoBehaviour
             // Line to next point
             if (i + 1 < patrolPoints.Length && patrolPoints[i + 1].point != null)
             {
-                if (p.done && i + 1 <= currentIndex)
-                    Gizmos.color = Color.blue;
-                else if (i == currentIndex)
-                    Gizmos.color = Color.green;
-                else
-                    Gizmos.color = Color.red;
+                Vector3 start = p.point.position;
+                Vector3 end = patrolPoints[i + 1].point.position;
 
-                Gizmos.DrawLine(p.point.position, patrolPoints[i + 1].point.position);
+                if (i < currentIndex - 1) // already done path
+                {
+                    Gizmos.color = Color.blue;
+                    Gizmos.DrawLine(start, end);
+                }
+                else if (i == currentIndex - 1) // current segment
+                {
+                    if (rb != null)
+                    {
+                        Vector3 enemyPos = rb.position;
+                        Vector3 clampedPos = Vector3.MoveTowards(start, end, Vector3.Distance(start, enemyPos));
+                        Gizmos.color = Color.green;
+                        Gizmos.DrawLine(clampedPos, end);
+                        Gizmos.color = Color.blue;
+                        Gizmos.DrawLine(start, clampedPos);
+                    }
+                    else
+                    {
+                        Gizmos.color = Color.green;
+                        Gizmos.DrawLine(start, end);
+                    }
+                }
+                else // future paths
+                {
+                    Gizmos.color = Color.red;
+                    Gizmos.DrawLine(start, end);
+                }
             }
         }
     }
