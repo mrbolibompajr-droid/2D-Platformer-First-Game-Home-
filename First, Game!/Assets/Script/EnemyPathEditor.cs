@@ -8,43 +8,40 @@ public class EnemyPathEditor : Editor
     {
         EnemyPath enemy = (EnemyPath)target;
 
+        // Ensure patrolPoints is initialized
+        if (enemy.patrolPoints == null)
+            enemy.patrolPoints = new PatrolPoint[0];
+
         // Draw default inspector first
         DrawDefaultInspector();
 
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Patrol Points", EditorStyles.boldLabel);
 
-        if (enemy.patrolPoints != null)
+        // Draw patrol points
+        for (int i = 0; i < enemy.patrolPoints.Length; i++)
         {
-            for (int i = 0; i < enemy.patrolPoints.Length; i++)
+            EditorGUILayout.BeginVertical("box");
+            EditorGUILayout.LabelField($"Point {i} ({(char)('A' + i)})");
+
+            PatrolPoint p = enemy.patrolPoints[i];
+
+            p.point = (Transform)EditorGUILayout.ObjectField("Transform", p.point, typeof(Transform), true);
+            p.waitHere = EditorGUILayout.Toggle("Wait Here", p.waitHere);
+            if (p.waitHere)
+                p.waitDuration = EditorGUILayout.FloatField("Wait Duration", p.waitDuration);
+            p.flipHere = EditorGUILayout.Toggle("Flip Here", p.flipHere);
+            p.Action = EditorGUILayout.Toggle("Action (Pause Here)", p.Action);
+
+            if (Application.isPlaying)
             {
-                EditorGUILayout.BeginVertical("box");
-                EditorGUILayout.LabelField($"Point {i + 1} ({(char)('A' + i)})");
-
-                PatrolPoint p = enemy.patrolPoints[i];
-
-                p.point = (Transform)EditorGUILayout.ObjectField("Transform", p.point, typeof(Transform), true);
-                p.waitHere = EditorGUILayout.Toggle("Wait Here", p.waitHere);
-                if (p.waitHere)
-                    p.waitDuration = EditorGUILayout.FloatField("Wait Duration", p.waitDuration);
-                p.flipHere = EditorGUILayout.Toggle("Flip Here", p.flipHere);
-
-                EditorGUILayout.Space();
-
-                // Show Action toggle
-                p.Action = EditorGUILayout.Toggle("Action (Pause Here)", p.Action);
-
-                // Show Release Action button only during play mode
-                if (Application.isPlaying)
-                {
-                    GUI.enabled = (i == enemy.CurrentIndex);
-                    if (GUILayout.Button("Release Action"))
-                        enemy.ReleaseAction(i);
-                    GUI.enabled = true;
-                }
-
-                EditorGUILayout.EndVertical();
+                GUI.enabled = (i == enemy.CurrentIndex);
+                if (GUILayout.Button("Release Action"))
+                    enemy.ReleaseAction(i);
+                GUI.enabled = true;
             }
+
+            EditorGUILayout.EndVertical();
         }
 
         EditorGUILayout.Space();
@@ -74,31 +71,28 @@ public class EnemyPathEditor : Editor
 
     private void AddPoint(EnemyPath enemy)
     {
-        int oldLength = enemy.patrolPoints != null ? enemy.patrolPoints.Length : 0;
+        int oldLength = enemy.patrolPoints.Length;
         PatrolPoint[] newPoints = new PatrolPoint[oldLength + 1];
+        for (int i = 0; i < oldLength; i++)
+            newPoints[i] = enemy.patrolPoints[i];
 
-        if (enemy.patrolPoints != null)
-            for (int i = 0; i < oldLength; i++)
-                newPoints[i] = enemy.patrolPoints[i];
+        newPoints[oldLength] = new PatrolPoint();
 
-        // Find or create a container for patrol points
-        GameObject container = GameObject.Find("PatrolPoints");
-        if (container == null)
+        // Automatically create container in hierarchy if needed
+        if (newPoints[oldLength].point == null)
         {
-            container = new GameObject("PatrolPoints");
+            GameObject container = GameObject.Find("__PatrolPoints__");
+            if (container == null)
+            {
+                container = new GameObject("__PatrolPoints__");
+            }
+
+            GameObject newPoint = new GameObject($"Point {oldLength}");
+            newPoint.transform.position = enemy.transform.position; // start at enemy
+            newPoint.transform.parent = container.transform;
+            newPoints[oldLength].point = newPoint.transform;
         }
 
-        // Create new patrol point as child of the container
-        GameObject pointObj = new GameObject($"PatrolPoint {oldLength + 1}");
-        pointObj.transform.position = enemy.transform.position;
-        pointObj.transform.parent = container.transform; // parented to container
-
-        PatrolPoint newPatrolPoint = new PatrolPoint();
-        newPatrolPoint.point = pointObj.transform;
-
-        newPoints[oldLength] = newPatrolPoint;
         enemy.patrolPoints = newPoints;
-
-        EditorUtility.SetDirty(enemy);
     }
 }
