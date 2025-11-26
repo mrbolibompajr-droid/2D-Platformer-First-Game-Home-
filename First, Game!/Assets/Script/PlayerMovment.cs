@@ -1,5 +1,6 @@
 ﻿using System.Collections; // Needed for IEnumerator
 using UnityEngine;
+using Unity.Cinemachine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
@@ -15,6 +16,11 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
     public float checkRadius = 0.25f;
+
+    [Header("Ledge Checks")]
+    public Transform rightLedgeCheck;
+    public Transform leftLedgeCheck;
+    public float LedgeCheckRadius = 0.25f;
 
     [Header("Wall Checks (World Space)")]
     public Transform leftWallCheck;
@@ -104,6 +110,11 @@ public class PlayerMovement : MonoBehaviour
     private bool isWallSliding;
     private bool facingRight = true;
 
+    [Header("LedgeCheck")]
+    public bool isLookingRight;
+    public bool isLookingLeft;
+    private CameraTriggerZone cameraTriggerZone;
+
     private float wallSlideEffectTimer = 0f;
     private float wallSlideStartTimer = 0f;
     private float wallSlideTimer = 0f;
@@ -117,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        cameraTriggerZone = GetComponent<CameraTriggerZone>();
         doubleJumpsRemaining = maxDoubleJumps;
 
         if (combat == null)
@@ -139,6 +151,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (inputX > 0 && !facingRight) Flip();
         if (inputX < 0 && facingRight) Flip();
+
+        isLookingLeft = Physics2D.OverlapCircle(leftLedgeCheck.position, LedgeCheckRadius, groundLayer);
+
+        isLookingRight = Physics2D.OverlapCircle(rightLedgeCheck.position, LedgeCheckRadius, groundLayer);
 
         HandleJumping();
         HandleWallSlide();

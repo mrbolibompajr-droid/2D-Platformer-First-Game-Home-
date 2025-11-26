@@ -1553,6 +1553,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 5.68
       objectReference: {fileID: 0}
+    - target: {fileID: 3559524355981098094, guid: 29fe2fdc25896324eb578008ed8171f7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6343501467967346457, guid: 29fe2fdc25896324eb578008ed8171f7, type: 3}
       propertyPath: m_Name
       value: RoomCamera (1)
@@ -5324,7 +5328,7 @@ Transform:
   m_GameObject: {fileID: 660428779}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -41.449337, y: 31.407595, z: -8.27}
+  m_LocalPosition: {x: -9.705615, y: 8.927593, z: -8.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30741,9 +30745,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 38.51767
   orthographic: 0
-  orthographic size: 27.543833
+  orthographic size: 86.6
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -30768,7 +30772,7 @@ Transform:
   m_GameObject: {fileID: 1859341704}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -41.449337, y: 31.407595, z: -8.27}
+  m_LocalPosition: {x: -7.9699993, y: 7.37, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33059,11 +33063,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 852955563475387430, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -43.66
+      value: -11.73
       objectReference: {fileID: 0}
     - target: {fileID: 852955563475387430, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 32.02
+      value: 9.12
       objectReference: {fileID: 0}
     - target: {fileID: 852955563475387430, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
       propertyPath: m_LocalPosition.z
@@ -33101,9 +33105,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2312318192696383966, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
+      propertyPath: Lens.FieldOfView
+      value: 38.51767
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356319331953654592, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 660428779}
+    - target: {fileID: 7264612691659770732, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
+      propertyPath: Lens.FieldOfView
+      value: 38.51767
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 8388896303917398117, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
