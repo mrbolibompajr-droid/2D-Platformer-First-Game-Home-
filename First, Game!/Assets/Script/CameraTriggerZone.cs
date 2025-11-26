@@ -11,6 +11,10 @@ public class CameraTriggerZone : MonoBehaviour
     [Header("Ledge Camera Wait Timer")]
     [SerializeField] private float edgeHoldTime = 3f; // Time required to stay on edge
     [SerializeField] private float edgeTimer = 0f;
+    
+    //[Header("Idle Camera Wait Timer")]
+    //[SerializeField] private float idleHoldTime = 3f; // Time required to stay on edge
+    //[SerializeField] private float idleTimer = 0f;
 
     private PlayerMovement playerMovement;
     private void Awake()
@@ -29,6 +33,7 @@ public class CameraTriggerZone : MonoBehaviour
     }
     private void Update()
     {
+        #region LedgeLeap
         if (!playerMovement.isLookingLeft || !playerMovement.isLookingRight)
         {
             edgeTimer += Time.deltaTime;
@@ -38,7 +43,7 @@ public class CameraTriggerZone : MonoBehaviour
             edgeTimer = 0f;   // reset if player stops looking or leaves ground
         }
 
-        if (!playerMovement.isLookingLeft && playerMovement.isLookingRight==true && playerMovement.groundCheck==true && edgeTimer >= edgeHoldTime)
+        if (!playerMovement.isLookingLeft && playerMovement.isLookingRight == true && playerMovement.groundCheck == true && edgeTimer >= edgeHoldTime)
         {
             if (playerCamera != null)
                 playerCamera.SetActive(false);
@@ -73,6 +78,7 @@ public class CameraTriggerZone : MonoBehaviour
             if (playerCamera != null)
                 playerCamera.SetActive(true);
         }
+        #endregion
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -741,6 +741,8 @@ MonoBehaviour:
   rightLookingCamera: {fileID: 1161647009888761243}
   edgeHoldTime: 3
   edgeTimer: 0
+  idleHoldTime: 5
+  idleTimer: 0
 --- !u!114 &7986480251655258904
 MonoBehaviour:
   m_ObjectHideFlags: 0
