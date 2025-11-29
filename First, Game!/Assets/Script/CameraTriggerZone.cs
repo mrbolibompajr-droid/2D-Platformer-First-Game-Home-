@@ -1,22 +1,26 @@
 using UnityEngine;
+using System.Collections;
 
 public class CameraTriggerZone : MonoBehaviour
 {
     [Header("Assign the cameras")]
-    public GameObject playerCamera; // The camera following the player
-    public GameObject roomCamera;   // The room/overview camera
-    public GameObject leftLookingCamera;   // The room/overview camera
-    public GameObject rightLookingCamera;   // The room/overview camera
+    public GameObject playerCamera;        // The camera following the player (Cinemachine)
+    public GameObject roomCamera;          // Room overview camera (Cinemachine)
+    public GameObject leftLookingCamera;   // Ledge peek left camera
+    public GameObject rightLookingCamera;  // Ledge peek right camera
 
     [Header("Ledge Camera Wait Timer")]
     [SerializeField] private float edgeHoldTime = 3f; // Time required to stay on edge
-    [SerializeField] private float edgeTimer = 0f;
-    
-    //[Header("Idle Camera Wait Timer")]
-    //[SerializeField] private float idleHoldTime = 3f; // Time required to stay on edge
-    //[SerializeField] private float idleTimer = 0f;
+    private float edgeTimer = 0f;
+
+    [Header("Main Camera Option")]
+    [SerializeField] private bool useMainCamera = false;   // Toggle to use normal camera
+    [SerializeField] private Camera mainCamera;           // The normal non-Cinemachine camera
+    [SerializeField] private float transitionDelay = 1f;  // Delay before switching to mainCamera
 
     private PlayerMovement playerMovement;
+    private Coroutine mainCameraCoroutine;
+
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -24,84 +28,113 @@ public class CameraTriggerZone : MonoBehaviour
 
     private void Start()
     {
-        // Make sure only the player camera is active at start
+        // Ensure only the player camera is active at start
         if (playerCamera != null)
             playerCamera.SetActive(true);
 
         if (roomCamera != null)
             roomCamera.SetActive(false);
+
+        if (leftLookingCamera != null)
+            leftLookingCamera.SetActive(false);
+
+        if (rightLookingCamera != null)
+            rightLookingCamera.SetActive(false);
+
+        if (mainCamera != null)
+            mainCamera.gameObject.SetActive(false);
     }
+
     private void Update()
     {
-        #region LedgeLeap
-        if (!playerMovement.isLookingLeft || !playerMovement.isLookingRight)
+        HandleLedgeCameras();
+    }
+
+    private void HandleLedgeCameras()
+    {
+        // Increment edge timer when player is looking left OR right on the ground
+        if ((playerMovement.isLookingLeft || playerMovement.isLookingRight) && playerMovement.groundCheck)
         {
             edgeTimer += Time.deltaTime;
         }
         else
         {
-            edgeTimer = 0f;   // reset if player stops looking or leaves ground
+            edgeTimer = 0f;
         }
 
-        if (!playerMovement.isLookingLeft && playerMovement.isLookingRight == true && playerMovement.groundCheck == true && edgeTimer >= edgeHoldTime)
+        // Left peek camera
+        if (playerMovement.isLookingLeft && !playerMovement.isLookingRight && playerMovement.groundCheck && edgeTimer >= edgeHoldTime)
         {
-            if (playerCamera != null)
-                playerCamera.SetActive(false);
-
-            if (leftLookingCamera != null)
-                leftLookingCamera.SetActive(true);
+            if (playerCamera != null) playerCamera.SetActive(false);
+            if (leftLookingCamera != null) leftLookingCamera.SetActive(true);
         }
         else
         {
-            if (leftLookingCamera != null)
-                leftLookingCamera.SetActive(false);
-
-            if (playerCamera != null)
-                playerCamera.SetActive(true);
+            if (leftLookingCamera != null) leftLookingCamera.SetActive(false);
+            if (playerCamera != null) playerCamera.SetActive(true);
         }
 
-
-
-        if (!playerMovement.isLookingRight && playerMovement.isLookingLeft == true && playerMovement.groundCheck == true && edgeTimer >= edgeHoldTime)
+        // Right peek camera
+        if (playerMovement.isLookingRight && !playerMovement.isLookingLeft && playerMovement.groundCheck && edgeTimer >= edgeHoldTime)
         {
-            if (playerCamera != null)
-                playerCamera.SetActive(false);
-
-            if (rightLookingCamera != null)
-                rightLookingCamera.SetActive(true);
+            if (playerCamera != null) playerCamera.SetActive(false);
+            if (rightLookingCamera != null) rightLookingCamera.SetActive(true);
         }
         else
         {
-            if (rightLookingCamera != null)
-                rightLookingCamera.SetActive(false);
-
-            if (playerCamera != null)
-                playerCamera.SetActive(true);
+            if (rightLookingCamera != null) rightLookingCamera.SetActive(false);
+            if (playerCamera != null) playerCamera.SetActive(true);
         }
-        #endregion
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            if (playerCamera != null)
-                playerCamera.SetActive(false);
+        if (!other.CompareTag("Player")) return;
 
-            if (roomCamera != null)
-                roomCamera.SetActive(true);
+        // Switch off player camera, enable room camera (Cinemachine)
+        if (playerCamera != null) playerCamera.SetActive(false);
+        if (roomCamera != null) roomCamera.SetActive(true);
+
+        // Start coroutine to switch to mainCamera if enabled
+        if (useMainCamera && mainCamera != null)
+        {
+            mainCameraCoroutine = StartCoroutine(SwitchToMainCameraAfterDelay());
         }
+    }
+
+    private IEnumerator SwitchToMainCameraAfterDelay()
+    {
+        yield return new WaitForSeconds(transitionDelay);
+
+        if (roomCamera != null) roomCamera.SetActive(false);
+        if (mainCamera != null) mainCamera.gameObject.SetActive(true);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            if (roomCamera != null)
-                roomCamera.SetActive(false);
+        if (!other.CompareTag("Player")) return;
 
-            if (playerCamera != null)
-                playerCamera.SetActive(true);
+        // Stop any pending mainCamera switch
+        if (mainCameraCoroutine != null)
+        {
+            StopCoroutine(mainCameraCoroutine);
+            mainCameraCoroutine = null;
         }
+
+        // Disable mainCamera if active
+        if (mainCamera != null && mainCamera.gameObject.activeSelf)
+            mainCamera.gameObject.SetActive(false);
+
+        // Enable room camera briefly for fading effect
+        if (roomCamera != null)
+            roomCamera.SetActive(true);
+
+        // Re-enable player camera
+        if (playerCamera != null)
+            playerCamera.SetActive(true);
+
+        // Disable room camera after fade
+        if (roomCamera != null)
+            roomCamera.SetActive(false);
     }
 }
