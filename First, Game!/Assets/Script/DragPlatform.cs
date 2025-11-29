@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class DragPlatform : MonoBehaviour
 {
     [Header("Grids (single or multiple)")]
-    public GridRegion singleGrid; 
+    public GridRegion singleGrid;
     public List<GridRegion> multipleGrids = new List<GridRegion>();
 
     [Header("Highlight")]
@@ -16,7 +16,7 @@ public class DragPlatform : MonoBehaviour
     public float dragZ = 0f;
 
     [Header("Collision")]
-    public LayerMask platformLayer;  // assign "Platform" layer
+    public LayerMask platformLayer;
 
     private bool dragging = false;
     private Vector3 grabOffset;
@@ -29,9 +29,9 @@ public class DragPlatform : MonoBehaviour
     private Collider2D platformCollider;
     private Vector3 originalPosition;
 
-    // ----------------------------------------------------------
-    // Initialization
-    // ----------------------------------------------------------
+    // Allow platforms to touch edges
+    private const float adjacencyMargin = 0.05f;
+
     void Start()
     {
         platformCollider = GetComponent<Collider2D>();
@@ -51,6 +51,7 @@ public class DragPlatform : MonoBehaviour
     // ----------------------------------------------------------
     // Grid helpers
     // ----------------------------------------------------------
+
     private GridRegion GetActiveGrid(Vector2 pos)
     {
         if (multipleGrids.Count > 0)
@@ -79,7 +80,6 @@ public class DragPlatform : MonoBehaviour
         return new Vector2(x, y);
     }
 
-    // Snap by bottom-left corner ✔ fixes offsets
     private Vector2 SnapPlatformToGrid(Vector2 pos, float gridSize)
     {
         Vector2 half = platformCollider.bounds.extents;
@@ -93,8 +93,9 @@ public class DragPlatform : MonoBehaviour
     }
 
     // ----------------------------------------------------------
-    // Input
+    // Input Handling
     // ----------------------------------------------------------
+
     private void HandleInput()
     {
         if (Camera.main == null || platformCollider == null) return;
@@ -133,8 +134,9 @@ public class DragPlatform : MonoBehaviour
     }
 
     // ----------------------------------------------------------
-    // Drag movement
+    // Drag Movement
     // ----------------------------------------------------------
+
     private void HandleDragging()
     {
         if (!dragging || Camera.main == null) return;
@@ -153,7 +155,6 @@ public class DragPlatform : MonoBehaviour
 
             Vector2 snapped = SnapPlatformToGrid(clamped, grid.gridSize);
 
-            // While dragging, NEVER revert — this fixes your highlight bug
             transform.position = new Vector3(snapped.x, snapped.y, dragZ);
         }
     }
@@ -161,6 +162,7 @@ public class DragPlatform : MonoBehaviour
     // ----------------------------------------------------------
     // Final placement
     // ----------------------------------------------------------
+
     private void SnapToGrid()
     {
         Vector2 clamped = ClampToGrids(transform.position);
@@ -169,10 +171,12 @@ public class DragPlatform : MonoBehaviour
 
         Vector2 snapped = SnapPlatformToGrid(clamped, grid.gridSize);
 
-        // Overlap test for actual placement
+        // Shrink size so touching edges is allowed
+        Vector2 checkSize = (Vector2)platformCollider.bounds.size - new Vector2(adjacencyMargin, adjacencyMargin);
+
         Collider2D[] hits = Physics2D.OverlapBoxAll(
             snapped,
-            platformCollider.bounds.size,
+            checkSize,
             0f,
             platformLayer
         );
@@ -182,14 +186,15 @@ public class DragPlatform : MonoBehaviour
             if (hit.gameObject != this.gameObject)
                 canPlace = false;
 
-        transform.position = canPlace ? 
-            new Vector3(snapped.x, snapped.y, dragZ) : 
+        transform.position = canPlace ?
+            new Vector3(snapped.x, snapped.y, dragZ) :
             originalPosition;
     }
 
     // ----------------------------------------------------------
     // Highlight
     // ----------------------------------------------------------
+
     private void CreateHighlight()
     {
         highlightObj = new GameObject("Highlight");
@@ -220,8 +225,10 @@ public class DragPlatform : MonoBehaviour
         Vector2 snapped = SnapPlatformToGrid(clamped, grid.gridSize);
         Vector2 size = platformCollider.bounds.size;
 
-        // Check for overlaps
-        Collider2D[] hits = Physics2D.OverlapBoxAll(snapped, size, 0f, platformLayer);
+        // Shrink for adjacency
+        Vector2 checkSize = size - new Vector2(adjacencyMargin, adjacencyMargin);
+
+        Collider2D[] hits = Physics2D.OverlapBoxAll(snapped, checkSize, 0f, platformLayer);
 
         bool valid = true;
         foreach (var hit in hits)
