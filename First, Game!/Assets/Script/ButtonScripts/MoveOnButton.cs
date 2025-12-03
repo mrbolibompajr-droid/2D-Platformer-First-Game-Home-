@@ -1,32 +1,53 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveOnButton : MonoBehaviour
 {
-    public float moveDuration = 1f;
+    [Header("Movement Settings")]
+    public float moveDuration = 1f;   // Time to move between points
+    public float waitTime = 1f;       // Time to wait at each waypoint
 
     private bool isMoving = false;
-    private Vector3 startPos;
-    private Vector3 targetPos;
-    private float timer;
 
-    public void MoveTo(Transform target)
+    /// <summary>
+    /// Move the object through a sequence of world-space GameObjects
+    /// </summary>
+    public void MoveThroughSequence(List<GameObject> targets)
     {
-        startPos = transform.position;
-        targetPos = target.position;
-        timer = 0f;
-        isMoving = true;
+        if (targets == null || targets.Count == 0) return;
+
+        if (!isMoving)
+            StartCoroutine(MoveSequenceCoroutine(targets));
     }
 
-    private void Update()
+    private IEnumerator MoveSequenceCoroutine(List<GameObject> targets)
     {
-        if (!isMoving) return;
+        isMoving = true;
 
-        timer += Time.deltaTime;
-        float t = Mathf.SmoothStep(0f, 1f, timer / moveDuration);
+        foreach (GameObject target in targets)
+        {
+            if (target == null) continue;
 
-        transform.position = Vector3.Lerp(startPos, targetPos, t);
+            Vector3 startPos = transform.position;
+            Vector3 endPos = target.transform.position;
+            float timer = 0f;
 
-        if (t >= 1f)
-            isMoving = false;
+            while (timer < moveDuration)
+            {
+                timer += Time.deltaTime;
+                float t = Mathf.SmoothStep(0f, 1f, timer / moveDuration);
+                transform.position = Vector3.Lerp(startPos, endPos, t);
+                yield return null;
+            }
+
+            // Ensure exact position at the end
+            transform.position = endPos;
+
+            // Wait at the target
+            yield return new WaitForSeconds(waitTime);
+        }
+
+        isMoving = false;
     }
 }

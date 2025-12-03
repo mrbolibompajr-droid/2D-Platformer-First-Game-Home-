@@ -7,19 +7,17 @@ public class ButtonAnimator : MonoBehaviour
     [Header("Animation Clip Names")]
     public string backAnimation;
     public string awayAnimation;
+    public string startAnimation;
+
+    [Header("Animation Timing")]
+    public float awayDuration = 0.5f;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
-    public void PlayBack()
-    {
-        animator.Play(backAnimation);
-    }
-
-    public void PlayAway()
-    {
-        animator.Play(awayAnimation);
-    }
+    public void PlayBack() => animator.Play(backAnimation);
+    public void PlayAway() => animator.Play(awayAnimation);
+    public void PlayStart() => animator.Play(startAnimation);
 }
