@@ -256,6 +256,68 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &174253834
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 174253835}
+  m_Layer: 0
+  m_Name: PlayerStartPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &174253835
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174253834}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &284778015
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 284778016}
+  m_Layer: 0
+  m_Name: ParticlesStartPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &284778016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284778015}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -5.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &361198783
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,6 +980,8 @@ GameObject:
   - component: {fileID: 543879376}
   - component: {fileID: 543879378}
   - component: {fileID: 543879377}
+  - component: {fileID: 543879379}
+  - component: {fileID: 543879380}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -1091,6 +1155,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backAnimation: StartButtonBackAnimation
   awayAnimation: StartButtonAwayAnimation
+--- !u!114 &543879379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543879370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6f443bee907f444a3940462a266652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 174253835}
+  mover: {fileID: 1213369763}
+--- !u!114 &543879380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543879370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6f443bee907f444a3940462a266652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 284778016}
+  mover: {fileID: 769350503}
 --- !u!1 &769350499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,6 +1194,7 @@ GameObject:
   - component: {fileID: 769350502}
   - component: {fileID: 769350501}
   - component: {fileID: 769350500}
+  - component: {fileID: 769350503}
   m_Layer: 0
   m_Name: Falling Particles
   m_TagString: Untagged
@@ -5925,6 +6018,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &769350503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769350499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627d4e0f9a6cbd146963e932c7f60d23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDuration: 2
 --- !u!1 &845415550
 GameObject:
   m_ObjectHideFlags: 0
@@ -6072,6 +6178,7 @@ GameObject:
   - component: {fileID: 1213369761}
   - component: {fileID: 1213369760}
   - component: {fileID: 1213369762}
+  - component: {fileID: 1213369763}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -6163,6 +6270,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectRotation: {x: 0, y: 0, z: -5}
   rotationSpeed: 17
+--- !u!114 &1213369763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213369759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627d4e0f9a6cbd146963e932c7f60d23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDuration: 2
 --- !u!1 &1346998572
 GameObject:
   m_ObjectHideFlags: 0
@@ -6951,6 +7071,8 @@ SceneRoots:
   - {fileID: 407889872}
   - {fileID: 1867822672}
   - {fileID: 1213369761}
+  - {fileID: 174253835}
+  - {fileID: 769350502}
+  - {fileID: 284778016}
   - {fileID: 361198787}
   - {fileID: 361375958}
-  - {fileID: 769350502}
