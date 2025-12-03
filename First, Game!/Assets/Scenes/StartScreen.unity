@@ -1165,7 +1165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backAnimation: StartButtonBackAnimation
   awayAnimation: StartButtonAwayAnimation
-  startAnimation: 
+  startAnimation: StartButtonStartAnimation
   awayDuration: 0.5
 --- !u!114 &543879379
 MonoBehaviour:
