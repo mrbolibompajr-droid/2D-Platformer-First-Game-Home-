@@ -4840,6 +4840,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &601339694 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1161647009888761243, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
+  m_PrefabInstance: {fileID: 8045089783126726900}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &606418039
 GameObject:
   m_ObjectHideFlags: 0
@@ -5497,7 +5502,7 @@ Transform:
   m_GameObject: {fileID: 660428779}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -42.33326, y: 31.046024, z: -8.51}
+  m_LocalPosition: {x: -42.39079, y: 32.026024, z: -8.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6931,6 +6936,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &863492371 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2475362052172689382, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
+  m_PrefabInstance: {fileID: 8045089783126726900}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &878695891
 GameObject:
   m_ObjectHideFlags: 0
@@ -24743,7 +24753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2653547235124386461, guid: 29fe2fdc25896324eb578008ed8171f7, type: 3}
       propertyPath: transitionDelay
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2888964663028634268, guid: 29fe2fdc25896324eb578008ed8171f7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -30996,7 +31006,7 @@ Transform:
   m_GameObject: {fileID: 1859341704}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -46.95, y: 30.5, z: -9}
+  m_LocalPosition: {x: -45.38, y: 30.45, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33287,11 +33297,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 852955563475387430, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -46.71
+      value: -43.38
       objectReference: {fileID: 0}
     - target: {fileID: 852955563475387430, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 32.25
+      value: 31.95
       objectReference: {fileID: 0}
     - target: {fileID: 852955563475387430, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
       propertyPath: m_LocalPosition.z
@@ -33325,6 +33335,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1161647009888761243, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
+      propertyPath: m_Name
+      value: LeftLedgeCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 1494371957800919262, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
       propertyPath: m_Name
       value: Player
@@ -33333,13 +33347,49 @@ PrefabInstance:
       propertyPath: Lens.FieldOfView
       value: 38.51767
       objectReference: {fileID: 0}
+    - target: {fileID: 2475362052172689382, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
+      propertyPath: m_Name
+      value: RightLedgeCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2737394302382552050, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2737394302382552050, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3331101785216480277, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3331101785216480277, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5356319331953654592, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 660428779}
+    - target: {fileID: 5356319331953654592, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
+      propertyPath: leftLookingCamera
+      value: 
+      objectReference: {fileID: 601339694}
+    - target: {fileID: 5356319331953654592, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
+      propertyPath: rightLookingCamera
+      value: 
+      objectReference: {fileID: 863492371}
     - target: {fileID: 7264612691659770732, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
       propertyPath: Lens.FieldOfView
       value: 38.51767
+      objectReference: {fileID: 0}
+    - target: {fileID: 8040061263837783359, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8040061263837783359, guid: 68db7ee01751b7c45a004efe586d7c49, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
