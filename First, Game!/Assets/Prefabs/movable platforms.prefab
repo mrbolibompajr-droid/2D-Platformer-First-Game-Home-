@@ -432,9 +432,7 @@ MonoBehaviour:
   validColor: {r: 0, g: 1, b: 0, a: 0.5}
   invalidColor: {r: 1, g: 0, b: 0, a: 0.5}
   dragZ: 0
-  platformLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  allowedTag: Platform
 --- !u!1 &5837498470076331511
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,9 +622,7 @@ MonoBehaviour:
   validColor: {r: 0, g: 1, b: 0, a: 0.5}
   invalidColor: {r: 1, g: 0, b: 0, a: 0.5}
   dragZ: 0
-  platformLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  allowedTag: Platforms
 --- !u!1 &6879195428278558053
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,6 +777,4 @@ MonoBehaviour:
   validColor: {r: 0, g: 1, b: 0, a: 0.5}
   invalidColor: {r: 1, g: 0, b: 0, a: 0.5}
   dragZ: 0
-  platformLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  allowedTag: Platform

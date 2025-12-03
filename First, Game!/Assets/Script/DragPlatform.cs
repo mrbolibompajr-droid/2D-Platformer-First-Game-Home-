@@ -15,8 +15,8 @@ public class DragPlatform : MonoBehaviour
     [Header("Depth")]
     public float dragZ = 0f;
 
-    [Header("Collision")]
-    public LayerMask platformLayer;
+    [Header("Tag Filtering")]
+    public string allowedTag = "Platform";   // Objects with this tag block placement
 
     private bool dragging = false;
     private Vector3 grabOffset;
@@ -160,7 +160,7 @@ public class DragPlatform : MonoBehaviour
     }
 
     // ----------------------------------------------------------
-    // Final placement
+    // Final placement (TAG BASED)
     // ----------------------------------------------------------
 
     private void SnapToGrid()
@@ -171,20 +171,21 @@ public class DragPlatform : MonoBehaviour
 
         Vector2 snapped = SnapPlatformToGrid(clamped, grid.gridSize);
 
-        // Shrink size so touching edges is allowed
-        Vector2 checkSize = (Vector2)platformCollider.bounds.size - new Vector2(adjacencyMargin, adjacencyMargin);
+        Vector2 checkSize = (Vector2)platformCollider.bounds.size -
+                            new Vector2(adjacencyMargin, adjacencyMargin);
 
-        Collider2D[] hits = Physics2D.OverlapBoxAll(
-            snapped,
-            checkSize,
-            0f,
-            platformLayer
-        );
+        // No LayerMask — check EVERYTHING, filter by tag manually
+        Collider2D[] hits = Physics2D.OverlapBoxAll(snapped, checkSize, 0f);
 
         bool canPlace = true;
         foreach (var hit in hits)
-            if (hit.gameObject != this.gameObject)
+        {
+            if (hit.gameObject == this.gameObject) continue;
+
+            // Reject placement only if object shares the specified tag
+            if (hit.CompareTag(allowedTag))
                 canPlace = false;
+        }
 
         transform.position = canPlace ?
             new Vector3(snapped.x, snapped.y, dragZ) :
@@ -192,7 +193,7 @@ public class DragPlatform : MonoBehaviour
     }
 
     // ----------------------------------------------------------
-    // Highlight
+    // Highlight (TAG BASED)
     // ----------------------------------------------------------
 
     private void CreateHighlight()
@@ -202,7 +203,10 @@ public class DragPlatform : MonoBehaviour
         highlightObj.transform.localPosition = Vector3.zero;
 
         highlightSR = highlightObj.AddComponent<SpriteRenderer>();
-        highlightSR.sprite = Sprite.Create(Texture2D.whiteTexture, new Rect(0, 0, 1, 1), Vector2.one * 0.5f);
+        highlightSR.sprite = Sprite.Create(
+            Texture2D.whiteTexture,
+            new Rect(0, 0, 1, 1),
+            Vector2.one * 0.5f);
         highlightSR.drawMode = SpriteDrawMode.Sliced;
 
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
@@ -225,18 +229,19 @@ public class DragPlatform : MonoBehaviour
         Vector2 snapped = SnapPlatformToGrid(clamped, grid.gridSize);
         Vector2 size = platformCollider.bounds.size;
 
-        // Shrink for adjacency
         Vector2 checkSize = size - new Vector2(adjacencyMargin, adjacencyMargin);
 
-        Collider2D[] hits = Physics2D.OverlapBoxAll(snapped, checkSize, 0f, platformLayer);
+        Collider2D[] hits = Physics2D.OverlapBoxAll(snapped, checkSize, 0f);
 
         bool valid = true;
         foreach (var hit in hits)
-            if (hit.gameObject != this.gameObject)
+        {
+            if (hit.gameObject == this.gameObject) continue;
+            if (hit.CompareTag(allowedTag))
                 valid = false;
+        }
 
         highlightSR.color = valid ? validColor : invalidColor;
-
         highlightObj.transform.position = new Vector3(snapped.x, snapped.y, dragZ - 0.01f);
         highlightSR.size = size;
     }

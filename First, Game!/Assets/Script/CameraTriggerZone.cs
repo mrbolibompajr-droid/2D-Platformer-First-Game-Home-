@@ -6,6 +6,8 @@ public class CameraTriggerZone : MonoBehaviour
     [Header("Assign the cameras")]
     public GameObject playerCamera;        // The camera following the player (Cinemachine)
     public GameObject roomCamera;          // Room overview camera (Cinemachine)
+
+    [Header("Assign the Player looking cameras")]
     public GameObject leftLookingCamera;   // Ledge peek left camera
     public GameObject rightLookingCamera;  // Ledge peek right camera
 

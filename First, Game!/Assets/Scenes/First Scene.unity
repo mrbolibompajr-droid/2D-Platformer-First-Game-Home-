@@ -476,6 +476,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 149531746326829253, guid: 9a0cc72479cbb7d438fb4b0670c98b94, type: 3}
+      propertyPath: allowedTag
+      value: Platforms
+      objectReference: {fileID: 0}
+    - target: {fileID: 149531746326829253, guid: 9a0cc72479cbb7d438fb4b0670c98b94, type: 3}
       propertyPath: singleGrid
       value: 
       objectReference: {fileID: 706739629}
@@ -523,6 +527,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -3
       objectReference: {fileID: 0}
+    - target: {fileID: 4242173593404575100, guid: 9a0cc72479cbb7d438fb4b0670c98b94, type: 3}
+      propertyPath: allowedTag
+      value: Platforms
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789668884348026179, guid: 9a0cc72479cbb7d438fb4b0670c98b94, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789668884348026179, guid: 9a0cc72479cbb7d438fb4b0670c98b94, type: 3}
+      propertyPath: m_TagString
+      value: Platforms
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860165353042672591, guid: 9a0cc72479cbb7d438fb4b0670c98b94, type: 3}
+      propertyPath: allowedTag
+      value: Platforms
+      objectReference: {fileID: 0}
     - target: {fileID: 4860165353042672591, guid: 9a0cc72479cbb7d438fb4b0670c98b94, type: 3}
       propertyPath: singleGrid
       value: 
@@ -546,6 +566,22 @@ PrefabInstance:
     - target: {fileID: 6719469164799497917, guid: 9a0cc72479cbb7d438fb4b0670c98b94, type: 3}
       propertyPath: m_LocalPosition.y
       value: 12.711323
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825740847808505049, guid: 9a0cc72479cbb7d438fb4b0670c98b94, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6825740847808505049, guid: 9a0cc72479cbb7d438fb4b0670c98b94, type: 3}
+      propertyPath: m_TagString
+      value: Platforms
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879195428278558053, guid: 9a0cc72479cbb7d438fb4b0670c98b94, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879195428278558053, guid: 9a0cc72479cbb7d438fb4b0670c98b94, type: 3}
+      propertyPath: m_TagString
+      value: Platforms
       objectReference: {fileID: 0}
     - target: {fileID: 7291145423191963809, guid: 9a0cc72479cbb7d438fb4b0670c98b94, type: 3}
       propertyPath: m_IsTrigger
@@ -5461,7 +5497,7 @@ Transform:
   m_GameObject: {fileID: 660428779}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -42.330215, y: 31.046024, z: -8.51}
+  m_LocalPosition: {x: -42.33326, y: 31.046024, z: -8.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24698,12 +24734,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 678271057}
     - target: {fileID: 2653547235124386461, guid: 29fe2fdc25896324eb578008ed8171f7, type: 3}
+      propertyPath: roomCamera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653547235124386461, guid: 29fe2fdc25896324eb578008ed8171f7, type: 3}
       propertyPath: useMainCamera
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2653547235124386461, guid: 29fe2fdc25896324eb578008ed8171f7, type: 3}
       propertyPath: transitionDelay
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2888964663028634268, guid: 29fe2fdc25896324eb578008ed8171f7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24738,7 +24778,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8821453910027821875, guid: 29fe2fdc25896324eb578008ed8171f7, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29fe2fdc25896324eb578008ed8171f7, type: 3}
@@ -30806,7 +30847,7 @@ GameObject:
   - component: {fileID: 1859341705}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
