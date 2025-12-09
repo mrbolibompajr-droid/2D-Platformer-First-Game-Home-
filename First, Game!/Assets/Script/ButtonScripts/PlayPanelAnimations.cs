@@ -22,9 +22,15 @@ public class PlayPanelAnimations : MonoBehaviour
     [Tooltip("Key to play all animations")]
     public KeyCode playKey = KeyCode.E;
 
+    public StartSceneChange startSceneChange;
+    
     void Update()
     {
         if (Input.GetKeyDown(playKey))
+        {
+            PlayAllAnimations();
+        }
+        else if (startSceneChange.hasClicked)
         {
             PlayAllAnimations();
         }
