@@ -40,7 +40,7 @@ public class PlayPanelAnimations : MonoBehaviour
     {
         foreach (PanelAnimation panel in panelAnimations)
         {
-            if (panel.animator != null && !string.IsNullOrEmpty(panel.stateName))
+            if (panel.animator != null && !string.IsNullOrEmpty(panel.stateName) && !panel.animator.GetCurrentAnimatorStateInfo(0).IsName(panel.stateName))
             {
                 // Play the specified state immediately from the beginning
                 panel.animator.Play(panel.stateName, panel.layer, 0f);
