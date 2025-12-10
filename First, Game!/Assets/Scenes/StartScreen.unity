@@ -1271,6 +1271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneSwitcher: {fileID: 1790332179}
   currentTime: 0
+  clickedTimes: 0
   hasClicked: 0
 --- !u!1 &603954633
 GameObject:
@@ -6535,6 +6536,7 @@ MonoBehaviour:
     stateName: BottomBlinkingPanelBackAnimation
     layer: 0
   playKey: 101
+  startSceneChange: {fileID: 543879382}
 --- !u!4 &1494787862
 Transform:
   m_ObjectHideFlags: 0
