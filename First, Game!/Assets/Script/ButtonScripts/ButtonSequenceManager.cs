@@ -6,8 +6,11 @@ public class ButtonSequenceManager : MonoBehaviour
     public ButtonAnimator[] buttons;
     public float delayBetweenButtons = 0.2f;
 
+    private int clickedTimes = 0; // counter
+
     public void PlayAwaySequence(int clickedIndex)
     {
+        clickedTimes++; // increment each time button is pressed
         StartCoroutine(PlaySequence(clickedIndex));
     }
 
@@ -33,5 +36,11 @@ public class ButtonSequenceManager : MonoBehaviour
 
         // Play Start on clicked button
         buttons[clickedIndex].PlayStart();
+
+        // Only play StartUp on the second press
+        if (clickedTimes == 2)
+        {
+            buttons[clickedIndex].PlayStartUp();
+        }
     }
 }

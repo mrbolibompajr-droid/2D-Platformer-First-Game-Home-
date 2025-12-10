@@ -8,6 +8,7 @@ public class ButtonAnimator : MonoBehaviour
     public string backAnimation;
     public string awayAnimation;
     public string startAnimation;
+    public string startUpAnimation;
 
     [Header("Animation Timing")]
     public float awayDuration = 0.5f;
@@ -20,4 +21,5 @@ public class ButtonAnimator : MonoBehaviour
     public void PlayBack() => animator.Play(backAnimation);
     public void PlayAway() => animator.Play(awayAnimation);
     public void PlayStart() => animator.Play(startAnimation);
+    public void PlayStartUp() => animator.Play(startUpAnimation);
 }

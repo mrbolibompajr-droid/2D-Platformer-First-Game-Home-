@@ -22,17 +22,23 @@ public class PlayPanelAnimations : MonoBehaviour
     [Tooltip("Key to play all animations")]
     public KeyCode playKey = KeyCode.E;
 
+    [Header("Time")]
+    [SerializeField] float currentTime;
+    [SerializeField] float waitingTime;
+
+    [Header("Object of script")]
     public StartSceneChange startSceneChange;
     
     void Update()
     {
-        if (Input.GetKeyDown(playKey))
+        if (startSceneChange.hasClicked)
         {
-            PlayAllAnimations();
-        }
-        else if (startSceneChange.hasClicked)
-        {
-            PlayAllAnimations();
+            currentTime += Time.deltaTime;
+
+            if (currentTime >= waitingTime)
+            {
+                PlayAllAnimations();
+            } 
         }
     }
 
